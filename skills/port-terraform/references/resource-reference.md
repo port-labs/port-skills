@@ -10,8 +10,9 @@ For the meaning of property types, string formats, and relation semantics
 (not the Terraform argument names, the underlying Port concepts), see the
 `port-blueprints` skill's `references/property-types.md` and
 `references/relations.md`. For invocation method payload templating
-(`{{ .inputs.x }}`, `{{ .run.id }}`), see the `port-self-service-actions`
-skill's `references/invocation-methods.md`. This file only covers how those
+(`{{ .inputs.x }}`, `{{ .run.id }}`), see
+[create-self-service-experiences.md](https://docs.port.io/actions-and-automations/create-self-service-experiences/create-self-service-experiences),
+not yet covered by a skill in this repo. This file only covers how those
 concepts map onto HCL arguments.
 
 ## Provider configuration
@@ -312,7 +313,7 @@ each resource.
 | `title`, `description`, `icon` | |
 | `self_service_trigger` | Human-triggered form. See below. Mutually exclusive with `automation_trigger`. |
 | `automation_trigger` | Event-triggered, no form. See below. Mutually exclusive with `self_service_trigger`. |
-| `webhook_method`, `github_method`, `gitlab_method`, `azure_method`, `kafka_method`, `upsert_entity_method`, `integration_method` | Exactly one invocation method block. Field names mirror the JSON `invocationMethod` types documented in `port-self-service-actions`; see the mapping table below. |
+| `webhook_method`, `github_method`, `gitlab_method`, `azure_method`, `kafka_method`, `upsert_entity_method`, `integration_method` | Exactly one invocation method block. Field names mirror the JSON `invocationMethod` types documented at [create-self-service-experiences.md](https://docs.port.io/actions-and-automations/create-self-service-experiences/create-self-service-experiences); see the mapping table below. |
 | `required_approval` | `"true"`, `"false"`, `"ANY"`, or `"ALL"`. |
 | `approval_email_notification` | Presence-based block (`{}` enables it, no nested fields). |
 | `approval_webhook_notification` | `{ url, format }`. |

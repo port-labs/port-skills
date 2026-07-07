@@ -26,8 +26,8 @@ templates between them. This skill is reference-only: the JSON it produces is
 valid without a live Port account, though applying it needs API credentials
 (see [Prerequisites](#prerequisites)).
 
-Out of scope: Port's older, single-step Actions & Automations model
-(`port-self-service-actions` owns that; see the
+Out of scope: Port's older, single-step Actions & Automations model (not
+covered by a skill in this repo yet; see the
 [comparison table](https://docs.port.io/workflows/overview#comparison-with-actions--automations)
 for when to use which), blueprint schema design (`port-blueprints`), and
 CI/CD pipeline files such as `.github/workflows/*.yml`, GitHub Actions is a

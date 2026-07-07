@@ -32,9 +32,10 @@ produce correct HCL, only a real account and API credentials to actually
 `terraform apply` it.
 
 Out of scope: the underlying Port concepts (property types, relation
-semantics, invocation method payload templating) are owned by the
-`port-blueprints` and `port-self-service-actions` skills, this skill only
-covers how those concepts map onto Terraform arguments. Pulumi is Port's
+semantics) are owned by the `port-blueprints` skill; self-service action
+JSON schema and invocation method payload templating aren't covered by a
+skill in this repo yet. This skill only covers how those concepts map onto
+Terraform arguments. Pulumi is Port's
 other IaC provider, briefly noted in [Step 1](#step-1---set-up-the-provider),
 but not covered in depth here.
 

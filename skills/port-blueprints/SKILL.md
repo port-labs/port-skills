@@ -27,8 +27,8 @@ from the static blueprint JSON schema and the raw Port API, so it works
 without a live Port account or Port MCP server connected. Without
 credentials it still produces valid blueprint JSON the user can apply later.
 
-Out of scope: self-service actions (`port-self-service-actions`), scorecards
-(`port-scorecards`), integration mapping (`port-integration-mapping`), and
+Out of scope: self-service actions (not covered by a skill in this repo yet),
+scorecards (`port-scorecards`), integration mapping (`port-integrations`), and
 the Terraform/Pulumi provider reference (`port-terraform`, pointed to in
 [Step 6](#step-6---create-or-update-the-blueprint-via-the-api)).
 

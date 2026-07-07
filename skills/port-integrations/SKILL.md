@@ -1,6 +1,6 @@
 ---
-name: port-integration-mapping
-description: "Configure and troubleshoot Port integration mapping YAML, resources, selectors, JQ-based entity mappings, relations, and advanced options like createMissingRelatedEntities and itemsToParse. Use when asked to 'write a Port mapping', 'map API or tool data to a Port blueprint', 'configure an Ocean integration mapping', 'add a relation to a Port mapping', 'parse an array into separate Port entities', 'fix a Port mapping JQ error', or 'why isn't my Port integration syncing the right entities or properties'."
+name: port-integrations
+description: "Configure and troubleshoot Port integrations: mapping YAML, resources, selectors, JQ-based entity mappings, relations, and advanced options like createMissingRelatedEntities and itemsToParse. Use when asked to 'write a Port mapping', 'map API or tool data to a Port blueprint', 'configure an Ocean integration mapping', 'add a relation to a Port mapping', 'parse an array into separate Port entities', 'fix a Port mapping JQ error', or 'why isn't my Port integration syncing the right entities or properties'."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
@@ -10,7 +10,7 @@ metadata:
   tags: port,integrations,mapping,ocean,jq,mcp-powered
 ---
 
-# Port integration mapping
+# Port integrations
 
 This skill teaches you how to author, edit, and debug the mapping configuration for a
 Port integration: the YAML that tells an [Ocean-based integration](https://docs.port.io/build-your-software-catalog/custom-integration/ocean-custom-integration/overview)
@@ -26,7 +26,7 @@ entities, using [JQ](https://jqlang.org/manual/) expressions.
 
 Out of scope: creating the blueprints and relations themselves (a mapping can only map
 into fields that already exist on a blueprint), and general JQ language tutorials beyond
-what mapping needs (see [references/jq-patterns.md](references/jq-patterns.md) for the
+what mapping needs (see [references/mapping.md](references/mapping.md) for the
 patterns that come up most).
 
 ## Prerequisites
@@ -63,7 +63,7 @@ Fallback: not applicable, this step has no external dependency.
 ## Step 4 - Write the entity mappings
 
 Precondition: the resource and selector from step 3 are in place.
-Action: under `port.entity.mappings`, set `identifier`, `title`, `blueprint`, and `properties` as JQ expressions evaluated against each item. Wrap hyphenated property or identifier names in bracket notation (`.properties["my-field"]`, not `.my-field`, which JQ parses as subtraction). See [references/jq-patterns.md](references/jq-patterns.md) for common transformations.
+Action: under `port.entity.mappings`, set `identifier`, `title`, `blueprint`, and `properties` as JQ expressions evaluated against each item. Wrap hyphenated property or identifier names in bracket notation (`.properties["my-field"]`, not `.my-field`, which JQ parses as subtraction). See [references/mapping.md](references/mapping.md) for common transformations.
 Fallback: not applicable, this is static authoring.
 
 ## Step 5 - Add relations, if any
@@ -116,7 +116,7 @@ Two complete, copy-pasteable starting points:
   resources, a direct-identifier relation, a search-query relation, and
   `createMissingRelatedEntities`.
 
-See [references/jq-patterns.md](references/jq-patterns.md) for JQ recipes and
-[references/troubleshooting.md](references/troubleshooting.md) for the diagnostic
+See [references/mapping.md](references/mapping.md) for mapping guidance and JQ recipes,
+and [references/troubleshooting.md](references/troubleshooting.md) for the diagnostic
 playbook. Full concept reference:
 [configure-mapping.md](https://docs.port.io/build-your-software-catalog/customize-integrations/configure-mapping).
