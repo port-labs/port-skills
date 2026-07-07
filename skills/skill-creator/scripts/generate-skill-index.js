@@ -41,10 +41,13 @@ function loadSkills() {
 
 		const content = fs.readFileSync(skillMdPath, 'utf-8');
 		const { frontmatter } = parseFrontmatter(content);
+		const summary = frontmatter.metadata && frontmatter.metadata.summary;
 		skills.push({
 			name: frontmatter.name || entry.name,
-			description: firstSentence(frontmatter.description || ''),
-			tags: frontmatter.metadata && frontmatter.metadata.tags ? frontmatter.metadata.tags : '',
+			// Prefer a short metadata.summary for the README table; fall back to the
+			// first sentence of `description`, which is written as a trigger signal
+			// for the agent and is usually too long for a table cell.
+			description: summary || firstSentence(frontmatter.description || ''),
 		});
 	}
 
@@ -52,10 +55,8 @@ function loadSkills() {
 }
 
 function buildTable(skills) {
-	const header = '| Skill | What it does | Tags |\n|---|---|---|';
-	const rows = skills.map(
-		(s) => `| [\`${s.name}\`](skills/${s.name}/SKILL.md) | ${s.description}. | ${s.tags} |`,
-	);
+	const header = '| Skill | What it does |\n|---|---|';
+	const rows = skills.map((s) => `| [\`${s.name}\`](skills/${s.name}/SKILL.md) | ${s.description}. |`);
 	return [header, ...rows].join('\n');
 }
 

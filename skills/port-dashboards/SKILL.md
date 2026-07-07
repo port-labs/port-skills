@@ -19,6 +19,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,dashboards,widgets,reference
+  summary: Build Port dashboard pages with widgets, layout, and permissions
 ---
 
 # Port dashboard pages

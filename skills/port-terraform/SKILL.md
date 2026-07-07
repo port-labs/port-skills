@@ -18,6 +18,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,terraform,iac,reference
+  summary: Manage Port resources as code with the Terraform provider
 ---
 
 # Port Terraform provider

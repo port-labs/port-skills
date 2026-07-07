@@ -8,6 +8,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,integrations,mapping,ocean,jq,mcp-powered
+  summary: Configure and troubleshoot Port integration mapping
 ---
 
 # Port integrations

@@ -8,6 +8,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,workflows,automation,reference
+  summary: Build Port workflows with triggers, action nodes, and conditions
 ---
 
 # Port workflows

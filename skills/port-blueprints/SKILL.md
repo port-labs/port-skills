@@ -8,6 +8,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,blueprints,data-model,reference
+  summary: Model your software catalog with Port blueprints, properties, and relations
 ---
 
 # Port blueprints

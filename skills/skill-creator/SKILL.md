@@ -8,6 +8,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,meta,skill-authoring,reference
+  summary: Author and validate a new skill for this repo
 ---
 
 # Skill creator
