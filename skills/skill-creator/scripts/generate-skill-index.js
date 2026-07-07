@@ -16,6 +16,18 @@ const README_PATH = path.join(__dirname, '../../../README.md');
 const START_MARKER = '<!-- SKILL_INDEX_START -->';
 const END_MARKER = '<!-- SKILL_INDEX_END -->';
 
+/**
+ * Extract the first sentence from a description, splitting on a period that's
+ * followed by whitespace or the end of the string. A plain `split('.')[0]`
+ * breaks on abbreviations like "SKILL.md" or "v1.0", which aren't sentence ends.
+ * @param {string} description
+ * @returns {string}
+ */
+function firstSentence(description) {
+	const match = description.match(/^.*?\.(?=\s|$)/);
+	return (match ? match[0].slice(0, -1) : description).trim();
+}
+
 function loadSkills() {
 	const entries = fs.readdirSync(SKILLS_DIR, { withFileTypes: true });
 	const skills = [];
@@ -31,7 +43,7 @@ function loadSkills() {
 		const { frontmatter } = parseFrontmatter(content);
 		skills.push({
 			name: frontmatter.name || entry.name,
-			description: (frontmatter.description || '').split('.')[0].trim(),
+			description: firstSentence(frontmatter.description || ''),
 			tags: frontmatter.metadata && frontmatter.metadata.tags ? frontmatter.metadata.tags : '',
 		});
 	}
