@@ -1,21 +1,9 @@
 # Port Agent Skills
 
-[Agent Skills](https://agentskills.io/specification) that teach your coding agent
-(Claude Code, Cursor, Codex CLI, GitHub Copilot, and others) how to build things
-against [Port](https://www.port.io): blueprints, integrations, workflows,
-dashboards, and more.
-
-Most of these skills are adapted from skills Port already runs internally for its
-own in-product AI. `port-blueprints` and `port-terraform` are the exception: net-new
-content with no internal skill behind them yet, written directly from
-[docs.port.io](https://docs.port.io).
-
-## Install
-
-Distribution (how you actually get these into your coding agent) is still being
-worked out; expect this section to fill in. For now, the fastest way to try a
-skill is to copy its folder straight into your agent's skill directory, for
-example `cp -r skills/port-workflows ~/.claude/skills/`.
+Curated [Agent Skills](https://agentskills.io/specification) for working with
+[Port](https://www.port.io) from your coding agent, Claude Code, Cursor, Codex
+CLI, GitHub Copilot, and others. Point your agent at one of these and ask it
+to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 
 ## Skills
 
@@ -34,21 +22,33 @@ example `cp -r skills/port-workflows ~/.claude/skills/`.
 [`port-dashboard-plugins`](skills/port-dashboards/port-dashboard-plugins/SKILL.md),
 for scaffolding and building custom Port plugin widgets.
 
-Run `node skills/skill-creator/scripts/generate-skill-index.js` after adding a
-skill to keep this table current (CI checks it on every PR). See
-[`skill-creator`](skills/skill-creator/SKILL.md) for how to author and validate
-a new one.
-
-## Skill classes
-
 - **Reference** skills are pure static knowledge; no live Port account is needed to use them.
 - **MCP-powered** skills use [Port's MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview) tools when connected, and fall back to the raw API or CLI when it isn't.
 
+## Install
+
+Distribution is still being worked out, for now, clone the repo and copy the
+skill you want into your agent's skill directory:
+
+```bash
+git clone https://github.com/port-labs/port-skills-external /tmp/port-skills
+cp -r /tmp/port-skills/skills/port-workflows ~/.claude/skills/
+rm -rf /tmp/port-skills
+```
+
+Cursor: `~/.cursor/skills`. GitHub Copilot: `~/.copilot/skills`. Both
+user-level and project-level (`.claude/skills`, `.cursor/skills`) paths work.
+
 ## Contributing
 
-See [`skills/skill-creator/SKILL.md`](skills/skill-creator/SKILL.md) for the
-skill format, authoring conventions, and how this repo relates to Port's own
-in-product AI skills.
+See [`skill-creator`](skills/skill-creator/SKILL.md) for the skill format,
+authoring conventions, and how to validate a new skill before opening a PR.
+
+## Learn more
+
+- [docs.port.io](https://docs.port.io), Port's product documentation
+- [Port MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
+- [Agent Skills specification](https://agentskills.io/specification)
 
 ## License
 
