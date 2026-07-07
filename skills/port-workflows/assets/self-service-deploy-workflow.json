@@ -1,0 +1,122 @@
+{
+  "identifier": "deploy-service",
+  "title": "Deploy service",
+  "icon": "Deployment",
+  "description": "Deploy a service to an environment, using a canary rollout for production.",
+  "category": "Deployments",
+  "allowAnyoneToViewRuns": true,
+  "nodes": [
+    {
+      "identifier": "trigger",
+      "config": {
+        "type": "SELF_SERVE_TRIGGER",
+        "permissions": {
+          "roles": ["Member"]
+        },
+        "userInputs": {
+          "properties": {
+            "service": {
+              "type": "string",
+              "format": "entity",
+              "blueprint": "service",
+              "title": "Service"
+            },
+            "version": {
+              "type": "string",
+              "title": "Version",
+              "description": "Git tag or commit SHA to deploy."
+            },
+            "environment": {
+              "type": "string",
+              "title": "Environment",
+              "enum": ["staging", "production"]
+            }
+          },
+          "required": ["service", "version", "environment"],
+          "order": ["service", "version", "environment"]
+        }
+      }
+    },
+    {
+      "identifier": "check_env",
+      "title": "Check environment",
+      "config": {
+        "type": "CONDITION",
+        "outlets": [
+          {
+            "identifier": "prod",
+            "title": "Production",
+            "expression": ".outputs.trigger.environment == \"production\""
+          }
+        ]
+      }
+    },
+    {
+      "identifier": "deploy_prod",
+      "title": "Deploy (canary)",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "https://api.example.com/deploy",
+        "method": "POST",
+        "body": {
+          "service": "{{ .outputs.trigger.service }}",
+          "version": "{{ .outputs.trigger.version }}",
+          "environment": "production",
+          "canary": true
+        }
+      }
+    },
+    {
+      "identifier": "deploy_other",
+      "title": "Deploy",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "https://api.example.com/deploy",
+        "method": "POST",
+        "body": {
+          "service": "{{ .outputs.trigger.service }}",
+          "version": "{{ .outputs.trigger.version }}",
+          "environment": "{{ .outputs.trigger.environment }}"
+        }
+      }
+    },
+    {
+      "identifier": "update_entity",
+      "title": "Record last deployment",
+      "config": {
+        "type": "UPSERT_ENTITY",
+        "blueprintIdentifier": "service",
+        "mapping": {
+          "identifier": "{{ .outputs.trigger.service }}",
+          "properties": {
+            "lastDeployedVersion": "{{ .outputs.trigger.version }}",
+            "lastDeployedEnvironment": "{{ .outputs.trigger.environment }}",
+            "lastDeployedAt": "{{ now | todateiso8601 }}"
+          }
+        },
+        "onFailure": "continue"
+      }
+    },
+    {
+      "identifier": "notify_slack",
+      "title": "Notify Slack",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "{{ .secrets[\"slack-webhook-url\"] }}",
+        "method": "POST",
+        "onFailure": "continue",
+        "body": {
+          "text": "Deployed {{ .outputs.trigger.service }} version {{ .outputs.trigger.version }} to {{ .outputs.trigger.environment }}, triggered by {{ .workflowRun.trigger.by.email }}."
+        }
+      }
+    }
+  ],
+  "connections": [
+    { "sourceIdentifier": "trigger", "targetIdentifier": "check_env" },
+    { "sourceIdentifier": "check_env", "targetIdentifier": "deploy_prod", "sourceOutletIdentifier": "prod" },
+    { "sourceIdentifier": "check_env", "targetIdentifier": "deploy_other", "fallback": true },
+    { "sourceIdentifier": "deploy_prod", "targetIdentifier": "update_entity" },
+    { "sourceIdentifier": "deploy_other", "targetIdentifier": "update_entity" },
+    { "sourceIdentifier": "update_entity", "targetIdentifier": "notify_slack" }
+  ]
+}

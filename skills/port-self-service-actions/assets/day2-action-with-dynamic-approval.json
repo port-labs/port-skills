@@ -1,0 +1,70 @@
+{
+  "_readme": "Two related artifacts bundled for illustration: `action` is the self-service action definition (created via POST/PATCH /v1/actions), and `permissions` is its separate execute/approve permissions object (created via PATCH /v1/actions/{identifier}/permissions, or the action's Permissions tab in the UI). They are never sent to the API in this combined shape, split them before use.",
+
+  "action": {
+    "identifier": "delete_microservice",
+    "title": "Delete microservice",
+    "icon": "Delete",
+    "description": "Decommission a microservice: tear down infrastructure and remove it from the catalog.",
+    "trigger": {
+      "type": "self-service",
+      "operation": "DELETE",
+      "blueprintIdentifier": "service",
+      "userInputs": {
+        "properties": {
+          "confirm_deletion": {
+            "type": "boolean",
+            "title": "I understand this cannot be undone",
+            "default": false
+          }
+        },
+        "required": ["confirm_deletion"]
+      }
+    },
+    "invocationMethod": {
+      "type": "GITHUB",
+      "org": "my-org",
+      "repo": "my-infra-repo",
+      "workflow": "delete-service.yml",
+      "reportWorkflowStatus": true,
+      "workflowInputs": {
+        "service_identifier": "{{ .entity.identifier }}",
+        "requested_by": "{{ .trigger.user.email }}"
+      }
+    },
+    "requiredApproval": true,
+    "approvalNotification": {
+      "type": "webhook",
+      "format": "slack",
+      "url": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+    }
+  },
+
+  "permissions": {
+    "execute": {
+      "roles": ["Admin"],
+      "users": [],
+      "teams": [],
+      "ownedByTeam": true
+    },
+    "approve": {
+      "roles": ["Admin"],
+      "users": [],
+      "teams": [],
+      "policy": {
+        "queries": {
+          "owningTeam": {
+            "rules": [
+              { "operator": "=", "property": "$blueprint", "value": "_team" },
+              { "operator": "relatedTo", "blueprint": "service", "value": "{{ .entity.identifier }}" }
+            ],
+            "combinator": "and"
+          }
+        },
+        "conditions": [
+          "[.results.owningTeam.entities[0].relations.manager.identifier] | map(select(. != null))"
+        ]
+      }
+    }
+  }
+}

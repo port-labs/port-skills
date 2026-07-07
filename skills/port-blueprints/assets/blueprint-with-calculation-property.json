@@ -1,0 +1,70 @@
+{
+  "identifier": "microservice",
+  "title": "Microservice",
+  "icon": "Microservice",
+  "description": "A microservice with derived properties. Assumes the 'kubernetesCluster' and 'incident' blueprints already exist in the target Port account.",
+  "schema": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Service name"
+      },
+      "namespace": {
+        "type": "string",
+        "title": "Namespace"
+      }
+    },
+    "required": ["name"]
+  },
+  "calculationProperties": {
+    "fullyQualifiedName": {
+      "title": "Fully qualified name",
+      "type": "string",
+      "calculation": ".properties.namespace + \"/\" + .properties.name"
+    }
+  },
+  "mirrorProperties": {
+    "clusterProvider": {
+      "title": "Cluster provider",
+      "path": "runsOnCluster.provider"
+    },
+    "clusterTitle": {
+      "title": "Cluster name",
+      "path": "runsOnCluster.$title"
+    }
+  },
+  "aggregationProperties": {
+    "openIncidentCount": {
+      "title": "Open incidents",
+      "target": "incident",
+      "calculationSpec": {
+        "calculationBy": "entities",
+        "func": "count"
+      },
+      "query": {
+        "combinator": "and",
+        "rules": [
+          {
+            "property": "status",
+            "operator": "=",
+            "value": "OPEN"
+          }
+        ]
+      }
+    }
+  },
+  "relations": {
+    "runsOnCluster": {
+      "title": "Runs on cluster",
+      "target": "kubernetesCluster",
+      "required": false,
+      "many": false
+    },
+    "relatedIncidents": {
+      "title": "Related incidents",
+      "target": "incident",
+      "required": false,
+      "many": true
+    }
+  }
+}

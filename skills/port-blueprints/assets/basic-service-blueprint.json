@@ -1,0 +1,58 @@
+{
+  "identifier": "service",
+  "title": "Service",
+  "icon": "Microservice",
+  "description": "A deployable microservice in the software catalog",
+  "schema": {
+    "properties": {
+      "language": {
+        "type": "string",
+        "title": "Language",
+        "enum": ["Go", "Python", "TypeScript", "Java"],
+        "enumColors": {
+          "Go": "blue",
+          "Python": "yellow",
+          "TypeScript": "purple",
+          "Java": "orange"
+        }
+      },
+      "repositoryUrl": {
+        "type": "string",
+        "title": "Repository",
+        "format": "url"
+      },
+      "onCallEngineer": {
+        "type": "string",
+        "title": "On call",
+        "format": "user"
+      },
+      "owningTeam": {
+        "type": "string",
+        "title": "Owning team",
+        "format": "team"
+      },
+      "isPublicFacing": {
+        "type": "boolean",
+        "title": "Is public facing",
+        "default": false
+      },
+      "replicaCount": {
+        "type": "number",
+        "title": "Replica count",
+        "minimum": 0,
+        "default": 1
+      },
+      "tags": {
+        "type": "array",
+        "title": "Tags",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["language"]
+  },
+  "calculationProperties": {},
+  "mirrorProperties": {},
+  "relations": {}
+}

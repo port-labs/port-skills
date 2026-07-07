@@ -1,0 +1,86 @@
+{
+  "identifier": "ai-incident-summary",
+  "title": "AI incident summary on degradation",
+  "icon": "Alert",
+  "description": "When a critical service degrades, use AI to draft an incident summary and open an incident record.",
+  "category": "Incident response",
+  "nodes": [
+    {
+      "identifier": "trigger",
+      "config": {
+        "type": "EVENT_TRIGGER",
+        "event": {
+          "type": "ENTITY_UPDATED",
+          "blueprintIdentifier": "service"
+        },
+        "condition": {
+          "type": "JQ",
+          "expressions": [
+            ".diff.after.properties.tier == \"critical\"",
+            ".diff.before.properties.healthStatus == \"healthy\"",
+            ".diff.after.properties.healthStatus != \"healthy\""
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "identifier": "summarize",
+      "title": "Generate incident summary",
+      "config": {
+        "type": "AI",
+        "userPrompt": "Service {{ .outputs.trigger.diff.after.title }} has degraded from {{ .outputs.trigger.diff.before.properties.healthStatus }} to {{ .outputs.trigger.diff.after.properties.healthStatus }}. Analyze the service and its dependencies and produce a concise incident summary with potential root causes.",
+        "systemPrompt": "You are an incident response analyst. Provide structured incident summaries with severity assessment, affected components, and recommended next steps.",
+        "tools": ["list_blueprints", "list_entities"],
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "summary": { "type": "string" },
+            "severity": { "type": "string" },
+            "rootCause": { "type": "string" }
+          },
+          "required": ["summary", "severity"]
+        }
+      }
+    },
+    {
+      "identifier": "create_incident",
+      "title": "Create incident record",
+      "config": {
+        "type": "UPSERT_ENTITY",
+        "blueprintIdentifier": "incident",
+        "mapping": {
+          "identifier": "incident-{{ .outputs.trigger.diff.after.identifier }}-{{ now | todateiso8601 }}",
+          "title": "Degradation: {{ .outputs.trigger.diff.after.title }}",
+          "properties": {
+            "summary": "{{ .outputs.summarize.response | fromjson | .summary }}",
+            "severity": "{{ .outputs.summarize.response | fromjson | .severity }}",
+            "status": "open",
+            "detectedAt": "{{ now | todateiso8601 }}"
+          },
+          "relations": {
+            "service": "{{ .outputs.trigger.diff.after.identifier }}"
+          }
+        }
+      }
+    },
+    {
+      "identifier": "notify_slack",
+      "title": "Notify on-call",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "{{ .secrets[\"slack-webhook-url\"] }}",
+        "method": "POST",
+        "onFailure": "continue",
+        "body": {
+          "text": "Incident opened for {{ .outputs.trigger.diff.after.title }} (severity: {{ .outputs.summarize.response | fromjson | .severity }}).\n{{ .outputs.summarize.response | fromjson | .summary }}"
+        }
+      }
+    }
+  ],
+  "connections": [
+    { "sourceIdentifier": "trigger", "targetIdentifier": "summarize" },
+    { "sourceIdentifier": "summarize", "targetIdentifier": "create_incident" },
+    { "sourceIdentifier": "create_incident", "targetIdentifier": "notify_slack" }
+  ]
+}

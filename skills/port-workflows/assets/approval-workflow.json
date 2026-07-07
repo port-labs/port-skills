@@ -1,0 +1,94 @@
+{
+  "identifier": "deploy-production-with-approval",
+  "title": "Deploy to production (with approval)",
+  "icon": "Lock",
+  "description": "Require two approvals from the platform team before deploying a service to production.",
+  "category": "Deployments",
+  "nodes": [
+    {
+      "identifier": "trigger",
+      "config": {
+        "type": "SELF_SERVE_TRIGGER",
+        "permissions": {
+          "teams": ["platform-team"]
+        },
+        "userInputs": {
+          "properties": {
+            "service": {
+              "type": "string",
+              "format": "entity",
+              "blueprint": "service",
+              "title": "Service"
+            },
+            "version": {
+              "type": "string",
+              "title": "Version"
+            }
+          },
+          "required": ["service", "version"],
+          "order": ["service", "version"]
+        }
+      }
+    },
+    {
+      "identifier": "approval",
+      "title": "Approve production deploy",
+      "config": {
+        "type": "INPUT",
+        "description": "Approve or decline this production deployment.",
+        "userInputs": {
+          "properties": {
+            "reason": {
+              "type": "string",
+              "title": "Reason",
+              "description": "The reason for the approve/decline."
+            }
+          },
+          "buttons": [
+            { "identifier": "approve", "label": "Approve", "variant": "PRIMARY" },
+            { "identifier": "decline", "label": "Decline", "variant": "DANGER" }
+          ]
+        },
+        "outlets": [
+          { "evaluationMethod": "button", "identifier": "approve", "title": "Approve", "numOfResponders": 2 },
+          { "evaluationMethod": "button", "identifier": "decline", "title": "Decline", "numOfResponders": 1 }
+        ],
+        "responders": {
+          "users": ["alice@example.com", "bob@example.com", "carol@example.com"]
+        }
+      }
+    },
+    {
+      "identifier": "deploy",
+      "title": "Deploy to production",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "https://api.example.com/deploy",
+        "method": "POST",
+        "body": {
+          "service": "{{ .outputs.trigger.service }}",
+          "version": "{{ .outputs.trigger.version }}",
+          "environment": "production"
+        }
+      }
+    },
+    {
+      "identifier": "notify_declined",
+      "title": "Notify decline",
+      "config": {
+        "type": "WEBHOOK",
+        "url": "{{ .secrets[\"slack-webhook-url\"] }}",
+        "method": "POST",
+        "onFailure": "continue",
+        "body": {
+          "text": "Production deploy of {{ .outputs.trigger.service }} v{{ .outputs.trigger.version }} was declined. Reason: {{ .outputs.approval.responses[0].inputs.reason }}"
+        }
+      }
+    }
+  ],
+  "connections": [
+    { "sourceIdentifier": "trigger", "targetIdentifier": "approval" },
+    { "sourceIdentifier": "approval", "targetIdentifier": "deploy", "sourceOutletIdentifier": "approve" },
+    { "sourceIdentifier": "approval", "targetIdentifier": "notify_declined", "sourceOutletIdentifier": "decline" }
+  ]
+}

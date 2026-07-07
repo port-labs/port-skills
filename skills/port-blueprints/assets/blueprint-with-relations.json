@@ -1,0 +1,53 @@
+[
+  {
+    "identifier": "team",
+    "title": "Team",
+    "icon": "TwoUsers",
+    "description": "A team that owns one or more microservices",
+    "schema": {
+      "properties": {
+        "slackChannel": {
+          "type": "string",
+          "title": "Slack channel",
+          "format": "url"
+        }
+      },
+      "required": []
+    },
+    "calculationProperties": {},
+    "mirrorProperties": {},
+    "relations": {}
+  },
+  {
+    "identifier": "microservice",
+    "title": "Microservice",
+    "icon": "Microservice",
+    "description": "A deployable microservice, owned by a team and optionally depending on other microservices",
+    "schema": {
+      "properties": {
+        "language": {
+          "type": "string",
+          "title": "Language",
+          "enum": ["Go", "Python", "TypeScript", "Java"]
+        }
+      },
+      "required": ["language"]
+    },
+    "calculationProperties": {},
+    "mirrorProperties": {},
+    "relations": {
+      "owningTeam": {
+        "title": "Owning team",
+        "target": "team",
+        "required": true,
+        "many": false
+      },
+      "dependsOn": {
+        "title": "Depends on",
+        "target": "microservice",
+        "required": false,
+        "many": true
+      }
+    }
+  }
+]
