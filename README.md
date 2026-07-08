@@ -21,6 +21,7 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 | [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your software catalog with Port blueprints, properties, and relations. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
+| [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across blueprints, self-service actions, and pages. |
 | [`port-terraform`](skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
 | [`port-workflows`](skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
 | [`skill-creator`](skills/skill-creator/SKILL.md) | Author and validate a new skill for this repo. |
