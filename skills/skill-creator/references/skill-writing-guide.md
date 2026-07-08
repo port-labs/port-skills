@@ -4,6 +4,43 @@ Deeper authoring guidance for writing a `SKILL.md` in this repo. Read
 [`SKILL.md`](../SKILL.md) first for the file layout and the build steps;
 this file is the reasoning behind them, worked examples, and the template.
 
+## Lessons from the wider agent-skills ecosystem
+
+This repo isn't the first of its kind. A few decisions here are deliberate,
+made after looking at what Datadog's, Sentry's, and Notion's public
+agent-skills repos got right or ran into, not defaults picked at random:
+
+- **Folder layout**: `skills/<name>/SKILL.md` (not a flat top-level layout
+  like Datadog's) matches both Sentry's and Notion's convention, and, not
+  coincidentally, the exact folder shape Port's own GitOps skill sync
+  expects (`skills/*/*`). One layout works for a generic coding-agent
+  install and for Port's own distribution path.
+- **The `skills` CLI convention**: `npx skills add <owner>/<repo>` (from
+  `vercel-labs/skills`) is the install mechanism Datadog, Sentry, and
+  Notion all standardized on. This repo's layout is compatible with it,
+  wiring up the actual install story is still open, see the README.
+- **`getting-started` and MCP-awareness exist from day one because of how
+  Sentry's own repo evolved.** `sentry-agent-skills` shipped as plain
+  reference skills, then got archived and replaced by `sentry-for-ai`,
+  which bundles MCP server config and per-agent plugin distribution
+  alongside the skills. Rather than repeat that path (ship reference-only,
+  retrofit MCP later), every skill here states what it can do with Port's
+  MCP server connected from the start, and `getting-started` gets a user
+  connected before they need it.
+- **Router bodies are a refinement past what the reference repos do, not
+  their starting point.** Sentry's SDK-bundle skills are phase-heavy and
+  Datadog's inline most detail directly into `SKILL.md`. Both work, but
+  both trend toward long files as a skill's scope grows. Keeping
+  `SKILL.md` a short router into `references/` (see
+  [Body is a router](#body-is-a-router) below) was a choice made watching
+  that trend, not the ecosystem default.
+- **Scope a skill only when there's a real source**, an existing internal
+  Port skill worth adapting, or authoritative docs.port.io content, not a
+  plausible-sounding gap in the taxonomy. This repo shipped a skill early
+  on that turned out not to correspond to anything real and had to be
+  removed outright; catching that before writing is cheaper than
+  unwinding it after.
+
 ## Scope it first
 
 Before writing anything, decide three things and say them in one or two
