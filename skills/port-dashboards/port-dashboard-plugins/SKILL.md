@@ -18,7 +18,7 @@ compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
   version: "1.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,plugins,sdk,reference
   summary: Scaffold and build custom Port plugin widgets with the plugins SDK
 ---

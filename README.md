@@ -29,11 +29,17 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 
 ## Install
 
-Distribution is still being worked out, for now, clone the repo and copy the
-skill you want into your agent's skill directory:
+Using the [`skills` CLI](https://github.com/vercel-labs/skills):
 
 ```bash
-git clone https://github.com/port-labs/port-skills-external /tmp/port-skills
+npx skills add port-labs/port-skills --skill port-workflows
+```
+
+Or clone the repo and copy the skill you want into your agent's skill
+directory:
+
+```bash
+git clone https://github.com/port-labs/port-skills /tmp/port-skills
 cp -r /tmp/port-skills/skills/port-workflows ~/.claude/skills/
 rm -rf /tmp/port-skills
 ```

@@ -6,7 +6,7 @@ compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot, VS Code"
 metadata:
   version: "1.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,setup,mcp,onboarding,reference
   summary: Sign up for Port and connect its MCP server to your coding agent
 ---

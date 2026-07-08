@@ -237,7 +237,7 @@ compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
   version: "1.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,<topic>,<reference-or-mcp-powered>
   summary: <one short sentence for the README table>
 ---
