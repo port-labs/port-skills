@@ -6,7 +6,7 @@ compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
   version: "1.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,permissions,rbac,security,reference
   summary: Configure Port's RBAC across the context lake and pages
 ---

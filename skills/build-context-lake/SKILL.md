@@ -6,7 +6,7 @@ compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
   version: "1.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,context-lake,data-model,ontology,reference
   summary: Design a Port context lake with connected blueprints and semantic relations
 ---

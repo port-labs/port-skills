@@ -1,12 +1,12 @@
 ---
 name: skill-creator
-description: "Author a new Agent Skill for this repo (port-labs/port-skills-external): scaffold the skills/<name>/ directory, write valid frontmatter, structure the body as a short router into references/ and assets/, validate it, and regenerate the README index. Use when asked to create a new Port skill, add a skill to this repo, help me write a SKILL.md, contribute a skill, port an internal Port AI skill to this repo, or fix a skill that fails validate-skill.js."
+description: "Author a new Agent Skill for this repo (port-labs/port-skills): scaffold the skills/<name>/ directory, write valid frontmatter, structure the body as a short router into references/ and assets/, validate it, and regenerate the README index. Use when asked to create a new Port skill, add a skill to this repo, help me write a SKILL.md, contribute a skill, port an internal Port AI skill to this repo, or fix a skill that fails validate-skill.js."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
   version: "2.0.0"
   author: port-labs
-  repository: https://github.com/port-labs/port-skills-external
+  repository: https://github.com/port-labs/port-skills
   tags: port,meta,skill-authoring,reference
   summary: Author and validate a new skill for this repo
 ---
