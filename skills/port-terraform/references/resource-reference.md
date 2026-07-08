@@ -39,7 +39,7 @@ variables or a `.tfvars` file excluded from version control.
 
 ## `port_blueprint`
 
-Defines a type in the catalog: its properties, relations, and computed
+Defines a type in the context lake: its properties, relations, and computed
 properties.
 
 ### Required
@@ -168,7 +168,7 @@ calculation_properties = {
 
 ## `port_entity`
 
-Populates the catalog with an instance of a blueprint.
+Populates the context lake with an instance of a blueprint.
 
 ### Required
 
@@ -390,7 +390,7 @@ automation_trigger = {
 ## `port_webhook`
 
 Defines a custom integration webhook: an inbound URL Port hosts, plus a
-mapping from the payload it receives to catalog entities.
+mapping from the payload it receives to context lake entities.
 
 ### Optional (all fields are optional at the schema level, but you need at
 least `identifier`, `title`, and `mappings` for a useful webhook)

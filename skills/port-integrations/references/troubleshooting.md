@@ -131,4 +131,4 @@ correct in both directions.
 
 Re-run `test_integration_mapping` (or **Test mapping** in the UI) against the same
 example that originally failed, then trigger a resync and confirm entities in the
-catalog reflect the fix before considering the issue closed.
+context lake reflect the fix before considering the issue closed.

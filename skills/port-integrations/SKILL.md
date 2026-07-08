@@ -72,7 +72,7 @@ Fallback: not applicable, this is static authoring.
 
 ## Step 5 - Add relations, if any
 
-Precondition: the target blueprint of the relation is ingested by an earlier resource (or already exists in the catalog).
+Precondition: the target blueprint of the relation is ingested by an earlier resource (or already exists in the context lake).
 Action: use a direct identifier reference (`relations: { serviceOwner: .owner.id }`) when the API returns the related entity's identifier directly, or a search query rule (`combinator`/`rules`) when you only have one of its properties. Relations are **replaced** on every sync, an empty array clears the relation. See [assets/mapping-with-relations.yaml](assets/mapping-with-relations.yaml).
 Fallback: skip the relation in the mapping and assign it manually in the Port UI if you want to manage it outside the integration entirely.
 

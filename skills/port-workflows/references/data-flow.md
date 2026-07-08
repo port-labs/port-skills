@@ -79,7 +79,7 @@ Access it downstream as `{{ .outputs.fetch_entity.entity.title }}`. Since
 this node's output, the default `response.data` shape is gone unless you
 re-declared it (as `response` is, above).
 
-## Fetching catalog data from within a workflow
+## Fetching context lake data from within a workflow
 
 Query entities with `POST https://api.port.io/v1/blueprints/<blueprint>/entities/search`
 from a `WEBHOOK` node, no `Authorization` header needed, then extract the

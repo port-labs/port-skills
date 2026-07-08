@@ -16,7 +16,7 @@ you need:
 - Relations across tools, linking a PR to the service it belongs to,
   for example. Relations require **both sides to already exist as
   entities** in Port.
-- Governance: RBAC and ownership rules that apply to catalog data.
+- Governance: RBAC and ownership rules that apply to context lake data.
 
 ## MCP connector: live, on-demand, unmodeled
 

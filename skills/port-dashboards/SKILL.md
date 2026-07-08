@@ -40,7 +40,11 @@ owned by the `port-blueprints` skill; this skill only covers how those
 properties map onto widget and dataset fields. The full search rule
 grammar (all operators, `and`/`or`/`not` nesting) is Port's [Search and
 query](https://docs.port.io/search-and-query/structure-and-syntax) syntax;
-this skill covers the subset relevant to widget datasets.
+this skill covers the subset relevant to widget datasets. Who can **view or
+edit** a page once it exists, including private pages shared with specific
+users or teams, is the `port-permissions` skill's page-permissions
+reference, not this one; this skill only covers a private page's own
+creation and visibility mechanics (see [Step 5](#step-5---handle-private-pages-correctly)).
 
 ## Skill class
 

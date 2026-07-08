@@ -1,0 +1,13 @@
+{
+  "_comment": "PATCH https://api.getport.io/v1/pages/microservice_blueprint_page/permissions - everyone can view the page; only Admins and the platform team can edit it. PATCH replaces each included key in full, list every role/user/team that should keep access, see references/page-permissions.md.",
+  "read": {
+    "roles": ["Admin", "Member"],
+    "users": [],
+    "teams": []
+  },
+  "update": {
+    "roles": ["Admin"],
+    "users": [],
+    "teams": ["platform-team"]
+  }
+}

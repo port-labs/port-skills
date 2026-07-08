@@ -1,0 +1,45 @@
+{
+  "_comment": "PATCH https://api.getport.io/v1/blueprints/service/permissions - Admins and the service-moderator role can do anything; Members can register new services but only if they assign a team they belong to; anyone can update the slackChannelUrl property; on-call users can additionally read services owned by a team in their own region, see references/context-lake-permissions.md.",
+  "entities": {
+    "read": {
+      "roles": ["Admin", "service-moderator", "Member"],
+      "users": [],
+      "teams": [],
+      "ownedByTeam": false,
+      "policy": {
+        "combinator": "and",
+        "rules": [
+          { "property": { "context": "user", "property": "isOnCall" }, "operator": "=", "value": "true" },
+          { "property": "region", "operator": "containsAny", "value": { "context": "userTeams", "property": "region" } }
+        ]
+      }
+    },
+    "register": {
+      "roles": ["Admin", "service-moderator"],
+      "users": [],
+      "teams": [],
+      "ownedByTeam": true
+    },
+    "unregister": {
+      "roles": ["Admin", "service-moderator"],
+      "users": [],
+      "teams": [],
+      "ownedByTeam": false
+    },
+    "update": {
+      "roles": ["Admin", "service-moderator"],
+      "users": [],
+      "teams": [],
+      "ownedByTeam": false
+    },
+    "updateProperties": {
+      "slackChannelUrl": {
+        "roles": ["Admin", "service-moderator", "Member"],
+        "users": [],
+        "teams": [],
+        "ownedByTeam": false
+      }
+    },
+    "updateRelations": {}
+  }
+}

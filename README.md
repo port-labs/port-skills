@@ -18,9 +18,10 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 |---|---|
 | [`build-context-lake`](skills/build-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
 | [`getting-started`](skills/getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
-| [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your software catalog with Port blueprints, properties, and relations. |
+| [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your context lake with Port blueprints, properties, and relations. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
+| [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
 | [`port-terraform`](skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
 | [`port-workflows`](skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
 | [`skill-creator`](skills/skill-creator/SKILL.md) | Author and validate a new skill for this repo. |

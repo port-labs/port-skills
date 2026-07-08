@@ -83,7 +83,7 @@ instead of forcing Terraform.
 
 ## Step 2 - Model data with `port_blueprint`
 
-Precondition: the catalog needs a new type, or an existing blueprint needs
+Precondition: the context lake needs a new type, or an existing blueprint needs
 to move under Terraform management.
 Action: write a `port_blueprint` resource with `identifier`, `title`, typed
 `properties`, and any `relations` to other blueprints. See
@@ -95,7 +95,7 @@ first, `port_blueprint.relations` requires an existing target and Terraform
 won't infer creation order across two relations pointing at each other
 without an explicit `depends_on`.
 
-## Step 3 - Populate the catalog with `port_entity`
+## Step 3 - Populate the context lake with `port_entity`
 
 Precondition: a blueprint exists (via Terraform or otherwise) and you need
 to create, update, or manage a specific instance of it.
