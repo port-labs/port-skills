@@ -8,9 +8,11 @@ relevant `skills/*/SKILL.md` instead of this file.
 ## TL;DR
 
 - Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and
-  [`skills/port-skill-creator/SKILL.md`](skills/port-skill-creator/SKILL.md)
+  [`.claude/skills/port-skill-creator/SKILL.md`](.claude/skills/port-skill-creator/SKILL.md)
   (+ its `references/skill-writing-guide.md`) before writing or editing a
-  skill. That's the authoring spec, not this file.
+  skill. That's the authoring spec, not this file. It lives under
+  `.claude/skills/`, not `skills/`, because it's tooling for contributing to
+  this repo, not something an end user installs into their own coding agent.
 - **Look for an existing skill before creating a new one.** Check the skill
   table in [`README.md`](README.md) first. If a skill already half-covers
   the territory, extend it instead of shipping a second skill that
@@ -27,6 +29,6 @@ relevant `skills/*/SKILL.md` instead of this file.
   Port actually works, use the `search_port_knowledge_sources` Port MCP
   tool if connected, or fetch [docs.port.io](https://docs.port.io) directly.
   A skill built on a guess is worse than no skill.
-- Before committing: `node skills/port-skill-creator/scripts/validate-skill.js --all`,
-  then `node skills/port-skill-creator/scripts/generate-skill-index.js` and
+- Before committing: `node .claude/skills/port-skill-creator/scripts/validate-skill.js --all`,
+  then `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js` and
   commit the resulting `README.md` diff. CI re-checks both.

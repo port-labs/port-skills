@@ -45,16 +45,21 @@ agent-skills repos got right or ran into, not defaults picked at random:
 
 Before writing anything, decide three things and say them in one or two
 sentences at the top of the skill: what job this helps do, what it assumes
-already exists, and what's explicitly out of scope. Check the [README](../../README.md)
+already exists, and what's explicitly out of scope. Check the [README](../../../../README.md)
 skill list first, a skill that half-covers another skill's territory gives
 an agent contradictory instructions when both load. If the topic is
 genuinely adjacent to an existing skill, point to it instead of restating it.
 
 Every skill in this repo is namespaced `port-<name>`, directory and
 frontmatter `name` both (enforced by `validate-skill.js`). There's no
-unprefixed skill here, even a meta skill like `port-skill-creator` carries
-the prefix, since these skills can sit alongside other vendors' in a shared
-`~/.claude/skills/` directory.
+unprefixed skill here, since these skills can sit alongside other vendors'
+in a shared `~/.claude/skills/` directory once installed.
+
+`port-skill-creator` itself is the one exception to the `skills/` layout,
+not to the naming rule: it still carries the `port-` prefix, but it lives
+under this repo's own `.claude/skills/port-skill-creator/` instead of
+`skills/`, because it's tooling for contributing to this repo, not a
+capability an end user installs into their own coding agent.
 
 ## Choose a skill class
 

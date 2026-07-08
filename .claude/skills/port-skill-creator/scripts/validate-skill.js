@@ -397,7 +397,7 @@ if (require.main === module) {
 
 	// Handle --all flag
 	if (args[0] === '--all') {
-		const baseDir = args[1] || path.join(__dirname, '..', '..');
+		const baseDir = args[1] || path.join(__dirname, '..', '..', '..', '..', 'skills');
 		const entries = fs.readdirSync(baseDir, { withFileTypes: true });
 		skillDirs = entries
 			.filter((e) => e.isDirectory() && !e.name.startsWith('_') && !e.name.startsWith('.'))

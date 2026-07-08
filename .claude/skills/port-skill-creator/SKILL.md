@@ -21,6 +21,12 @@ AI skill system (`packages/ai-skills` in `port-labs/port`, which creates a
 [references/skill-writing-guide.md#adapting-an-internal-skill](references/skill-writing-guide.md#adapting-an-internal-skill)
 if you're starting from one of those.
 
+This skill itself lives at `.claude/skills/port-skill-creator/`, not under
+`skills/`, because it's for someone contributing to *this repo*, not for
+someone who installed `skills/` into their own coding agent to work with
+their Port account. It never ships to end users; it's only relevant when
+working in this repo, so it stays repo-local.
+
 ## Prerequisites
 
 None. This is a reference skill, no live Port account or MCP server needed,
@@ -42,7 +48,7 @@ frontmatter `name` exactly (enforced by `validate-skill.js`).
 
 1. **Scope it.** One sentence on what job this helps do, what it assumes
    already exists, and what's explicitly out of scope (point to the skill
-   that owns that instead). Check the [README](../../README.md) so scopes
+   that owns that instead). Check the [README](../../../../README.md) so scopes
    don't overlap. See [references/skill-writing-guide.md#scope-it-first](references/skill-writing-guide.md#scope-it-first).
 2. **Choose reference vs. MCP-powered.** See
    [references/skill-writing-guide.md#choose-a-skill-class](references/skill-writing-guide.md#choose-a-skill-class).
@@ -66,8 +72,8 @@ frontmatter `name` exactly (enforced by `validate-skill.js`).
    per sub-topic (`references/blueprints.md`, `references/mirror-properties.md`,
    not one giant `references/details.md`). Assets are anything ready to use
    as-is: images, scripts, complete examples.
-6. **Validate:** `node skills/port-skill-creator/scripts/validate-skill.js skills/port-<name>` (or `--all`).
-7. **Regenerate the README index:** `node skills/port-skill-creator/scripts/generate-skill-index.js`.
+6. **Validate:** `node .claude/skills/port-skill-creator/scripts/validate-skill.js skills/port-<name>` (or `--all`).
+7. **Regenerate the README index:** `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js`.
 8. **Test it for real.** Install it (`cp -r skills/port-<name> ~/.claude/skills/`),
    run 2-3 realistic trigger prompts in a fresh session, confirm it loads
    and produces correct, ready-to-apply Port config.
@@ -98,7 +104,7 @@ frontmatter `name` exactly (enforced by `validate-skill.js`).
 - Prerequisites point to `port-getting-started` for setup, and note that Port's
   MCP server (when connected) can apply the work directly, with
   `search_port_knowledge_sources` for anything uncovered.
-- Validate: `node skills/port-skill-creator/scripts/validate-skill.js skills/port-<name>` (or `--all`).
-- Regenerate the README index: `node skills/port-skill-creator/scripts/generate-skill-index.js`.
+- Validate: `node .claude/skills/port-skill-creator/scripts/validate-skill.js skills/port-<name>` (or `--all`).
+- Regenerate the README index: `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js`.
 - Full authoring guidance, examples, and the skill template:
   [references/skill-writing-guide.md](references/skill-writing-guide.md).

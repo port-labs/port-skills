@@ -22,7 +22,6 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 | [`port-getting-started`](skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
 | [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
-| [`port-skill-creator`](skills/port-skill-creator/SKILL.md) | Author and validate a new skill for this repo. |
 | [`port-terraform`](skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
 | [`port-workflows`](skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
 <!-- SKILL_INDEX_END -->
@@ -49,7 +48,7 @@ user-level and project-level (`.claude/skills`, `.cursor/skills`) paths work.
 
 ## Contributing
 
-See [`port-skill-creator`](skills/port-skill-creator/SKILL.md) for the skill format,
+See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,
 authoring conventions, and how to validate a new skill before opening a PR.
 
 ## Learn more
