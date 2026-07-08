@@ -1,6 +1,6 @@
 /* ── Theme: Port host tokens via plugins-sdk (applyThemeCss) ──
    :root = surfaces, text, borders only.
-   Decorations (dots, badges, links, accent labels) define color on their class — see .example-dot below. */
+   Decorations (dots, badges, links, accent labels) define color on their class, see .example-dot below. */
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
     Oxygen, Ubuntu, sans-serif;
@@ -268,7 +268,7 @@ body {
   padding: 8px 0;
 }
 
-/* Decoration example — copy pattern for dots, pills, links, chart marks */
+/* Decoration example, copy pattern for dots, pills, links, chart marks */
 .example-dot {
   --example-dot-color: var(--ocean-blue);
   width: 6px;

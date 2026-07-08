@@ -23,9 +23,13 @@ that: what to build, in what order, and why.
 
 ## Prerequisites
 
-A Port account. No MCP server required, this is design work you can do
-from the schema alone, though a connected MCP lets you check what already
-exists (`list_blueprints`) before extending it.
+- Go over the `getting-started` skill first if this is your first time
+  working with Port, it covers signing up and connecting Port's MCP server.
+- If Port's MCP server is connected, this skill can use it to check what
+  already exists (`list_blueprints`) and apply the resulting blueprint,
+  relation, and property changes directly (`upsert_blueprint`), rather than
+  just handing you JSON to apply yourself. Search
+  `search_port_knowledge_sources` for anything this skill doesn't cover.
 
 ## How to build it
 

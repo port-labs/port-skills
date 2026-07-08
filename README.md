@@ -17,6 +17,7 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 | Skill | What it does |
 |---|---|
 | [`build-context-lake`](skills/build-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
+| [`getting-started`](skills/getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your software catalog with Port blueprints, properties, and relations. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |

@@ -7,7 +7,7 @@ export type HostSubject = {
 
 /**
  * Entity-page widgets: resolve subject blueprint + identifier from PLUGIN_DATA.
- * Port host payloads vary — do not assume only entity.blueprint.
+ * Port host payloads vary, do not assume only entity.blueprint.
  */
 export function resolveHostSubject(entity?: Entity): HostSubject | null {
   if (!entity?.identifier?.trim()) return null;

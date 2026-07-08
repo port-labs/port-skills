@@ -32,16 +32,19 @@ patterns that come up most).
 
 ## Prerequisites
 
+- Go over the `getting-started` skill first if this is your first time
+  working with Port.
 - A Port account, with the target blueprint(s) already created.
 - An installed integration (hosted or self-hosted Ocean integration, or any other Port
   integration that exposes a mapping) whose `kind`s you're mapping from. If none is
   installed yet, see the [Ocean custom integration overview](https://docs.port.io/build-your-software-catalog/custom-integration/ocean-custom-integration/overview)
   first: this skill assumes the integration exists and can return data.
 - Port's [MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview) connected
-  is **optional**. When connected, use it to fetch live blueprints and raw data, and to
-  test mappings before saving them. When it isn't connected, every step below has a
-  documented fallback using the Port UI or public API. Never treat a missing MCP
-  connection as a hard stop.
+  is **optional**. When connected, use it to fetch live blueprints and raw data, apply
+  the mapping directly, and test it before saving. When it isn't connected, every step
+  below has a documented fallback using the Port UI or public API. Never treat a missing
+  MCP connection as a hard stop. Search `search_port_knowledge_sources` for anything
+  this skill doesn't cover.
 
 ## Step 1 - Identify the target blueprint and source kind
 

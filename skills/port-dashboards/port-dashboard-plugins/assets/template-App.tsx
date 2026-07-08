@@ -18,7 +18,7 @@ export function App() {
   const config = configFromParams(params);
   const host = resolveHostSubject(entity);
 
-  // REQUIRED: call data hooks here — NEVER after early returns.
+  // REQUIRED: call data hooks here, NEVER after early returns.
   // Port delivers portToken on a later render; conditional hooks crash React → blank iframe.
   // const { query } = usePluginData(config, portToken, portApiBaseUrl, host?.blueprint, host?.identifier);
 

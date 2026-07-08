@@ -3,7 +3,7 @@ import { usePortPluginData } from "@port-labs/plugins-sdk/react";
 import type { Entity, Page, Params, User } from "../types";
 
 // ---------------------------------------------------------------------------
-// Dev-mode mock — only active when the widget runs outside Port's iframe.
+// Dev-mode mock, only active when the widget runs outside Port's iframe.
 // Customize the mock values below for local development.
 // ---------------------------------------------------------------------------
 export const DEV_MOCK =
@@ -47,7 +47,7 @@ export const usePostMessageData = () => {
 
   const applyThemeCss = sdk.applyThemeCss;
 
-  // Always apply — Port injects theme on PLUGIN_DATA; skipping leaves invisible/low-contrast UI.
+  // Always apply, Port injects theme on PLUGIN_DATA; skipping leaves invisible/low-contrast UI.
   useEffect(() => {
     applyThemeCss();
   }, [applyThemeCss]);

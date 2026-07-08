@@ -37,16 +37,17 @@ but does not replace.
 
 ## Prerequisites
 
-- A Port account. Sign up at [app.port.io](https://app.port.io) if the user
-  doesn't have one yet.
-- To create or update workflows: a Port `CLIENT_ID` and `CLIENT_SECRET`
-  (**...** menu > **Credentials** in the Port app), exchanged for a bearer
-  token at `POST https://api.port.io/v1/auth/access_token`.
-- No Port MCP server is required. If connected, its workflow tools
-  (`list_workflows`, `get_workflow`, `upsert_workflow`) are a shortcut for
-  reading or applying a workflow, but the raw API calls in
-  [Step 6](#step-6---create-or-update-via-the-port-api) always work as a
-  fallback.
+- Go over the `getting-started` skill first if this is your first time
+  working with Port.
+- To create or update workflows without MCP: a Port `CLIENT_ID` and
+  `CLIENT_SECRET` (**...** menu > **Credentials** in the Port app),
+  exchanged for a bearer token at `POST https://api.port.io/v1/auth/access_token`.
+- If Port's MCP server is connected, this skill can use its workflow tools
+  (`list_workflows`, `get_workflow`, `upsert_workflow`) to read or apply a
+  workflow directly instead of you copying JSON in by hand, but the raw API
+  calls in [Step 6](#step-6---create-or-update-via-the-port-api) always
+  work as a fallback. Search `search_port_knowledge_sources` for anything
+  this skill doesn't cover.
 - Workflows are in open beta: cross-check unfamiliar fields against
   [docs.port.io/workflows](https://docs.port.io/workflows/overview) before
   shipping.

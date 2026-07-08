@@ -56,6 +56,12 @@ exactly (enforced by `validate-skill.js`).
    actual depth. Target well under 100 lines. See
    [references/skill-writing-guide.md#body-is-a-router](references/skill-writing-guide.md#body-is-a-router)
    for the shape and a worked example.
+   Prerequisites should point to the `getting-started` skill for account
+   setup and MCP connection instead of restating it, and should say
+   explicitly that this skill can use Port's MCP server to apply the work
+   directly when connected, and that `search_port_knowledge_sources` covers
+   anything the skill itself doesn't. See
+   [references/skill-writing-guide.md#prerequisites-getting-started-and-mcp](references/skill-writing-guide.md#prerequisites-getting-started-and-mcp).
 5. **Push real content into references/ and assets/.** One reference file
    per sub-topic (`references/blueprints.md`, `references/mirror-properties.md`,
    not one giant `references/details.md`). Assets are anything ready to use
@@ -76,6 +82,7 @@ exactly (enforced by `validate-skill.js`).
 | `SKILL.md` reads like a manual, not a router | Real instructions were written inline instead of in `references/` | Move the depth out, leave a one-line pointer per step |
 | Body has a "Use this skill when" section | Old convention; that's the `description`'s job now | Delete the section, fold anything useful into `description` |
 | README table doesn't show the new skill | `generate-skill-index.js` wasn't run | Run it, commit the README diff |
+| Prerequisites restate account signup and MCP setup inline | Should point to `getting-started` instead | Replace with a pointer, keep only what's specific to this skill |
 
 ## Quick reference
 
@@ -87,6 +94,9 @@ exactly (enforced by `validate-skill.js`).
 - Body is a router: intro, `Prerequisites`, a short numbered list of steps
   that each point into `references/`, nothing more. No `Use this skill
   when` section, that's what `description` is for.
+- Prerequisites point to `getting-started` for setup, and note that Port's
+  MCP server (when connected) can apply the work directly, with
+  `search_port_knowledge_sources` for anything uncovered.
 - Validate: `node skills/skill-creator/scripts/validate-skill.js skills/<name>` (or `--all`).
 - Regenerate the README index: `node skills/skill-creator/scripts/generate-skill-index.js`.
 - Full authoring guidance, examples, and the skill template:

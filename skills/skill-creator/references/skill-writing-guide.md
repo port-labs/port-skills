@@ -100,6 +100,29 @@ sentence plus a link, not a re-explanation. If a step genuinely has no
 external dependency, say so plainly ("Fallback: not applicable") rather
 than inventing one.
 
+## Prerequisites: getting-started and MCP
+
+Every skill's `Prerequisites` section should do two things, not restate
+account setup from scratch:
+
+1. **Point to `getting-started`** instead of re-explaining how to sign up
+   for Port or connect its MCP server: "Go over the `getting-started` skill
+   first if this is your first time working with Port." Only list what's
+   specific to this skill beyond that (an installed integration, an
+   existing blueprint, the Terraform CLI).
+2. **Say what MCP being connected buys this specific skill.** Name the
+   actual tool it would use (`upsert_blueprint`, `upsert_workflow`,
+   `test_integration_mapping`, whatever applies) and say it can apply the
+   work directly instead of the user copying config in by hand. Then note
+   that `search_port_knowledge_sources` covers anything this skill doesn't,
+   so the agent has a fallback that isn't guessing.
+
+A skill that's pure static authoring with no live-account application step
+(like `port-terraform`, which only ever produces `.tf` files) still gets
+the `getting-started` pointer and the `search_port_knowledge_sources`
+mention, just without a "MCP applies this for you" claim that wouldn't be
+true.
+
 ## assets/ vs. references/
 
 - **`references/`**: one file per sub-topic, the follow-up depth a step
@@ -188,8 +211,9 @@ One or two sentences: the job this does, as an outcome.
 
 ## Prerequisites
 
-- A Port account, if applying anything for real requires one.
-- Whether an MCP server is required, optional (with fallback), or unused.
+- Go over the `getting-started` skill first if this is your first time working with Port.
+- <Anything specific to this skill: an existing blueprint, an installed integration, a CLI.>
+- If Port's MCP server is connected, this skill can use it to <do the specific thing, e.g. apply the change directly via `upsert_x`> instead of you copying config in by hand. Search `search_port_knowledge_sources` for anything this skill doesn't cover.
 
 ## How to do it
 

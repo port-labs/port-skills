@@ -39,7 +39,7 @@ export function readStringParam(raw: unknown, defaultValue = ""): string {
 
 /**
  * Replace keys and fields to match upload-params.json / PluginConfig.
- * Return null when required params are missing — App shows a setup message.
+ * Return null when required params are missing, App shows a setup message.
  */
 export function configFromParams(params: Params): PluginConfig | null {
   const blueprint = readBlueprintParam(readParamValue(params, "blueprint"));

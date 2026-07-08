@@ -38,13 +38,16 @@ points to).
 
 ## Prerequisites
 
-- A Port account (sign up at [app.port.io](https://app.port.io)).
-- To apply changes: a `CLIENT_ID`/`CLIENT_SECRET` pair (**...** menu >
-  **Credentials** in the Port app), exchanged for a bearer token at
+- Go over the `getting-started` skill first if this is your first time
+  working with Port.
+- To apply changes without MCP: a `CLIENT_ID`/`CLIENT_SECRET` pair (**...**
+  menu > **Credentials** in the Port app), exchanged for a bearer token at
   `POST https://api.port.io/v1/auth/access_token`.
-- No Port MCP server or CLI is required. If one is connected, prefer its
-  blueprint tools for reads, but the raw API calls below always work as a
-  fallback.
+- If Port's MCP server is connected, this skill can use it to read the
+  current blueprint (`list_blueprints`) and apply the result directly
+  (`upsert_blueprint`) instead of you copying JSON in by hand; the raw API
+  calls below always work as a fallback. Search
+  `search_port_knowledge_sources` for anything this skill doesn't cover.
 
 ## Step 1 - Check whether the blueprint already exists
 

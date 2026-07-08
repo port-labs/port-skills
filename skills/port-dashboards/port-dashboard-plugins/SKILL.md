@@ -20,6 +20,7 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,plugins,sdk,reference
+  summary: Scaffold and build custom Port plugin widgets with the plugins SDK
 ---
 
 # Port custom plugin widgets
@@ -55,9 +56,12 @@ use the Port UI's blueprint builder, or `GET /v1/blueprints` /
 
 ## Prerequisites
 
+- Go over the `getting-started` skill first if this is your first time
+  working with Port.
 - Node.js >= 20.
 - A Port account with permission to add custom plugins (admin, in most
-  organizations).
+  organizations). Search `search_port_knowledge_sources` for anything this
+  skill doesn't cover.
 - [`@port-labs/port-plugins-cli`](https://www.npmjs.com/package/@port-labs/port-plugins-cli)
   for uploading the built plugin (`npm install -g @port-labs/port-plugins-cli`
   or `npx`), with a `client_id`/`client_secret` pair from **...** menu >

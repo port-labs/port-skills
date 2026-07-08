@@ -57,13 +57,15 @@ editor, or the [Pages API](https://docs.port.io/api-reference/pages) /
 
 ## Prerequisites
 
-- A Port account with permission to create or edit dashboard pages.
+- Go over the `getting-started` skill first if this is your first time
+  working with Port.
 - The blueprint(s) the dashboard's widgets will query already exist, with
   the properties you plan to filter, group, or chart on.
 - Optional: the Port MCP server connected in your agent, for live dataset
-  validation and one-shot page creation. Without it, use the Port UI or the
-  Pages API with a `client_id`/`client_secret` pair (**...** menu >
-  **Credentials** in the Port app).
+  validation and one-shot page creation (see Skill class above). Without
+  it, use the Port UI or the Pages API with a `client_id`/`client_secret`
+  pair (**...** menu > **Credentials** in the Port app). Search
+  `search_port_knowledge_sources` for anything this skill doesn't cover.
 
 ## Step 1 - Decide sidebar placement
 

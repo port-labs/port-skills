@@ -2,7 +2,7 @@
   "name": "port-WIDGET_NAME-plugin",
   "version": "0.1.0",
   "private": true,
-  "description": "WIDGET_DESCRIPTION — Port custom widget",
+  "description": "WIDGET_DESCRIPTION, a Port custom widget",
   "engines": {
     "node": ">=20.0.0"
   },
