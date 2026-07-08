@@ -33,7 +33,7 @@ scorecards (`port-scorecards`), integration mapping (`port-integrations`),
 the Terraform/Pulumi provider reference (`port-terraform`, pointed to in
 [Step 6](#step-6---create-or-update-the-blueprint-via-the-api)), and deciding
 *what* to model and how blueprints should relate at the data-model-design
-level (`port-build-context-lake` owns that; this skill is the JSON mechanics it
+level (`port-context-lake` owns that; this skill is the JSON mechanics it
 points to).
 
 ## Prerequisites
