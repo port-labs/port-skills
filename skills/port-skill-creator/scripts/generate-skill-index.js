@@ -4,7 +4,7 @@
  * Regenerates the skill index table in README.md from the skills/ directory,
  * so the README table can never drift from what's actually shipped.
  *
- * Usage: node skills/skill-creator/scripts/generate-skill-index.js
+ * Usage: node skills/port-skill-creator/scripts/generate-skill-index.js
  */
 
 const fs = require('fs');

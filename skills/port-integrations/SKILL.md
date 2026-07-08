@@ -32,7 +32,7 @@ patterns that come up most).
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port.
 - A Port account, with the target blueprint(s) already created.
 - An installed integration (hosted or self-hosted Ocean integration, or any other Port

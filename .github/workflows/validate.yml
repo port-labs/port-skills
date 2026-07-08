@@ -20,9 +20,9 @@ jobs:
           node-version: '20'
 
       - name: Validate SKILL.md files
-        run: node skills/skill-creator/scripts/validate-skill.js --all
+        run: node skills/port-skill-creator/scripts/validate-skill.js --all
 
       - name: Check README skill index is up to date
         run: |
-          node skills/skill-creator/scripts/generate-skill-index.js
-          git diff --exit-code README.md || (echo "README.md skill index is out of date. Run 'node skills/skill-creator/scripts/generate-skill-index.js' and commit the result." && exit 1)
+          node skills/port-skill-creator/scripts/generate-skill-index.js
+          git diff --exit-code README.md || (echo "README.md skill index is out of date. Run 'node skills/port-skill-creator/scripts/generate-skill-index.js' and commit the result." && exit 1)

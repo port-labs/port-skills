@@ -33,7 +33,7 @@ sanity-check the change, be concrete. -->
 
 ## Checklist
 
-- [ ] `node skills/skill-creator/scripts/validate-skill.js --all` passes
-- [ ] `node skills/skill-creator/scripts/generate-skill-index.js` run if a skill was added, removed, or renamed
+- [ ] `node skills/port-skill-creator/scripts/validate-skill.js --all` passes
+- [ ] `node skills/port-skill-creator/scripts/generate-skill-index.js` run if a skill was added, removed, or renamed
 - [ ] New/changed `description` frontmatter doesn't overlap another skill's scope (check the [README](../README.md) table)
 - [ ] Ran at least one of the example prompts above against the actual skill

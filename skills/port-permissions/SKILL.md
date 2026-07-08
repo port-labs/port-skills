@@ -25,7 +25,7 @@ instead of this one.
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port.
 - The blueprint or page whose permissions you're changing already exists.
 - If Port's MCP server is connected, use `list_blueprints` to read current

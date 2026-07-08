@@ -1,5 +1,5 @@
 ---
-name: build-context-lake
+name: port-build-context-lake
 description: "Design and build a Port context lake: a connected, semantically-rich data model of blueprints, relations, and mirror/aggregation properties that AI agents, scorecards, and workflows can query and act on, not just a plain software catalog. Use when asked to 'build a context lake', 'design a Port data model for AI agents', 'set up the engineering intelligence data model', 'connect services to teams and orgs in Port', 'model our org hierarchy in Port', or 'why can't Port AI answer questions about our org structure'."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
@@ -23,7 +23,7 @@ that: what to build, in what order, and why.
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port, it covers signing up and connecting Port's MCP server.
 - If Port's MCP server is connected, this skill can use it to check what
   already exists (`list_blueprints`) and apply the resulting blueprint,

@@ -42,7 +42,7 @@ but not covered in depth here.
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time working with Port.
+- Go over the `port-getting-started` skill first if this is your first time working with Port.
 - The [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) (or [OpenTofu](https://opentofu.org/docs/intro/install/), a drop-in alternative, swap `terraform` for `tofu`).
 - A Port account and a `client_id`/`client_secret` pair, from **...** menu > **Credentials** in the Port app, or the [API docs](https://docs.port.io/build-your-software-catalog/custom-integration/api#find-your-port-credentials).
 - No Port MCP server or CLI is required to write or apply the `.tf` files this skill produces. If one is connected, use it to check the current live state (`list_blueprints`) before writing HCL that should match it, and search `search_port_knowledge_sources` for anything this skill doesn't cover.

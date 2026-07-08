@@ -61,7 +61,7 @@ editor, or the [Pages API](https://docs.port.io/api-reference/pages) /
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port.
 - The blueprint(s) the dashboard's widgets will query already exist, with
   the properties you plan to filter, group, or chart on.

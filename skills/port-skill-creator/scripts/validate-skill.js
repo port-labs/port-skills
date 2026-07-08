@@ -183,6 +183,10 @@ function validateName(name, dirName) {
 		errors.push(`Skill name '${trimmedName}' contains invalid characters. Only letters, digits, and hyphens are allowed.`);
 	}
 
+	if (!trimmedName.startsWith('port-')) {
+		errors.push(`Skill name '${trimmedName}' must start with the 'port-' prefix`);
+	}
+
 	if (dirName && dirName !== trimmedName) {
 		errors.push(`Directory name '${dirName}' must match skill name '${trimmedName}'`);
 	}
