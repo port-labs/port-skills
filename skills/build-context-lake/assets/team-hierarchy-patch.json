@@ -1,0 +1,23 @@
+{
+  "_comment": "PATCH https://api.getport.io/v1/blueprints/_team - adds a self-relation for arbitrary-depth hierarchy plus a mirror property for display. _team already exists, this only adds to it.",
+  "relations": {
+    "parent_team": {
+      "title": "Parent team",
+      "target": "_team",
+      "required": false,
+      "many": false
+    },
+    "organization": {
+      "title": "Organization",
+      "target": "organization",
+      "required": false,
+      "many": false
+    }
+  },
+  "mirrorProperties": {
+    "parent_team_name": {
+      "title": "Parent team",
+      "path": "parent_team.$title"
+    }
+  }
+}

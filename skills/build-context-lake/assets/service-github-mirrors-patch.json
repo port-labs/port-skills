@@ -1,0 +1,33 @@
+{
+  "_comment": "PATCH https://api.getport.io/v1/blueprints/service - relates service to the GitHub repository the GitHub integration already ingested, then mirrors the fields worth showing on the service itself instead of duplicating them.",
+  "relations": {
+    "github_repository": {
+      "title": "GitHub repository",
+      "target": "githubRepository",
+      "required": false,
+      "many": false
+    }
+  },
+  "mirrorProperties": {
+    "github_repository_id": {
+      "title": "GitHub repository identifier",
+      "path": "github_repository.$identifier"
+    },
+    "github_url": {
+      "title": "GitHub URL",
+      "path": "github_repository.url"
+    },
+    "github_readme": {
+      "title": "GitHub README",
+      "path": "github_repository.readme"
+    },
+    "github_codeowners": {
+      "title": "GitHub code owners",
+      "path": "github_repository.codeowners"
+    },
+    "github_language": {
+      "title": "GitHub language",
+      "path": "github_repository.language"
+    }
+  }
+}

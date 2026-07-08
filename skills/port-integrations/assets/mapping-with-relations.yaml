@@ -1,0 +1,54 @@
+# Two-resource mapping with relations and createMissingRelatedEntities.
+#
+# Maps "team" and "repository" kinds from an Ocean custom integration to "team" and
+# "service" blueprints. Teams are listed first so they exist before "service" entities
+# try to relate to them. Assumes:
+#   - "team" blueprint has: name (title), memberCount (number)
+#   - "service" blueprint has: description (string), url (string),
+#     a single-type relation "owningTeam" -> "team",
+#     a many-type relation "contributors" -> "user" (mapped via search query,
+#     matching each user's "githubUsername" property)
+#
+# createMissingRelatedEntities is set so a repository whose team hasn't synced yet
+# (e.g. a brand-new team) still gets its relation attached instead of dropped.
+createMissingRelatedEntities: true
+deleteDependentEntities: false
+resources:
+  # Ingested first: relation target must exist before "repository" references it.
+  - kind: team
+    selector:
+      query: "true"
+    port:
+      entity:
+        mappings:
+          identifier: .slug
+          title: .name
+          blueprint: '"team"'
+          properties:
+            memberCount: .members | length
+
+  - kind: repository
+    selector:
+      query: "true"
+    port:
+      entity:
+        mappings:
+          identifier: .name
+          title: .name
+          blueprint: '"service"'
+          properties:
+            description: .description // "No description provided"
+            url: .html_url
+          relations:
+            # Direct identifier reference: the API returns the owning team's slug.
+            owningTeam: .team.slug
+            # Search query relation: we only have GitHub usernames here, not Port
+            # user identifiers, so we match against each user's "githubUsername"
+            # property instead. Always return the full desired set: relations are
+            # replaced, not merged, on every sync.
+            contributors:
+              combinator: '"and"'
+              rules:
+                - property: '"githubUsername"'
+                  operator: '"in"'
+                  value: "[.contributors[].login]"

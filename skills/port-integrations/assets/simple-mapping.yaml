@@ -1,0 +1,24 @@
+# Simple, single-resource mapping.
+#
+# Maps a "repository" kind (an Ocean custom integration hitting a REST API's
+# /repositories endpoint) to a "service" blueprint. No relations, no advanced options.
+#
+# Assumes the "service" blueprint already has these properties defined:
+#   description (string), url (string), defaultBranch (string), isArchived (boolean)
+resources:
+  - kind: repository
+    selector:
+      # "true" ingests every repository the API returns.
+      # Swap in a JQ expression to filter, e.g. .name | startswith("service")
+      query: "true"
+    port:
+      entity:
+        mappings:
+          identifier: .name
+          title: .name
+          blueprint: '"service"'
+          properties:
+            description: .description // "No description provided"
+            url: .html_url
+            defaultBranch: .default_branch // "main"
+            isArchived: .archived // false
