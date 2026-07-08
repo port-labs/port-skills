@@ -29,9 +29,12 @@ without a live Port account or Port MCP server connected. Without
 credentials it still produces valid blueprint JSON the user can apply later.
 
 Out of scope: self-service actions (not covered by a skill in this repo yet),
-scorecards (`port-scorecards`), integration mapping (`port-integrations`), and
+scorecards (`port-scorecards`), integration mapping (`port-integrations`),
 the Terraform/Pulumi provider reference (`port-terraform`, pointed to in
-[Step 6](#step-6---create-or-update-the-blueprint-via-the-api)).
+[Step 6](#step-6---create-or-update-the-blueprint-via-the-api)), and deciding
+*what* to model and how blueprints should relate at the data-model-design
+level (`build-context-lake` owns that; this skill is the JSON mechanics it
+points to).
 
 ## Prerequisites
 

@@ -1,0 +1,13 @@
+{
+  "_comment": "PATCH https://api.getport.io/v1/blueprints/_team - rolls up a count of owned services onto the team. _team is a higher-abstraction blueprint (many services relate to it via ownership), which is exactly where an aggregation property belongs. This relies on _team's built-in $team ownership rollup, not a manually declared relation, see references/ownership.md.",
+  "aggregationProperties": {
+    "numberOfOwnedServices": {
+      "title": "Number of owned services",
+      "target": "service",
+      "calculationSpec": {
+        "calculationBy": "entities",
+        "func": "count"
+      }
+    }
+  }
+}

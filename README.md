@@ -16,6 +16,7 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 <!-- SKILL_INDEX_START -->
 | Skill | What it does |
 |---|---|
+| [`build-context-lake`](skills/build-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
 | [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your software catalog with Port blueprints, properties, and relations. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
