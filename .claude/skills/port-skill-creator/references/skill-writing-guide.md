@@ -10,7 +10,7 @@ This repo isn't the first of its kind. A few decisions here are deliberate,
 made after looking at what Datadog's, Sentry's, and Notion's public
 agent-skills repos got right or ran into, not defaults picked at random:
 
-- **Folder layout**: `skills/<name>/SKILL.md` (not a flat top-level layout
+- **Folder layout**: `skills/port-<name>/SKILL.md` (not a flat top-level layout
   like Datadog's) matches both Sentry's and Notion's convention, and, not
   coincidentally, the exact folder shape Port's own GitOps skill sync
   expects (`skills/*/*`). One layout works for a generic coding-agent
@@ -19,13 +19,13 @@ agent-skills repos got right or ran into, not defaults picked at random:
   `vercel-labs/skills`) is the install mechanism Datadog, Sentry, and
   Notion all standardized on. This repo's layout is compatible with it,
   wiring up the actual install story is still open, see the README.
-- **`getting-started` and MCP-awareness exist from day one because of how
+- **`port-getting-started` and MCP-awareness exist from day one because of how
   Sentry's own repo evolved.** `sentry-agent-skills` shipped as plain
   reference skills, then got archived and replaced by `sentry-for-ai`,
   which bundles MCP server config and per-agent plugin distribution
   alongside the skills. Rather than repeat that path (ship reference-only,
   retrofit MCP later), every skill here states what it can do with Port's
-  MCP server connected from the start, and `getting-started` gets a user
+  MCP server connected from the start, and `port-getting-started` gets a user
   connected before they need it.
 - **Router bodies are a refinement past what the reference repos do, not
   their starting point.** Sentry's SDK-bundle skills are phase-heavy and
@@ -45,10 +45,21 @@ agent-skills repos got right or ran into, not defaults picked at random:
 
 Before writing anything, decide three things and say them in one or two
 sentences at the top of the skill: what job this helps do, what it assumes
-already exists, and what's explicitly out of scope. Check the [README](../../README.md)
+already exists, and what's explicitly out of scope. Check the [README](../../../../README.md)
 skill list first, a skill that half-covers another skill's territory gives
 an agent contradictory instructions when both load. If the topic is
 genuinely adjacent to an existing skill, point to it instead of restating it.
+
+Every skill in this repo is namespaced `port-<name>`, directory and
+frontmatter `name` both (enforced by `validate-skill.js`). There's no
+unprefixed skill here, since these skills can sit alongside other vendors'
+in a shared `~/.claude/skills/` directory once installed.
+
+`port-skill-creator` itself is the one exception to the `skills/` layout,
+not to the naming rule: it still carries the `port-` prefix, but it lives
+under this repo's own `.claude/skills/port-skill-creator/` instead of
+`skills/`, because it's tooling for contributing to this repo, not a
+capability an end user installs into their own coding agent.
 
 ## Choose a skill class
 
@@ -137,13 +148,13 @@ sentence plus a link, not a re-explanation. If a step genuinely has no
 external dependency, say so plainly ("Fallback: not applicable") rather
 than inventing one.
 
-## Prerequisites: getting-started and MCP
+## Prerequisites: port-getting-started and MCP
 
 Every skill's `Prerequisites` section should do two things, not restate
 account setup from scratch:
 
-1. **Point to `getting-started`** instead of re-explaining how to sign up
-   for Port or connect its MCP server: "Go over the `getting-started` skill
+1. **Point to `port-getting-started`** instead of re-explaining how to sign up
+   for Port or connect its MCP server: "Go over the `port-getting-started` skill
    first if this is your first time working with Port." Only list what's
    specific to this skill beyond that (an installed integration, an
    existing blueprint, the Terraform CLI).
@@ -156,7 +167,7 @@ account setup from scratch:
 
 A skill that's pure static authoring with no live-account application step
 (like `port-terraform`, which only ever produces `.tf` files) still gets
-the `getting-started` pointer and the `search_port_knowledge_sources`
+the `port-getting-started` pointer and the `search_port_knowledge_sources`
 mention, just without a "MCP applies this for you" claim that wouldn't be
 true.
 
@@ -230,7 +241,7 @@ sense.
 
 ```markdown
 ---
-name: your-skill-name
+name: port-your-skill-name
 description: "What this does, in concrete Port terms, plus 3-4 realistic trigger phrases in the user's own words."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
@@ -248,7 +259,7 @@ One or two sentences: the job this does, as an outcome.
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time working with Port.
+- Go over the `port-getting-started` skill first if this is your first time working with Port.
 - <Anything specific to this skill: an existing blueprint, an installed integration, a CLI.>
 - If Port's MCP server is connected, this skill can use it to <do the specific thing, e.g. apply the change directly via `upsert_x`> instead of you copying config in by hand. Search `search_port_knowledge_sources` for anything this skill doesn't cover.
 

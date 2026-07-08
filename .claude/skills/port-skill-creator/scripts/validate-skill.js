@@ -183,6 +183,10 @@ function validateName(name, dirName) {
 		errors.push(`Skill name '${trimmedName}' contains invalid characters. Only letters, digits, and hyphens are allowed.`);
 	}
 
+	if (!trimmedName.startsWith('port-')) {
+		errors.push(`Skill name '${trimmedName}' must start with the 'port-' prefix`);
+	}
+
 	if (dirName && dirName !== trimmedName) {
 		errors.push(`Directory name '${dirName}' must match skill name '${trimmedName}'`);
 	}
@@ -393,7 +397,7 @@ if (require.main === module) {
 
 	// Handle --all flag
 	if (args[0] === '--all') {
-		const baseDir = args[1] || path.join(__dirname, '..', '..');
+		const baseDir = args[1] || path.join(__dirname, '..', '..', '..', '..', 'skills');
 		const entries = fs.readdirSync(baseDir, { withFileTypes: true });
 		skillDirs = entries
 			.filter((e) => e.isDirectory() && !e.name.startsWith('_') && !e.name.startsWith('.'))

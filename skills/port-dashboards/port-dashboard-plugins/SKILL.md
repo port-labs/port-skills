@@ -56,7 +56,7 @@ use the Port UI's blueprint builder, or `GET /v1/blueprints` /
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port.
 - Node.js >= 20.
 - A Port account with permission to add custom plugins (admin, in most

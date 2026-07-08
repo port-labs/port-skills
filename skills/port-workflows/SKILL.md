@@ -37,7 +37,7 @@ but does not replace.
 
 ## Prerequisites
 
-- Go over the `getting-started` skill first if this is your first time
+- Go over the `port-getting-started` skill first if this is your first time
   working with Port.
 - To create or update workflows without MCP: a Port `CLIENT_ID` and
   `CLIENT_SECRET` (**...** menu > **Credentials** in the Port app),

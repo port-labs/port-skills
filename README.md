@@ -16,15 +16,14 @@ to build the thing: a blueprint, a mapping, a workflow, a dashboard, a plugin.
 <!-- SKILL_INDEX_START -->
 | Skill | What it does |
 |---|---|
-| [`build-context-lake`](skills/build-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
-| [`getting-started`](skills/getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your context lake with Port blueprints, properties, and relations. |
+| [`port-context-lake`](skills/port-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
+| [`port-getting-started`](skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
 | [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
 | [`port-terraform`](skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
 | [`port-workflows`](skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
-| [`skill-creator`](skills/skill-creator/SKILL.md) | Author and validate a new skill for this repo. |
 <!-- SKILL_INDEX_END -->
 
 ## Install
@@ -49,7 +48,7 @@ user-level and project-level (`.claude/skills`, `.cursor/skills`) paths work.
 
 ## Contributing
 
-See [`skill-creator`](skills/skill-creator/SKILL.md) for the skill format,
+See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,
 authoring conventions, and how to validate a new skill before opening a PR.
 
 ## Learn more

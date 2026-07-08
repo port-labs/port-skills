@@ -1,5 +1,5 @@
 ---
-name: getting-started
+name: port-getting-started
 description: "Set up Port and connect it to your coding agent: sign up for a Port account, install Port's MCP server, and optionally the Port CLI. Use when asked to 'get started with Port', 'set up Port', 'connect Port MCP', 'install the Port MCP server', 'how do I use Port from Claude Code/Cursor/VS Code', or before using any other skill in this repo for the first time."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot, VS Code"
