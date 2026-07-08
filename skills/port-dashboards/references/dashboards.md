@@ -134,6 +134,11 @@ admin or hold the `create:private-pages` scope. From the UI, non-admins who
 have been granted that scope see the visibility field as read-only after
 creation, an admin has to change it later if needed.
 
+Visibility and creation are covered here; who can subsequently **view or
+edit** the page (organization-wide or a private page shared with specific
+users/teams) is a separate `read`/`update` permissions model, see the
+`port-permissions` skill's page-permissions reference.
+
 ## Dataset filter syntax
 
 A widget's `dataset` (or, for the table widget, its `dataset` field; other

@@ -1,21 +1,21 @@
 # Roles and ownership
 
-Every permission surface in Port (catalog entities, self-service actions,
-pages) grants access through the same two mechanisms: a user's **role**, and
-an entity's **team ownership**. Both are worth understanding before touching
-any permissions JSON.
+Every permission surface in Port (context lake entities, pages) grants
+access through the same two mechanisms: a user's **role**, and an entity's
+**team ownership**. Both are worth understanding before touching any
+permissions JSON.
 
 ## Roles
 
 | Role | Scope | Notes |
 |---|---|---|
-| `Admin` | Everything in the portal | Can always execute every action and see every page, regardless of other permissions. |
+| `Admin` | Everything in the portal | Can always execute every workflow and see every page, regardless of other permissions. |
 | `Moderator` | Everything on a specific blueprint and its entities | A user can moderate multiple blueprints (`Moderated Blueprints` on their `_user` entity). Referenced in permissions JSON as `roles: ["<blueprintIdentifier>-moderator"]` in the UI, or by the literal role name assigned on the user. |
-| `Member` | Read-only on the catalog, plus self-service action execution | The default role for a new user. |
+| `Member` | Read-only on the context lake, plus workflow execution | The default role for a new user. |
 
 A user's role lives on the `_user` blueprint's `port_role` property. It's
 one of the values checked first when Port evaluates any permission scope
-(see [catalog-permissions.md](catalog-permissions.md#how-permissions-are-evaluated)).
+(see [context-lake-permissions.md](context-lake-permissions.md#how-permissions-are-evaluated)).
 
 ## The `$team` meta-property and the `ownership` property
 
@@ -41,10 +41,9 @@ Defining both `ownership.type: "Inherited"` and a direct relation to the
 `Team` blueprint on the same blueprint removes the relation and falls back
 to `Direct` ownership, don't do both.
 
-Every `ownedByTeam` flag you'll see in catalog and action permissions (see
-[catalog-permissions.md](catalog-permissions.md) and
-[action-permissions.md](action-permissions.md)) checks this same `$team`
-array against the executing user's team memberships. Setting up ownership
+Every `ownedByTeam` flag you'll see in context lake permissions (see
+[context-lake-permissions.md](context-lake-permissions.md)) checks this
+same `$team` array against the executing user's team memberships. Setting up ownership
 sync from an integration or SSO provider, or building an ownership
 dashboard, is broader than permissions and is covered in Port's
 [ownership documentation](https://docs.port.io/context-lake/business-context/ownership),

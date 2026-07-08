@@ -38,7 +38,7 @@ to scaffold and build a plugin, only a real account to upload and view it.
 Out of scope: Port's built-in dashboard widget types (tables, number
 charts, pie charts, and the rest) need no custom code at all, that's the
 parent [`port-dashboards`](../SKILL.md) skill. Ocean integrations (data
-ingestion into the catalog) are a different system with a different SDK.
+ingestion into the context lake) are a different system with a different SDK.
 Blueprint and property modeling with no widget implementation is owned by
 `port-blueprints`; this skill only covers how a plugin reads that schema at
 design time and at runtime.
@@ -47,7 +47,7 @@ design time and at runtime.
 
 Reference skill: the SDK contract, hooks-order rule, and webpack safety
 patches below are static platform rules, not something a live account
-changes. Catalog design (which blueprint or relation a plugin should read)
+changes. Context lake design (which blueprint or relation a plugin should read)
 benefits from the [Port MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
 (`list_blueprints`, `upsert_blueprint`) as an optional, design-time-only
 enhancement, never call MCP from inside plugin runtime code. Without MCP,
@@ -80,10 +80,10 @@ copy the directory and adapt. No real overlap: scaffold fresh (Step 3).
 Fallback: with no existing plugins repo to survey, or none that come close,
 go straight to scaffolding.
 
-## Step 2 - Design the catalog strategy before writing params
+## Step 2 - Design the context lake strategy before writing params
 
 Precondition: you know roughly what the plugin should show or do.
-Action: catalog concepts come before plugin configuration. Identify the
+Action: context lake concepts come before plugin configuration. Identify the
 blueprint(s) involved and decide: **A** (an existing blueprint's existing
 properties already model this, use them as-is), **B** (the right
 blueprint exists but needs a new property or relation), or **C** (the
@@ -94,14 +94,14 @@ reuse one that already exists whenever its semantics match. With MCP,
 inspection live; without it, read the schemas from the Port UI's data
 model page or `GET /v1/blueprints/{identifier}`. Only call `upsert_blueprint`
 (or make the equivalent UI/API change) after the user approves a schema
-change, plugins should not silently grow the catalog.
-Fallback: when no catalog change is possible or wanted, design the plugin
+change, plugins should not silently grow the context lake.
+Fallback: when no context lake change is possible or wanted, design the plugin
 around the existing schema and document the gap in the plugin's README
 instead of forcing a new blueprint.
 
 ## Step 3 - Scaffold from the templates
 
-Precondition: reuse/adapt didn't apply (Step 1), and the catalog strategy
+Precondition: reuse/adapt didn't apply (Step 1), and the context lake strategy
 is decided (Step 2).
 Action: create a kebab-case directory (e.g. `service-health-panel`) and
 copy files from [assets/](assets/):
@@ -201,7 +201,7 @@ colors), in that order, both are far more common than a data bug.
 Precondition: the plugin needs configuration beyond what the host already
 provides.
 Action: `upload-params.json` should scope only what the API and
-`PLUGIN_DATA` cannot supply, not a second copy of the catalog. Don't add a
+`PLUGIN_DATA` cannot supply, not a second copy of the context lake. Don't add a
 param for a blueprint list, a relation key, an entity ID, or any other
 schema the Port API returns at runtime, fetch those live instead
 (`GET /v1/blueprints`, `entity.relations`/`relationsObjects`, a `relatedTo`

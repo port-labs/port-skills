@@ -2,7 +2,7 @@
   "identifier": "service",
   "title": "Service",
   "icon": "Microservice",
-  "description": "A deployable microservice in the software catalog",
+  "description": "A deployable microservice in the context lake",
   "schema": {
     "properties": {
       "language": {

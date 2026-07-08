@@ -175,7 +175,7 @@ $identifier`):
 
 ## Validation vs. permissions
 
-Permissions gate *who* can start a run. To block a run based on catalog
+Permissions gate *who* can start a run. To block a run based on context lake
 state (for example, "don't let this run if an entity with this name already
 exists"), that's a runtime validation, not a permission. Add a `CONDITION`
 node as the first step and route the failing branch to a dead end (or a

@@ -1,6 +1,6 @@
 ---
 name: port-blueprints
-description: "Model a software catalog data model in Port using blueprints, defining identifiers, titles, icons, properties, relations, and calculation, mirror, or aggregation properties, then author them with the raw Port API. Use when asked to create a Port blueprint, define a Port data model, add a property to a blueprint, relate two blueprints, add a calculation property, add a mirror property, or add an aggregation property."
+description: "Model a Port context lake data model using blueprints, defining identifiers, titles, icons, properties, relations, and calculation, mirror, or aggregation properties, then author them with the raw Port API. Use when asked to create a Port blueprint, define a Port data model, add a property to a blueprint, relate two blueprints, add a calculation property, add a mirror property, or add an aggregation property."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
@@ -8,15 +8,15 @@ metadata:
   author: port-labs
   repository: https://github.com/port-labs/port-skills-external
   tags: port,blueprints,data-model,reference
-  summary: Model your software catalog with Port blueprints, properties, and relations
+  summary: Model your context lake with Port blueprints, properties, and relations
 ---
 
 # Port blueprints
 
-A blueprint is Port's schema primitive. It defines a type of asset in a
-software catalog (a `service`, a `package`, a `cluster`, anything), the
+A blueprint is Port's schema primitive. It defines a type of asset in the
+context lake (a `service`, a `package`, a `cluster`, anything), the
 properties that describe it, and how it relates to other blueprints. Every
-entity in Port's catalog is an instance of a blueprint, the same way a
+entity in Port's context lake is an instance of a blueprint, the same way a
 database row is an instance of a table schema.
 
 ## Use this skill when
@@ -28,7 +28,7 @@ from the static blueprint JSON schema and the raw Port API, so it works
 without a live Port account or Port MCP server connected. Without
 credentials it still produces valid blueprint JSON the user can apply later.
 
-Out of scope: self-service actions (not covered by a skill in this repo yet),
+Out of scope: workflows (`port-workflows`),
 scorecards (`port-scorecards`), integration mapping (`port-integrations`),
 the Terraform/Pulumi provider reference (`port-terraform`, pointed to in
 [Step 6](#step-6---create-or-update-the-blueprint-via-the-api)), and deciding

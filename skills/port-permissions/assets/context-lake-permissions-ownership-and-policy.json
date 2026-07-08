@@ -1,5 +1,5 @@
 {
-  "_comment": "PATCH https://api.getport.io/v1/blueprints/service/permissions - Admins and the service-moderator role can do anything; Members can register new services but only if they assign a team they belong to; anyone can update the slackChannelUrl property; on-call users can additionally read services owned by a team in their own region, see references/catalog-permissions.md.",
+  "_comment": "PATCH https://api.getport.io/v1/blueprints/service/permissions - Admins and the service-moderator role can do anything; Members can register new services but only if they assign a team they belong to; anyone can update the slackChannelUrl property; on-call users can additionally read services owned by a team in their own region, see references/context-lake-permissions.md.",
   "entities": {
     "read": {
       "roles": ["Admin", "service-moderator", "Member"],

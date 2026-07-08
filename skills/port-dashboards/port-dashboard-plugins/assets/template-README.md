@@ -4,7 +4,7 @@ PLUGIN_SUMMARY, a custom plugin for [Port](https://app.port.io). PLUGIN_SURFACE_
 
 <!-- PLUGIN_SURFACE_CONTEXT examples:
   - "Runs on dashboard pages and merges page filters into entity search."
-  - "Must be placed on an entity page; traverses catalog relations from PLUGIN_DATA.entity."
+  - "Must be placed on an entity page; traverses context lake relations from PLUGIN_DATA.entity."
   - "Works on dashboard and entity pages."
 -->
 
@@ -24,7 +24,7 @@ PLUGIN_SUMMARY, a custom plugin for [Port](https://app.port.io). PLUGIN_SURFACE_
 
 ## Prerequisites
 
-<!-- Catalog and Port setup come before plugin parameters. Document every blueprint, relation, automation, SSA, or integration the plugin needs. Omit subsections that do not apply. -->
+<!-- Context lake and Port setup come before plugin parameters. Document every blueprint, relation, automation, SSA, or integration the plugin needs. Omit subsections that do not apply. -->
 
 ### Access
 
@@ -38,7 +38,7 @@ PLUGIN_SUMMARY, a custom plugin for [Port](https://app.port.io). PLUGIN_SURFACE_
 
 <!-- Existing or new blueprints; property tables when the plugin depends on specific fields. -->
 
-No new blueprints required. Configure the plugin with blueprints that already exist in your catalog.
+No new blueprints required. Configure the plugin with blueprints that already exist in your context lake.
 
 | Requirement | Details |
 |-------------|---------|
@@ -62,7 +62,7 @@ No new blueprints required. Configure the plugin with blueprints that already ex
 
 ## Plugin parameters
 
-<!-- Mirror upload-params.json exactly. This table is authoritative for defaults, examples, and when to override. Keep upload-params.json labels short. Remove rows that duplicate catalog data (relation keys, subject blueprint on entity pages). -->
+<!-- Mirror upload-params.json exactly. This table is authoritative for defaults, examples, and when to override. Keep upload-params.json labels short. Remove rows that duplicate context lake data (relation keys, subject blueprint on entity pages). -->
 
 | Key | Type | Required | Default | Description |
 |-----|------|----------|---------|-------------|
@@ -79,7 +79,7 @@ npm run dev   # http://localhost:9000
 Configure mock host context in `src/hooks/usePostMessageData.ts`. For API fixtures, add early returns in `src/api/` or `src/dev/mockData.ts` when `DEV_MOCK` is true.
 
 <!-- When the plugin links to Port entity pages or other portal routes, uncomment and keep this paragraph:
-Entity and portal links built from mock identifiers do **not** work at `http://localhost:9000` outside Port's iframe, there is no `document.referrer` and mock IDs are not real catalog entities. Validate links via Port **Local development** (iframe) or after deploy.
+Entity and portal links built from mock identifiers do **not** work at `http://localhost:9000` outside Port's iframe, there is no `document.referrer` and mock IDs are not real context lake entities. Validate links via Port **Local development** (iframe) or after deploy.
 -->
 
 ## Setup
@@ -153,7 +153,7 @@ PLUGIN_NAME/
 | Blank white iframe (no text, no composer) | React hooks called after `if (!portToken) return` | Call all hooks before early returns; use `enabled` in `useQuery`, see the `port-dashboard-plugins` skill, Step 4 |
 | Blank iframe, zero height | Missing `#plugin-root` flex / shell `min-height` | Copy layout from `assets/template-App.css`, see the `port-dashboard-plugins` skill, Step 5 |
 | Setup prompt / waiting for Port context | Opened outside Port or missing token | Embed via Port **Local development** or deploy; check `usePostMessageData.ts` mocks for `npm run dev` |
-| Empty data | Wrong blueprint, missing relations, or no entities | Verify catalog prerequisites; inspect Port API response in browser devtools |
+| Empty data | Wrong blueprint, missing relations, or no entities | Verify context lake prerequisites; inspect Port API response in browser devtools |
 | Port API error | Auth, wrong host, or malformed search body | Error includes response body; confirm nested `{ query: { combinator, rules } }` on entity search |
 | Entity links open wrong region | `document.referrer` unavailable in standalone dev | Expected at `localhost:9000`; test inside Port iframe or after deploy |
 

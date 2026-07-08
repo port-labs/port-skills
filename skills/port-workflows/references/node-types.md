@@ -49,7 +49,7 @@ trigger node, and applies to all of the workflow's self-service triggers.
 
 ### `EVENT_TRIGGER`
 
-Runs automatically when a catalog entity changes.
+Runs automatically when a context lake entity changes.
 
 ```json
 {
@@ -129,12 +129,12 @@ auto-authenticates it. Entity routes are blueprint-scoped:
 `GET /v1/blueprints/{blueprint}/entities/{entity}` (single),
 `GET /v1/blueprints/{blueprint}/entities` (list),
 `POST /v1/blueprints/{blueprint}/entities/search` (query). Not
-`/v1/entities?blueprint=...`. For creating or updating catalog entities,
+`/v1/entities?blueprint=...`. For creating or updating context lake entities,
 prefer `UPSERT_ENTITY` below over a raw webhook, it's simpler.
 
 ### `UPSERT_ENTITY`
 
-Creates or updates a Port catalog entity. Updates only touch the fields you
+Creates or updates a Port context lake entity. Updates only touch the fields you
 specify.
 
 ```json

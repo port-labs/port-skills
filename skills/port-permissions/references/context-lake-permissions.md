@@ -1,4 +1,4 @@
-# Catalog (blueprint/entity) permissions
+# Context lake (blueprint/entity) permissions
 
 Controls who can `read`, `register` (create), `update`, or `unregister`
 (delete) entities of a blueprint, down to a single property or relation.
@@ -77,7 +77,7 @@ user inside the query itself:
 
 `read` permissions take effect at the API level: every component that
 fetches entities (a table widget, a search, an export) is filtered by them,
-not just the main catalog view.
+not just the context lake page you set it from.
 
 **`ownedByTeam` and dynamic `read` policy are mutually exclusive on the same
 scope.** If `ownedByTeam` is set on `read`, the `policy` is ignored.
@@ -123,5 +123,5 @@ Let every user edit entities owned by their own team:
 ```
 
 See
-[assets/catalog-permissions-ownership-and-policy.json](../assets/catalog-permissions-ownership-and-policy.json)
+[assets/context-lake-permissions-ownership-and-policy.json](../assets/context-lake-permissions-ownership-and-policy.json)
 for a complete example combining several of these in one blueprint.

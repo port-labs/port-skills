@@ -50,7 +50,7 @@ Include in the description:
   listing the true ones).
 
 Good (from `port-workflows`): "Build Port workflows: node-based automations
-made of triggers (self-service forms, catalog events), action nodes
+made of triggers (self-service forms, context lake events), action nodes
 (webhook, upsert entity, GitHub/GitLab/Azure DevOps integration actions,
 Kafka, Cursor Agent, AI), condition and input nodes... Use when asked to
 create a Port workflow, add a trigger to a workflow, add an action node...

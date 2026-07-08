@@ -62,7 +62,7 @@ A `port_aggregation_properties` property that counts or averages related
 entities returns `null` or `0`, with `terraform apply` exiting `0`, if more
 than one relation path connects the source and target blueprint and you
 didn't set `path_filter`. There's no error, no warning, just a wrong value
-in the catalog.
+in the context lake.
 
 Add `path_filter` whenever the two blueprints could be connected more than
 one way (for example, both a direct relation and a relation through an
