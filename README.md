@@ -1,4 +1,8 @@
-<img src="assets/port-logo.svg" alt="Port" width="200" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/port-logo-white.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/port-logo-black.svg">
+  <img src="assets/port-logo-black.svg" alt="Port" width="200">
+</picture>
 
 # Port Agent Skills
 
