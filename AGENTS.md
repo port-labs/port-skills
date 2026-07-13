@@ -32,3 +32,6 @@ relevant `skills/*/SKILL.md` instead of this file.
 - Before committing: `node .claude/skills/port-skill-creator/scripts/validate-skill.js --all`,
   then `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js` and
   commit the resulting `README.md` diff. CI re-checks both.
+- Don't hand-bump `.claude-plugin/plugin.json`'s `version`. CI does that
+  automatically (and tags a release) on every merge to `main` that touches
+  `skills/`, `.claude/skills/`, `.claude-plugin/`, or `.mcp.json`.
