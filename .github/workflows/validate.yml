@@ -5,11 +5,15 @@ on:
     paths:
       - 'skills/**'
       - '.claude/skills/**'
+      - '.claude-plugin/**'
+      - '.mcp.json'
   push:
     branches: [main]
     paths:
       - 'skills/**'
       - '.claude/skills/**'
+      - '.claude-plugin/**'
+      - '.mcp.json'
 
 jobs:
   validate:
@@ -31,3 +35,6 @@ jobs:
         run: |
           node .claude/skills/port-skill-creator/scripts/generate-skill-index.js
           git diff --exit-code README.md || (echo "README.md skill index is out of date. Run 'node .claude/skills/port-skill-creator/scripts/generate-skill-index.js' and commit the result." && exit 1)
+
+      - name: Check plugin manifest consistency
+        run: node .github/scripts/check-plugin-manifest.js
