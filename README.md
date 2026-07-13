@@ -61,6 +61,8 @@ in one install:
 
 See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,
 authoring conventions, and how to validate a new skill before opening a PR.
+See [`TESTING.md`](TESTING.md) for how to load and exercise the plugin locally
+before submitting changes.
 
 ## Learn more
 
