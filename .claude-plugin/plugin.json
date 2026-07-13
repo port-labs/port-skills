@@ -1,6 +1,7 @@
 {
   "name": "port-skills",
   "displayName": "Port",
+  "version": "1.0.0",
   "description": "Port Agent Skills for blueprints, context lake modeling, dashboards, workflows, integrations, permissions, and Terraform, plus the Port MCP server for full engineering context on services, teams, dependencies, and standards.",
   "author": {
     "name": "Port",
