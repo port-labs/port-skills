@@ -46,6 +46,17 @@ rm -rf /tmp/port-skills
 Cursor: `~/.cursor/skills`. GitHub Copilot: `~/.copilot/skills`. Both
 user-level and project-level (`.claude/skills`, `.cursor/skills`) paths work.
 
+### Claude Code plugin
+
+This repo also ships as a [Claude Code plugin](https://code.claude.com/docs/en/plugins),
+bundling every skill above plus the [Port MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
+in one install:
+
+```
+/plugin marketplace add port-labs/port-skills
+/plugin install port-skills
+```
+
 ## Contributing
 
 See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,
