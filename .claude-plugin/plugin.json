@@ -1,0 +1,22 @@
+{
+  "name": "port-skills",
+  "displayName": "Port",
+  "description": "Port Agent Skills for blueprints, context lake modeling, dashboards, workflows, integrations, permissions, and Terraform, plus the Port MCP server for full engineering context on services, teams, dependencies, and standards.",
+  "author": {
+    "name": "Port",
+    "email": "support@port.io",
+    "url": "https://port.io"
+  },
+  "homepage": "https://docs.port.io",
+  "repository": "https://github.com/port-labs/port-skills",
+  "license": "MIT",
+  "keywords": [
+    "platform-engineering",
+    "developer-portal",
+    "idp",
+    "self-service",
+    "software-catalog",
+    "devops",
+    "mcp"
+  ]
+}

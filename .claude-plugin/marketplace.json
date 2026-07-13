@@ -1,0 +1,16 @@
+{
+  "name": "port-skills",
+  "description": "Port Agent Skills and the Port MCP server, distributed as a Claude Code plugin.",
+  "owner": {
+    "name": "Port",
+    "email": "support@port.io",
+    "url": "https://port.io"
+  },
+  "plugins": [
+    {
+      "name": "port-skills",
+      "source": "./",
+      "description": "Port Agent Skills for blueprints, context lake modeling, dashboards, workflows, integrations, permissions, and Terraform, plus the Port MCP server for full engineering context on services, teams, dependencies, and standards."
+    }
+  ]
+}

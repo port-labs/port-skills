@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "port": {
+      "url": "https://mcp.getport.io/v1"
+    }
+  }
+}
