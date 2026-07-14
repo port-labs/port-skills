@@ -10,7 +10,9 @@
     {
       "name": "port-skills",
       "source": "./",
-      "description": "Port Agent Skills for blueprints, context lake modeling, dashboards, workflows, integrations, permissions, and Terraform, plus the Port MCP server for full engineering context on services, teams, dependencies, and standards."
+      "description": "Port Agent Skills for blueprints, context lake modeling, dashboards, workflows, integrations, permissions, and Terraform, plus the Port MCP server for full engineering context on services, teams, dependencies, and standards.",
+      "category": "agentic-sdlc-platform",
+      "tags": ["platform engineering", "agents"]
     }
   ]
 }
