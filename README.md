@@ -49,8 +49,8 @@ user-level and project-level (`.claude/skills`, `.cursor/skills`) paths work.
 ### Claude Code plugin
 
 This repo also ships as a [Claude Code plugin](https://code.claude.com/docs/en/plugins),
-bundling every skill above plus the [Port MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
-in one install:
+bundling every skill above plus the [Port MCP server](https://docs.port.io/agent-management/port-mcp-server/overview)
+(both `port-eu` and `port-us` regional servers) in one install:
 
 ```
 /plugin marketplace add port-labs/port-skills
@@ -67,7 +67,7 @@ before submitting changes.
 ## Learn more
 
 - [docs.port.io](https://docs.port.io), Port's product documentation
-- [Port MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
+- [Port MCP server](https://docs.port.io/agent-management/port-mcp-server/overview)
 - [Agent Skills specification](https://agentskills.io/specification)
 
 ## License
