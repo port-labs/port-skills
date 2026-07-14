@@ -26,21 +26,34 @@ None. This is the first skill to run.
 
 1. **Sign up for a Port account** at [app.port.io](https://app.port.io) if
    you don't have one yet.
-2. **Connect Port's MCP server** to your coding agent:
+2. **Find your Port region.** Check your Port app's base URL: if it
+   contains `us`, you're on the US region; otherwise you're on EU.
+
+   | Region | MCP server URL |
+   |---|---|
+   | EU | `https://mcp.port.io/v1` |
+   | US | `https://mcp.us.port.io/v1` |
+
+3. **Connect Port's MCP server** to your coding agent, using the URL for
+   your region from the table above:
 
    | Client | How to connect |
    |---|---|
-   | Cursor | [Install in Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=port&config=eyJ1cmwiOiJodHRwczovL21jcC5nZXRwb3J0LmlvL3YxIn0=) |
-   | Claude (claude.ai / Claude Desktop) | [Install from the Claude directory](https://claude.ai/directory/8f5edd1c-c876-465e-a5b9-cc8e6d27dcb7) |
-   | VS Code | [Install in VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=port&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22mcp-remote%22%2C%22https%3A%2F%2Fmcp.getport.io%2Fv1%22%5D%7D) |
-   | Claude Code (CLI) | `claude mcp add --transport http port https://mcp.getport.io/v1` |
-   | Any other MCP-compatible agent | Point it at `https://mcp.getport.io/v1`, or follow the [manual install docs](https://docs.port.io/ai-interfaces/port-mcp-server/installation) |
+   | Cursor | [Install EU](cursor://anysphere.cursor-deeplink/mcp/install?name=port-eu&config=eyJ1cmwiOiJodHRwczovL21jcC5wb3J0LmlvL3YxIn0=) or add an MCP server manually with your region's URL |
+   | Claude (claude.ai / Claude Desktop) | [Install from the Claude directory](https://claude.ai/directory/8f5edd1c-c876-465e-a5b9-cc8e6d27dcb7), then enter your region's MCP server URL when prompted |
+   | VS Code | Add `port-eu` or `port-us` as an MCP server using the URL for your region |
+   | Claude Code (CLI) | `claude mcp add --transport http port-eu https://mcp.port.io/v1` (or `port-us` / `https://mcp.us.port.io/v1`) |
+   | Any other MCP-compatible agent | Point it at your region's URL, or follow the [manual install docs](https://docs.port.io/agent-management/port-mcp-server/installation) |
 
-3. **Optional: install the [Port CLI](https://github.com/port-experimental/port-cli).**
+   This repo's own `.mcp.json` already ships both `port-eu` and `port-us`
+   servers, so installing this plugin gets you both — disable whichever
+   region doesn't apply to your account.
+
+4. **Optional: install the [Port CLI](https://github.com/port-experimental/port-cli).**
    Beyond MCP, it covers day-to-day resource management from the terminal,
    and `port skills sync` pulls any skills your org has already configured
    in Port straight into your coding agent's skill directory.
-4. **Once connected, prefer Port's own tools over guesswork.** Every skill
+5. **Once connected, prefer Port's own tools over guesswork.** Every skill
    in this repo notes where it can call Port's MCP tools directly (to read
    live state or apply a change) instead of just handing you config to
    copy in. If a skill doesn't cover something you need, search Port's
@@ -52,13 +65,15 @@ None. This is the first skill to run.
 | Symptom | Cause | Fix |
 |---|---|---|
 | MCP server added but no Port tools show up | Most agents need a session restart after adding an MCP server | Restart the coding agent |
-| The Cursor/VS Code install link does nothing when clicked | Some browsers block custom URI schemes by default | Use the [manual install docs](https://docs.port.io/ai-interfaces/port-mcp-server/installation) instead |
+| The Cursor/VS Code install link does nothing when clicked | Some browsers block custom URI schemes by default | Use the [manual install docs](https://docs.port.io/agent-management/port-mcp-server/installation) instead |
 | `claude mcp add` command not found | That command is Claude Code's own CLI, not Claude Desktop or claude.ai | Use the Claude directory link for Desktop/claude.ai instead |
+| Tools work for one teammate but not another | Each person connected to the wrong region's server for their account | Re-check the Port app base URL and connect to that region's server instead |
 
 ## Quick reference
 
 - Sign up: [app.port.io](https://app.port.io)
-- MCP server URL: `https://mcp.getport.io/v1`
-- Manual install docs: [docs.port.io/ai-interfaces/port-mcp-server/installation](https://docs.port.io/ai-interfaces/port-mcp-server/installation)
+- MCP server URL (EU): `https://mcp.port.io/v1`
+- MCP server URL (US): `https://mcp.us.port.io/v1`
+- Manual install docs: [docs.port.io/agent-management/port-mcp-server/installation](https://docs.port.io/agent-management/port-mcp-server/installation)
 - Port CLI: [github.com/port-experimental/port-cli](https://github.com/port-experimental/port-cli)
 - Search Port's docs from inside a connected agent: the `search_port_knowledge_sources` MCP tool
