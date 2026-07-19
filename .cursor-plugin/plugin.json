@@ -1,0 +1,24 @@
+{
+  "name": "port",
+  "displayName": "Port",
+  "description": "Port MCP Server Gives Cursor's AI agent full engineering context. Port is your system of record for every service, team, dependency, and standard - connect it to Cursor so the agent understands not just your code, but who owns it, what depends on it, and what actions are available to take.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Port",
+    "email": "support@port.io",
+    "url": "https://port.io"
+  },
+  "homepage": "https://docs.port.io",
+  "repository": "https://github.com/port-labs/port-skills",
+  "license": "MIT",
+  "keywords": [
+    "platform-engineering",
+    "developer-portal",
+    "idp",
+    "self-service",
+    "software-catalog",
+    "devops",
+    "mcp"
+  ],
+  "logo": "assets/icon.svg"
+}
