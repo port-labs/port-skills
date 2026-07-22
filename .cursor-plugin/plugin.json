@@ -1,7 +1,7 @@
 {
   "name": "port",
   "displayName": "Port",
-  "description": "Port MCP Server Gives Cursor's AI agent full engineering context. Port is your system of record for every service, team, dependency, and standard - connect it to Cursor so the agent understands not just your code, but who owns it, what depends on it, and what actions are available to take.",
+  "description": "Connect to Port's agentic SDLC platform in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
   "version": "0.1.0",
   "author": {
     "name": "Port",
@@ -16,6 +16,7 @@
     "developer-platform",
     "agentic-SDLC",
     "self-service",
+    "workflows",
     "context-lake",
     "devops",
     "mcp"
