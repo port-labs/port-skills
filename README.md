@@ -57,6 +57,23 @@ bundling every skill above plus the [Port MCP server](https://docs.port.io/agent
 /plugin install port-skills
 ```
 
+### Cursor plugin
+
+The repo also ships as a [Cursor plugin](https://cursor.com/docs/context/plugins),
+bundling every skill above plus the [Port MCP server](https://docs.port.io/agent-management/port-mcp-server/overview) for Cursor:
+
+Install from the Cursor Marketplace:
+1. Open Cursor Settings → **Plugins**
+2. Search for **Port MCP**
+3. Click **Install**
+
+Or paste the plugin reference in Cursor Settings → Plugins:
+```
+port
+```
+
+After installing, run `/setup-region` to configure your Port MCP server region (EU or US).
+
 ## Contributing
 
 See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,

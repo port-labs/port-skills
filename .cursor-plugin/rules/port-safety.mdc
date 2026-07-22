@@ -1,0 +1,24 @@
+---
+name: port-safety
+description: Safety and knowledge rules for Port MCP interactions. Always active when Port MCP tools are available.
+alwaysApply: true
+---
+
+# Port MCP rules
+
+## Knowledge lookup
+
+Before answering any question about Port concepts (blueprints, scorecards, entities, actions, workflows, integrations, relations, properties, permissions) or before taking any action that requires Port-specific knowledge, call `search_port_knowledge_sources` with the relevant query.
+
+Do not rely on training data alone for Port-specific behavior, configuration options, or API semantics. Always verify against the official documentation first.
+
+## Write confirmation
+
+Before calling any tool that creates, updates, deletes, or triggers anything in Port, confirm the operation with the user first.
+
+Confirmation must include:
+1. What will change and on which resource
+2. Whether the operation is reversible
+3. An explicit user approval before the tool call is made
+
+Do not proceed with write operations based on implied intent.
