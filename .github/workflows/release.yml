@@ -27,6 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Configure git identity
         run: |
@@ -37,9 +38,12 @@ jobs:
         id: bump
         run: echo "version=$(node .github/scripts/bump-plugin-version.js)" >> "$GITHUB_OUTPUT"
 
+      - name: Sync npm package version
+        run: npm version "${{ steps.bump.outputs.version }}" --no-git-tag-version --allow-same-version
+
       - name: Commit and tag
         run: |
-          git add .claude-plugin/plugin.json
+          git add .claude-plugin/plugin.json package.json
           git commit -m "chore(release): bump plugin to v${{ steps.bump.outputs.version }}"
           git tag "v${{ steps.bump.outputs.version }}"
           git push origin HEAD:main
@@ -52,3 +56,12 @@ jobs:
           gh release create "v${{ steps.bump.outputs.version }}" \
             --title "v${{ steps.bump.outputs.version }}" \
             --generate-notes
+
+      - name: Publish npm package
+        # Builds dist/skills.generated.json via prepublishOnly, then publishes
+        # @port-labs/port-skills to the public npm registry.
+        run: |
+          npm install
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
