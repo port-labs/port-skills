@@ -44,7 +44,7 @@ jobs:
 
       - name: Commit and tag
         run: |
-          git add .claude-plugin/plugin.json package.json
+          git add .claude-plugin/plugin.json package.json package-lock.json
           git commit -m "chore(release): bump plugin to v${{ steps.bump.outputs.version }}"
           git tag "v${{ steps.bump.outputs.version }}"
           git push origin HEAD:main
