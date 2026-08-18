@@ -50,10 +50,12 @@ jobs:
           git tag "v${{ steps.bump.outputs.version }}"
           git push origin HEAD:main
           git push origin "v${{ steps.bump.outputs.version }}"
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Create GitHub release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           gh release create "v${{ steps.bump.outputs.version }}" \
             --title "v${{ steps.bump.outputs.version }}" \
