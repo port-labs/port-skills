@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
   id-token: write
 
 concurrency:
@@ -19,7 +20,7 @@ concurrency:
 
 jobs:
   release:
-    if: "!startsWith(github.event.head_commit.message, 'chore(release):')"
+    if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,19 +37,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump plugin version
+      - name: Resolve next version
         id: bump
         run: echo "version=$(node .github/scripts/bump-plugin-version.js)" >> "$GITHUB_OUTPUT"
 
       - name: Sync npm package version
         run: npm version "${{ steps.bump.outputs.version }}" --no-git-tag-version --allow-same-version
 
-      - name: Commit and tag
+      - name: Tag release
         run: |
-          git add .claude-plugin/plugin.json package.json package-lock.json
-          git commit -m "chore(release): bump plugin to v${{ steps.bump.outputs.version }}"
           git tag "v${{ steps.bump.outputs.version }}"
-          git push origin HEAD:main
           git push origin "v${{ steps.bump.outputs.version }}"
 
       - name: Create GitHub release
@@ -63,3 +61,21 @@ jobs:
         run: |
           npm install
           npm publish
+
+      - name: Open manifest sync PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.bump.outputs.version }}"
+          BRANCH="release/v$VERSION"
+
+          git checkout -b "$BRANCH"
+          git add .claude-plugin/plugin.json package.json package-lock.json
+          git commit -m "chore(release): sync manifests to v$VERSION"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore(release): sync manifests to v$VERSION" \
+            --body "v$VERSION is already tagged and published to npm. Git tags are the version source of truth, so this PR only updates the committed manifests to match the tag. The next release resolves its version from tags whether or not this merges."
