@@ -1,6 +1,6 @@
 {
   "name": "@port-labs/port-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Port's public Agent Skills, installable as an npm package or as a Claude Code / Cursor plugin.",
   "license": "MIT",
   "homepage": "https://github.com/port-labs/port-skills#readme",

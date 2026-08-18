@@ -1,7 +1,7 @@
 {
   "name": "port-skills",
   "displayName": "Port",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Connect to Port's agentic SDLC platform in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
   "author": {
     "name": "Port",
