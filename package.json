@@ -1,0 +1,38 @@
+{
+  "name": "@port-labs/port-skills",
+  "version": "1.0.0",
+  "description": "Port's public Agent Skills, installable as an npm package or as a Claude Code / Cursor plugin.",
+  "license": "MIT",
+  "homepage": "https://github.com/port-labs/port-skills#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/port-labs/port-skills.git"
+  },
+  "keywords": [
+    "port",
+    "agent-skills",
+    "skills",
+    "platform-engineering",
+    "mcp"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "dist/skills.generated.json"
+  ],
+  "scripts": {
+    "build": "node scripts/build-skills.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
