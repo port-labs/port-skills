@@ -1,6 +1,6 @@
 ---
 name: port-install-integration
-description: "Guide a user through installing a new Port data-source integration end-to-end and populating the software catalog with the right data model and mapping. Use when asked to 'connect a new integration', 'install GitHub/Jira/PagerDuty/etc. in Port', 'add a data source', 'sync external tool data into the catalog for the first time', or 'set up a new Ocean integration'. For mapping-only edits on an already-connected integration, use `port-integrations`. For sync failures after setup, use `port-integrations`' troubleshooting reference."
+description: "Guide a user through installing a new Port data-source integration end-to-end and populating the software catalog with the right data model and mapping. Use when asked to 'connect a new integration', 'install GitHub/Jira/PagerDuty/etc. in Port', 'add a data source', 'sync external tool data into the catalog for the first time', or 'set up a new Ocean integration'. For mapping-only edits on an already-connected integration, or sync failures after setup, use the parent `port-integrations` skill instead."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:

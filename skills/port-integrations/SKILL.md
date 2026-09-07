@@ -1,6 +1,6 @@
 ---
 name: port-integrations
-description: "Configure and troubleshoot Port integrations: mapping YAML, resources, selectors, JQ-based entity mappings, relations, and advanced options like createMissingRelatedEntities and itemsToParse. Use when asked to 'write a Port mapping', 'map API or tool data to a Port blueprint', 'configure an Ocean integration mapping', 'add a relation to a Port mapping', 'parse an array into separate Port entities', 'fix a Port mapping JQ error', or 'why isn't my Port integration syncing the right entities or properties'."
+description: "Configure and troubleshoot Port integrations: mapping YAML, resources, selectors, JQ-based entity mappings, relations, and advanced options like createMissingRelatedEntities and itemsToParse. Use when asked to 'write a Port mapping', 'map API or tool data to a Port blueprint', 'configure an Ocean integration mapping', 'add a relation to a Port mapping', 'parse an array into separate Port entities', 'fix a Port mapping JQ error', or 'why isn't my Port integration syncing the right entities or properties'. For installing a new integration end-to-end and populating the catalog for the first time, use the nested `port-install-integration` skill instead."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
@@ -28,7 +28,9 @@ entities, using [JQ](https://jqlang.org/manual/) expressions.
 Out of scope: creating the blueprints and relations themselves (a mapping can only map
 into fields that already exist on a blueprint), and general JQ language tutorials beyond
 what mapping needs (see [references/mapping.md](references/mapping.md) for the
-patterns that come up most).
+patterns that come up most). Installing a new integration end-to-end — kind selection,
+use-case discovery, and populating the catalog for the first time — is the nested
+[`port-install-integration`](port-install-integration/SKILL.md) skill, not this one.
 
 ## Prerequisites
 
