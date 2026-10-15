@@ -1,6 +1,6 @@
 ---
 name: port-install-integration
-description: "Guide a user through installing a new Port data-source integration end-to-end and populating the software catalog with the right data model and mapping. Use when asked to 'connect a new integration', 'install GitHub/Jira/PagerDuty/etc. in Port', 'add a data source', 'sync external tool data into the catalog for the first time', or 'set up a new Ocean integration'. For mapping-only edits on an already-connected integration, or sync failures after setup, use the parent `port-integrations` skill instead."
+description: "Guide a user through installing a new Port data-source integration and populating the software catalog with the right data model and mapping. Use when the user wants to connect, install, or set up a new integration, add a data source, or sync external tool data into the catalog for the first time."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 metadata:
@@ -11,29 +11,16 @@ metadata:
   summary: Install a new Port integration and populate the catalog end-to-end
 ---
 
-# Install integration
+# Install Integration
 
-Guide a user through installing a new Port data-source integration and setting it up
-end-to-end — especially when the goal is to **populate the software catalog** with data
-from that tool.
+Use this skill when a user wants to **install a new integration** and set it up end-to-end — especially when the goal is to **populate the software catalog** with data from that tool.
 
-## Prerequisites
-
-- Go over the `port-getting-started` skill first if this is your first time working
-  with Port.
-- Port's [MCP server](https://docs.port.io/ai-interfaces/port-mcp-server/overview)
-  connected, with integration-install and question-asking capabilities available. This
-  skill is MCP-powered end to end: installing an integration, selecting kinds, and
-  triggering a sync are actions that only exist through Port (there is no meaningful
-  non-MCP fallback for them). If a tool referenced below isn't available in your MCP
-  client, search `search_port_knowledge_sources` or fall back to the
-  [install an integration](https://docs.port.io/build-your-software-catalog/sync-data-to-catalog/)
-  docs and the Port UI for that step.
+For mapping-only edits on an already-connected integration, use `port-mapping-assistant`. For sync failures after setup, use `port-troubleshoot-integration`.
 
 ## Operating Rules
 
 - **Call `install_integrations` early** — before research, blueprint writes, or mapping work. Do not run catalog setup steps until the user has gone through the normal install flow.
-- **Do not duplicate the MCP vs. catalog question** in this skill. If intent is ambiguous, call `ask_user_questions` to choose between MCP-only (`configure_mcp_servers`) and catalog sync (`install_integrations`), then proceed. If the user chose MCP only, stop this skill.
+- **Do not duplicate the MCP vs. catalog question** in this skill. If intent is ambiguous, follow platform rules: call `ask_user_questions` to choose between MCP (`configure_mcp_servers`) and catalog sync (`install_integrations`), then proceed. If the user chose MCP only, stop this skill.
 - Use `ask_user_questions` for **kind selection**, **use case selection**, and **personalization questions** — not for plan approval.
 - **Questions component only** — when calling `ask_user_questions`, put all options and descriptions inside the tool. Do **not** also list the same choices as markdown in chat (no bullet lists, tables, or numbered options duplicating what the component shows).
 - **Do not add a custom "write your own" option** — the questions UI automatically adds an **"Other"** free-text option to every question. Never add options like "Suggest my own use case" or "Write your own" — they duplicate "Other".
@@ -139,7 +126,7 @@ Plan internally using the selected kinds, use case, and personalization answers 
 
 1. Call `get_integration_port_app_config_schema` to confirm valid kinds and selector fields.
 2. If the integration has existing mapping, fetch it with `list_integrations` (include identifiers) and **merge** — never drop unrelated resources.
-3. Author the mapping for the chosen use case, scoped to the **selected kinds**. Include all config parts: `createMissingRelatedEntities`, `deleteDependentEntities`, `enableMergeEntity`, and `resources`. See `port-integrations` for the mapping syntax itself (resources, selectors, JQ entity mappings, relations).
+3. Author the mapping for the chosen use case, scoped to the **selected kinds**. Include all config parts: `createMissingRelatedEntities`, `deleteDependentEntities`, `enableMergeEntity`, and `resources`.
 4. Show the mapping to the user in **YAML format** when sharing the final configuration.
 
 ## Step 7: Test the Mapping
@@ -147,10 +134,12 @@ Plan internally using the selected kinds, use case, and personalization answers 
 Validate before saving:
 
 1. Call `get_integration_kinds_with_examples` for every kind in the mapping.
-2. **If any mapped kind has no examples** (common on a fresh install before the first sync completes), load this skill's per-integration reference examples instead:
-   1. Call `load_skill({ name: "port-install-integration" })` if your MCP client supports reloading a skill by resource.
-   2. Find [references/examples/<integration-type-identifier>.md](references/examples/) matching the integration you're installing (e.g. `references/examples/github-ocean.md`, `references/examples/jira.md`) — one file per integration, loaded only for the one you need.
-   3. Use the examples in that file for the mapped kinds you need to test.
+2. **If any mapped kind has no examples** (common on a fresh install before the first sync completes), reload this skill to get reference examples:
+   1. Call `load_skill({ name: "port-install-integration" })`.
+   2. The response includes an `availableResources` list — each entry is a reference that represents an integration.
+   3. Find the reference for the integration you are currently installing (match by integration type identifier in the reference path or content).
+   4. Call `load_skill({ name: "port-install-integration", resource: "<reference-path>" })` to load that reference's content.
+   5. Use the examples in the reference content for the mapped kinds you need to test.
 3. **If the skill references have no examples for the required kinds**, call `search_port_knowledge_sources` to find example data structures from Port docs and construct representative examples.
 4. Call `test_integration_mapping` with the proposed config and representative examples for **each** mapped kind.
 5. If tests fail:
@@ -191,7 +180,7 @@ If entities are empty after a successful sync:
 
 - Check transform-phase metrics for `filteredOut` counts (mapping filters too aggressively)
 - Check load-phase metrics for failures (relation or validation errors)
-- Offer to run `port-integrations`' troubleshooting reference if errors persist
+- Offer to run `port-troubleshoot-integration` if errors persist
 
 ## Tools Reference
 
@@ -204,7 +193,7 @@ If entities are empty after a successful sync:
 | `list_integrations` | Check install status, fetch current mapping |
 | `get_integration_port_app_config_schema` | Authoritative list of supported kinds and per-kind selector fields |
 | `get_integration_kinds_with_examples` | Raw data examples for mapping and testing |
-| `load_skill` | Reload this skill's per-integration reference examples when live examples are empty |
+| `load_skill` | Reload `port-install-integration` references when live examples are empty |
 | `list_blueprints` | Current data model |
 | `upsert_blueprint` | Create or extend blueprints |
 | `test_integration_mapping` | Validate mapping before saving |
@@ -218,12 +207,4 @@ If entities are empty after a successful sync:
 - Integration config is stored as JSON in the API but **displayed and edited as YAML in Port UI**.
 - `apply_integration_mapping` is for remapping **existing** raw data. On a fresh install, always use `update_integration_mapping` to trigger a full sync from the source.
 - Default blueprints and pages may appear automatically after install; always check `list_blueprints` before creating duplicates.
-- Some tools referenced above (`install_integrations`, `ask_user_questions`, `configure_mcp_servers`) are part of Port's assistant surface and may not be present on every Port MCP client. If your client doesn't expose one of them, use the equivalent step in the [Port UI](https://app.port.io) or the [install an integration](https://docs.port.io/build-your-software-catalog/sync-data-to-catalog/) docs instead.
-
-## Reference examples
-
-Per-integration mapping examples used in Step 7, one file per integration so only the
-relevant one is loaded: [references/examples/](references/examples/) — `aikido.md`,
-`aws-v3.md`, `azure-devops.md`, `azure-rg.md`, `checkmarx-one.md`, `github-ocean.md`,
-`gitlab-v2.md`, `jira.md`, `opsgenie.md`, `pagerduty.md`, `snyk.md`, `sonarqube.md`,
-`wiz.md`.
+- For Engineering Intelligence setups (delivery metrics, Copilot adoption), run `port-ei-foundation` and the relevant EI skill after the base integration is working.
