@@ -19,5 +19,9 @@
     "software-catalog",
     "devops",
     "mcp"
-  ]
+  ],
+  "privacyPolicyUrl": "https://www.port.io/legal/privacy-policy",
+  "termsOfServiceUrl": "https://www.port.io/legal/master-services-agreement",
+  "supportUrl": "https://www.port.io/support",
+  "documentationUrl": "https://docs.port.io"
 }
