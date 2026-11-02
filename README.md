@@ -6,6 +6,10 @@
 
 # Port Agent Skills
 
+```bash
+npx skills add port-labs/port-skills
+```
+
 Give your coding agent the skills of a platform engineer to help build your
 agentic SDLC platform. These skills cut the time it takes to model your
 infrastructure, build workflows, and govern access in Port, and make your
@@ -50,7 +54,13 @@ Port's MCP server first.
 
 ## Install
 
-Using the [`skills` CLI](https://github.com/vercel-labs/skills):
+Install the skills in this repo with the [`skills` CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add port-labs/port-skills
+```
+
+To install one skill, pass `--skill`:
 
 ```bash
 npx skills add port-labs/port-skills --skill port-workflows
