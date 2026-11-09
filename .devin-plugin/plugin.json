@@ -1,0 +1,37 @@
+{
+  "name": "port",
+  "displayName": "Port",
+  "version": "1.0.0",
+  "description": "Query your context lake, run workflows, and govern ownership, scorecards, and access",
+  "shortDescription": "Context lake, workflows, governance",
+  "setup": {
+    "notice": "Connect the server that matches your Port region and disable the other. Each person signs in with their own Port user. Organizations using SSO may need Port support to enable MCP sign-in.",
+    "steps": [
+      "Connect the EU or US server that matches your Port organization, and disable the other.",
+      "If sign-in fails and your organization uses SSO, ask Port support to enable domain-level authentication for MCP."
+    ]
+  },
+  "author": {
+    "name": "Port",
+    "email": "support@port.io"
+  },
+  "homepage": "https://docs.port.io",
+  "repository": "https://github.com/port-labs/port-skills",
+  "license": "MIT",
+  "logo": "assets/icon.svg",
+  "keywords": [
+    "Development Tools",
+    "platform-engineering",
+    "software-catalog"
+  ],
+  "mcpServers": {
+    "port": {
+      "url": "https://mcp.port.io/v1",
+      "transport": "http"
+    },
+    "port-us": {
+      "url": "https://mcp.us.port.io/v1",
+      "transport": "http"
+    }
+  }
+}
