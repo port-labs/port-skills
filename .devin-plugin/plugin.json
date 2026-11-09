@@ -2,8 +2,8 @@
   "name": "port",
   "displayName": "Port",
   "version": "1.0.0",
-  "description": "Query your context lake, run workflows, and govern ownership, scorecards, and access",
-  "shortDescription": "Context lake, workflows, governance",
+  "description": "Build, govern, and operate your AI software factory across context, workflows, and agents",
+  "shortDescription": "Your AI software factory",
   "setup": {
     "notice": "Connect the server that matches your Port region and disable the other. Each person signs in with their own Port user. Organizations using SSO may need Port support to enable MCP sign-in.",
     "steps": [
@@ -21,8 +21,10 @@
   "logo": "assets/icon.svg",
   "keywords": [
     "Development Tools",
-    "platform-engineering",
-    "software-catalog"
+    "software-factory",
+    "ai-software-factory",
+    "agentic-sdlc",
+    "platform-engineering"
   ],
   "mcpServers": {
     "port": {
