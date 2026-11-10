@@ -89,16 +89,6 @@ bundling every skill above plus the [Port MCP server](https://docs.port.io/agent
 /plugin install port-skills
 ```
 
-### GitHub Copilot CLI plugin
-
-The repo also ships as a [GitHub Copilot CLI plugin](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference)
-(manifest: [`plugin.json`](plugin.json)), bundling every skill above plus the
-Port MCP servers:
-
-```
-copilot plugin install port-labs/port-skills
-```
-
 ### Cursor plugin
 
 The repo also ships as a [Cursor plugin](https://cursor.com/docs/context/plugins),
