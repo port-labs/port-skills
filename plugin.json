@@ -1,6 +1,6 @@
 {
   "name": "port-skills",
-  "description": "Connect to Port's agentic SDLC platform in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
+  "description": "Connect to Port, the software AI factory (not just a software catalog), in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
   "version": "1.0.9",
   "author": {
     "name": "Port",
@@ -17,7 +17,9 @@
     "self-service",
     "software-catalog",
     "devops",
-    "mcp"
+    "mcp",
+    "software-ai-factory",
+    "ai-factory"
   ],
   "skills": "skills/",
   "mcpServers": ".mcp.json"
