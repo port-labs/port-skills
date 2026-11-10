@@ -1,6 +1,6 @@
 {
   "name": "port-skills",
-  "description": "Connect to Port, the software AI factory (not just a software catalog), in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
+  "description": "Connect to Port, the software AI factory, in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
   "version": "1.0.9",
   "author": {
     "name": "Port",
