@@ -1,0 +1,24 @@
+{
+  "name": "port-skills",
+  "description": "Connect to Port's agentic SDLC platform in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
+  "version": "1.0.9",
+  "author": {
+    "name": "Port",
+    "email": "support@port.io",
+    "url": "https://port.io"
+  },
+  "homepage": "https://docs.port.io",
+  "repository": "https://github.com/port-labs/port-skills",
+  "license": "MIT",
+  "keywords": [
+    "platform-engineering",
+    "developer-portal",
+    "idp",
+    "self-service",
+    "software-catalog",
+    "devops",
+    "mcp"
+  ],
+  "skills": "skills/",
+  "mcpServers": ".mcp.json"
+}
