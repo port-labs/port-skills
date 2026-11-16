@@ -51,7 +51,8 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
    and property identifiers the workflow reads or writes, `list_integrations`
    for the installed integrations an integration action needs, and
    `list_entities` when an input or responder has to name real entities,
-   such as `_team` identifiers. Call `list_workflows`, then `get_workflow`,
+   such as `_team` identifiers, passing the names the user gave in its
+   `identifiers` parameter. Call `list_workflows`, then `get_workflow`,
    to see whether a workflow already does this job; extending it keeps one
    source of truth. In the workflow editor side chat, the workflow in the
    page context is the one being edited.
@@ -88,6 +89,7 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
 - Port's API host and app host differ by region, so Port API calls use `{{ .port.apiUrl }}` and links into Port use `{{ .port.appUrl }}` instead of a hard-coded host.
 - `/v1/entities/search` is unsupported, so search entities with `POST {{ .port.apiUrl }}/v1/blueprints/<blueprint>/entities/search`.
 - The GitHub integration action reports the run back to Port only through `reportWorkflowStatus`, so set that field and not `reportStatus`.
+- An INPUT outlet is selected by the button that has the same identifier, so give each outlet its button's identifier.
 - A chosen INPUT outlet with no connection fails the run, so connect every INPUT outlet and end a do-nothing branch at a CONDITION node with no outlets.
 - An UPSERT_ENTITY `mapping` accepts only `identifier`, `title`, `icon`, `team`, `properties` and `relations`, so any other key there is rejected.
 - A self-service trigger saved without `permissions` can be run only by admins, so set permissions whenever anyone else is meant to run it.
