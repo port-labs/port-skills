@@ -1,155 +1,87 @@
-# Data flow reference
+# Data flow
 
-Every `{{ ... }}` field in a workflow JSON is a JQ expression, evaluated at
-runtime. Use JQ syntax only, not any other templating language.
+Every `{{ ... }}` in a workflow is a JQ expression evaluated when the node
+runs. The whole value can be one template, or templates can sit inside a
+longer string. Only JQ syntax works inside the braces.
 
-## Referencing previous node outputs
+## Reading earlier nodes
 
-```
-{{ .outputs["<node_identifier>"].<field> }}
-```
+`.outputs["<node identifier>"]` holds the output of any node that already
+ran in this run. Bracket notation works for every identifier. Dot notation,
+`.outputs.fetch_service.response`, is shorter but reads a hyphen as
+subtraction, so `.outputs.fetch-service` silently returns nothing; keep node
+identifiers snake_case when you use dot notation.
 
-Bracket notation (`.outputs["node-id"]`) always works, including when a node
-identifier contains hyphens or other special characters. Dot notation
-(`.outputs.node_id.field`) is more compact but **breaks silently on
-hyphens**, JQ reads `my-node` as subtraction. If you use dot notation
-anywhere, keep node identifiers snake_case (`fetch_service`, not
-`fetch-service`) so it stays safe; otherwise use bracket notation
-everywhere.
+`.outputs.trigger` always holds the output of the trigger that fired this
+run, whatever its identifier, which keeps templates working in a workflow
+with several triggers.
 
-`.outputs.trigger` is always aliased to whichever trigger node actually fired
-this run, regardless of that node's real identifier. Use it instead of the
-literal trigger identifier, especially in workflows with multiple trigger
-nodes:
-
-```
-{{ .outputs.trigger.serviceName }}
-{{ .outputs.trigger.diff.after.properties.status }}
-```
-
-| What | Pattern |
+| Value | Path |
 |---|---|
-| Self-service input | `{{ .outputs.trigger.inputName }}` |
-| Event entity (after) | `{{ .outputs.trigger.diff.after.properties.x }}` |
-| Event entity (before) | `{{ .outputs.trigger.diff.before.properties.x }}` |
-| Event action | `{{ .outputs.trigger.action }}` |
-| Webhook response | `{{ .outputs["node_id"].response.data }}` |
-| Upsert entity response | `{{ .outputs["node_id"].response.data }}` |
-| AI / AI agent response | `{{ .outputs["node_id"].response }}` |
-| Secrets | `{{ .secrets["secret-name"] }}` |
-| Current time | `{{ now \| todateiso8601 }}` |
+| A self-service input | `.outputs.trigger.<input>` |
+| The changed entity, after and before | `.outputs.trigger.diff.after`, `.outputs.trigger.diff.before` |
+| The kind of entity change | `.outputs.trigger.action` |
+| A schedule's firing time | `.outputs.trigger.firedAt` |
+| An HTTP request or upsert entity response | `.outputs["<node>"].response.data` |
+| An AI or AI agent answer | `.outputs["<node>"].response` |
+| An INPUT node's chosen outlet | `.outputs["<node>"].selectedOutlet.identifier` |
+| A failed node's error, when `onFailure` is `continue` | `.outputs["<node>"].error.message` |
 
-## Variables
-
-A node's `variables` block reshapes its output **after** it runs, useful for
-extracting one field, dropping sensitive data, or combining the node's own
-result with earlier outputs.
-
-Setting `variables` **replaces the node's entire default output.** Anything
-downstream still needs (like `response`) must be re-declared explicitly.
-
-Inside `variables` JQ expressions you have access to:
-
-| Context | Description |
-|---|---|
-| `.result` (or `.result.response...`) | The current node's raw output, before `variables` is applied. |
-| `.outputs["<node_identifier>"]` | Outputs from any previous node, same rules as above. |
-
-```json
-{
-  "identifier": "fetch_entity",
-  "config": {
-    "type": "WEBHOOK",
-    "url": "https://api.port.io/v1/blueprints/service/entities/search",
-    "method": "POST",
-    "body": {
-      "query": { "combinator": "and", "rules": [{ "property": "$identifier", "operator": "=", "value": "{{ .outputs.trigger.serviceId }}" }] }
-    }
-  },
-  "variables": {
-    "entity": "{{ .result.response.data.entities[0] }}",
-    "response": "{{ .result.response }}",
-    "triggerInput": "{{ .outputs.trigger.serviceId }}"
-  }
-}
-```
-
-Access it downstream as `{{ .outputs.fetch_entity.entity.title }}`. Since
-`variables` was set, only `entity`, `response`, and `triggerInput` exist on
-this node's output, the default `response.data` shape is gone unless you
-re-declared it (as `response` is, above).
-
-## Fetching context lake data from within a workflow
-
-Query entities with `POST https://api.port.io/v1/blueprints/<blueprint>/entities/search`
-from a `WEBHOOK` node, no `Authorization` header needed, then extract the
-result with `variables`:
-
-```json
-{
-  "identifier": "fetch_service",
-  "config": {
-    "type": "WEBHOOK",
-    "url": "https://api.port.io/v1/blueprints/service/entities/search",
-    "method": "POST",
-    "body": {
-      "query": { "combinator": "and", "rules": [{ "property": "$identifier", "operator": "=", "value": "{{ .outputs.trigger.diff.after.relations.service }}" }] }
-    }
-  },
-  "variables": { "entity": "{{ .result.response.data.entities[0] }}" }
-}
-```
-
-Chain multiple lookups the same way to traverse relations (fetch a
-deployment's environment, then that environment's cluster, and so on),
-feeding each `WEBHOOK`'s `body` from the previous one's `variables`.
+The output of each node type is listed with the node in
+[triggers.md](triggers.md), [action-nodes.md](action-nodes.md),
+[integration-actions.md](integration-actions.md) and
+[flow-control.md](flow-control.md).
 
 ## Secrets
 
-```
-{{ .secrets["my-api-key"] }}
-```
+`.secrets["<name>"]` reads an organization secret, for example
+`{{ .secrets["api-token"] }}`. Credentials, tokens and URLs that act as
+credentials go in secrets instead of in the workflow, since the workflow is
+visible to anyone who can view it.
 
-```json
-{ "headers": { "Authorization": "Bearer {{ .secrets[\"api-token\"] }}" } }
-```
+## Run context
 
-## Workflow run context
+Available in every node:
 
-Available in every node, useful for tracing, audit logs, and correlating
-external system calls with a specific run.
-
-| What | Pattern |
+| Value | Path |
 |---|---|
-| Workflow identifier | `{{ .workflow.identifier }}` |
-| Workflow version | `{{ .workflow.versionIdentifier }}` |
-| Run identifier (`wfr_...`) | `{{ .workflowRun.identifier }}` |
-| Run created at | `{{ .workflowRun.createdAt }}` |
-| Trigger node identifier | `{{ .workflowRun.trigger.identifier }}` |
-| Triggering user email | `{{ .workflowRun.trigger.by.email }}` |
-| Triggering user first/last name | `{{ .workflowRun.trigger.by.firstName }}` / `{{ .workflowRun.trigger.by.lastName }}` |
-| Node run identifier (`wfnr_...`) | `{{ .workflowNodeRun.identifier }}` |
-| Node run created at | `{{ .workflowNodeRun.createdAt }}` |
+| Workflow identifier and version | `.workflow.identifier`, `.workflow.versionIdentifier` |
+| Run identifier (`wfr_...`) and creation time | `.workflowRun.identifier`, `.workflowRun.createdAt` |
+| Identifier of the trigger that fired | `.workflowRun.trigger.identifier` |
+| The user who ran it | `.workflowRun.trigger.by.email`, `.firstName`, `.lastName`, `.orgId` |
+| The current node run (`wfnr_...`) and creation time | `.workflowNodeRun.identifier`, `.workflowNodeRun.createdAt` |
+| A link to the current node run in the app | `.workflowNodeRun.url` |
+| Port's API and app origins for the region | `.port.apiUrl`, `.port.appUrl` |
 
-`workflowNodeRun` is specific to whichever node is currently executing and
-changes per node.
+`.workflowNodeRun` describes whichever node is running, so it changes from
+node to node. `.port.apiUrl` and `.port.appUrl` have no trailing slash; their
+use is described in [port-api.md](port-api.md).
 
-## JQ helpers commonly used in templates
+## Reshaping output with `variables`
 
-```
-{{ .name | ascii_downcase }}          // lowercase
-{{ .name | gsub(" "; "-") }}          // replace spaces
-{{ if .x then "yes" else "no" end }}  // conditional
-{{ .status // "default" }}            // default if null
-{{ .value | tostring }}               // stringify (GitHub Actions inputs must be strings)
-{{ now | todateiso8601 }}             // current time, ISO 8601
-```
+A node's `variables` object replaces the node's output after it runs. Each
+key becomes an output field, and each value is a template that can read:
 
-## Error output on a failed node
+- `.result`, the node's own output before `variables` applies, for example
+  `.result.response.data.entities[0]`;
+- `.outputs["<node>"]`, the outputs of earlier nodes.
 
-When a node fails (and `onFailure: "continue"` lets the run proceed), its
-output includes `error.message`:
+Because `variables` replaces the whole default output, a later node can read
+only the keys `variables` declares. To keep the response next to an
+extracted field, declare it too, such as `response` set to
+`{{ .result.response }}`. Use `variables` to pull one field out of a large
+response, drop data later nodes do not need, or join a node's result with
+earlier outputs.
 
-```
-{{ .outputs["node_id"].error.message }}
-```
+## JQ helpers that come up often
+
+| Need | Expression |
+|---|---|
+| Lowercase | `.name \| ascii_downcase` |
+| Replace spaces | `.name \| gsub(" "; "-")` |
+| Choose a value | `if .x then "yes" else "no" end` |
+| Default when null | `.status // "default"` |
+| Turn a value into a string | `.value \| tostring` |
+| Parse a JSON string | `.response \| fromjson` |
+| Current time, ISO 8601 | `now \| todateiso8601` |
+| URL-encode | `.identifier \| @uri` |
