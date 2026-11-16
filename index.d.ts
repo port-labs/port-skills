@@ -29,6 +29,12 @@ export interface SkillResource {
 
 /** Full skill, including instructions and any resources. */
 export interface Skill extends SkillFrontmatter {
+	/**
+	 * Optional tool names the skill declares through the `allowed-tools`
+	 * frontmatter key (space-separated string or YAML list). Absent when the
+	 * skill declares no tools.
+	 */
+	allowedTools?: string[];
 	/** The skill instructions (markdown body of SKILL.md). */
 	instructions: string;
 	/** Optional references/ and assets/ files. */
