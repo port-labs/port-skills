@@ -27,17 +27,19 @@
 
 Every page (dashboard or otherwise) supports:
 
-| Field | Type | Notes |
-|---|---|---|
-| `identifier` | string | Required. Unique across the organization (private pages get a suffix appended by Port, see [Private pages](#private-pages)) |
-| `title` | string | Required |
-| `description` | string | Optional |
-| `icon` | string | Optional, a Port icon name |
-| `visibility` | `"org"` \| `"private"` | Defaults to `"org"` |
-| `parent` | string \| null | Sidebar folder or parent page identifier. Omit for root placement, omit entirely for private pages |
-| `after` | string \| null | Sibling identifier to position after. Omit entirely for private pages |
-| `layout` | array of rows | See [The 12-column layout grid](#the-12-column-layout-grid) |
-| `widgets` | array | The widget objects placed on the page |
+| Field            | Type                   | Notes                                                                                                                       |
+| ---------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `identifier`     | string                 | Required. Unique across the organization (private pages get a suffix appended by Port, see [Private pages](#private-pages)) |
+| `title`          | string                 | Required                                                                                                                    |
+| `description`    | string                 | Optional                                                                                                                    |
+| `icon`           | string                 | Optional, a Port icon name                                                                                                  |
+| `visibility`     | `"org"` \| `"private"` | Defaults to `"org"`                                                                                                         |
+| `parent`         | string \| null         | Sidebar folder or parent page identifier. Omit for root placement, omit entirely for private pages                          |
+| `after`          | string \| null         | Sibling identifier to position after. Omit entirely for private pages                                                       |
+| `layout`         | array of rows          | See [The 12-column layout grid](#the-12-column-layout-grid)                                                                 |
+| `widgets`        | array                  | The widget objects placed on the page                                                                                       |
+| `pageFilters`    | array                  | Optional. Page-level filters. Set it as described in Step 6 of the skill                                                    |
+| `pageDateFilter` | object \| null         | Optional. The page date range, `{ "range": ... }`. Set it as described in Step 6 of the skill                               |
 
 Before creating a page, check the existing sidebar structure so the new
 page lands in a sensible place:
@@ -68,9 +70,7 @@ pixels) and a list of `columns`:
   },
   {
     "height": 500,
-    "columns": [
-      { "id": "allIncidentsTable", "size": 12 }
-    ]
+    "columns": [{ "id": "allIncidentsTable", "size": 12 }]
   }
 ]
 ```
@@ -194,14 +194,14 @@ Several chart widgets (`entities-pie-chart`, `bar-chart`) group by a
 `property` field that must use a prefixed identifier, not a bare property
 key:
 
-| Prefix | Refers to |
-|---|---|
-| `property#<name>` | A schema property |
-| `mirror-property#<name>` | A mirror property |
-| `calculation-property#<name>` | A calculation property |
-| `aggregation-property#<name>` | An aggregation property |
-| `relation#<name>` | A relation |
-| `scorecard#<name>` | A scorecard's overall level |
+| Prefix                                  | Refers to                       |
+| --------------------------------------- | ------------------------------- |
+| `property#<name>`                       | A schema property               |
+| `mirror-property#<name>`                | A mirror property               |
+| `calculation-property#<name>`           | A calculation property          |
+| `aggregation-property#<name>`           | An aggregation property         |
+| `relation#<name>`                       | A relation                      |
+| `scorecard#<name>`                      | A scorecard's overall level     |
 | `scorecard-rule#<scorecardId>#<ruleId>` | A single scorecard rule's level |
 
 Or one of the meta fields: `$identifier`, `$title`, `$team`.
@@ -225,16 +225,17 @@ Without MCP, the tables below are the schema as of this writing.
 
 Browsable, filterable, sortable, groupable table of entities.
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `title` | string | yes | |
-| `blueprint` | string | yes | |
-| `dataset` | query object | yes | See [Dataset filter syntax](#dataset-filter-syntax) |
-| `icon`, `description`, `emptyStateText` | string | no | |
-| `excludedFields` | string[] | no | Defaults to `[]` |
-| `entitiesQueryMode` | `"optimized"` \| other | no | |
-| `entitiesQueryMaxResults` | number | no | Only allowed when `entitiesQueryMode` is `"optimized"` |
-| `blueprintConfig` | object | no | Per-blueprint tab config: `filterSettings`, `groupSettings`, `sortSettings`, `propertiesSettings`, `tabIndex`, `hidden`, `title` (<=20 chars), `description` |
+| Field                                   | Type                   | Required | Notes                                                                                                                                                        |
+| --------------------------------------- | ---------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `title`                                 | string                 | yes      |                                                                                                                                                              |
+| `blueprint`                             | string                 | yes      |                                                                                                                                                              |
+| `dataset`                               | query object           | yes      | See [Dataset filter syntax](#dataset-filter-syntax)                                                                                                          |
+| `icon`, `description`, `emptyStateText` | string                 | no       |                                                                                                                                                              |
+| `excludedFields`                        | string[]               | no       | Defaults to `[]`                                                                                                                                             |
+| `entitiesQueryMode`                     | `"optimized"` \| other | no       |                                                                                                                                                              |
+| `entitiesQueryMaxResults`               | number                 | no       | Only allowed when `entitiesQueryMode` is `"optimized"`                                                                                                       |
+| `dashboardDateProperty`                 | string                 | no       | The date the page date range filters by: `$createdAt` (default), `$updatedAt`, or a `date-time` property of the blueprint                                    |
+| `blueprintConfig`                       | object                 | no       | Per-blueprint tab config: `filterSettings`, `groupSettings`, `sortSettings`, `propertiesSettings`, `tabIndex`, `hidden`, `title` (<=20 chars), `description` |
 
 ```json
 {
@@ -251,15 +252,15 @@ Browsable, filterable, sortable, groupable table of entities.
 Shows one specific entity's properties. Used on dashboards to pin a single
 known entity (for example, a status page for one service).
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `title` | string | yes | |
-| `entity` | string | yes | Entity identifier |
-| `blueprint` | string | yes | |
-| `description`, `icon` | string | no | |
-| `hiddenQuery` | string[] | no | Properties/meta fields to hide, see [Property reference syntax](#property-reference-syntax) |
-| `order` | string[] | no | Property display order |
-| `showEmptyValues` | boolean | no | |
+| Field                 | Type     | Required | Notes                                                                                       |
+| --------------------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
+| `title`               | string   | yes      |                                                                                             |
+| `entity`              | string   | yes      | Entity identifier                                                                           |
+| `blueprint`           | string   | yes      |                                                                                             |
+| `description`, `icon` | string   | no       |                                                                                             |
+| `hiddenQuery`         | string[] | no       | Properties/meta fields to hide, see [Property reference syntax](#property-reference-syntax) |
+| `order`               | string[] | no       | Property display order                                                                      |
+| `showEmptyValues`     | boolean  | no       |                                                                                             |
 
 ### Number chart (`entities-number-chart`)
 
@@ -274,12 +275,12 @@ description?, color? }`), `chartType`.
 
 `chartType` selects which extra fields are required:
 
-| `chartType` | Extra required fields |
-|---|---|
-| `displaySingleProperty` | `entity` (identifier), `property` |
-| `countEntities` | `dataset`, `func` (`average` \| `count`; `averageOf` required when `func` is `average`) |
+| `chartType`                                        | Extra required fields                                                                                     |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `displaySingleProperty`                            | `entity` (identifier), `property`                                                                         |
+| `countEntities`                                    | `dataset`, `func` (`average` \| `count`; `averageOf` required when `func` is `average`)                   |
 | `aggregateByProperty`, `calculationBy: "property"` | `dataset`, `property`, `func` (`sum`/`average`/`min`/`max`/`median`; `averageOf` required when `average`) |
-| `aggregateByProperty`, `calculationBy: "entities"` | `dataset`, `func` (`average`/`count`; `averageOf` required when `average`) |
+| `aggregateByProperty`, `calculationBy: "entities"` | `dataset`, `func` (`average`/`count`; `averageOf` required when `average`)                                |
 
 ```json
 {
@@ -299,15 +300,16 @@ description?, color? }`), `chartType`.
 
 ### Pie chart (`entities-pie-chart`)
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `title` | string | yes | |
-| `blueprint` | string | yes | |
-| `property` | string | yes | Prefixed, see [Property reference syntax](#property-reference-syntax) |
-| `dataset` | query object | yes | |
-| `icon`, `description`, `emptyStateText` | string | no | |
-| `dontAggregateOther` | boolean | no | If true, don't fold small slices into "Other" |
-| `segmentTableViewConfig` | object | no | Per-segment table view overrides |
+| Field                                   | Type         | Required | Notes                                                                 |
+| --------------------------------------- | ------------ | -------- | --------------------------------------------------------------------- |
+| `title`                                 | string       | yes      |                                                                       |
+| `blueprint`                             | string       | yes      |                                                                       |
+| `property`                              | string       | yes      | Prefixed, see [Property reference syntax](#property-reference-syntax) |
+| `dataset`                               | query object | yes      |                                                                       |
+| `icon`, `description`, `emptyStateText` | string       | no       |                                                                       |
+| `dontAggregateOther`                    | boolean      | no       | If true, don't fold small slices into "Other"                         |
+| `segmentTableViewConfig`                | object       | no       | Per-segment table view overrides                                      |
+| `dashboardDateProperty`                 | string       | no       | The date the page date range filters by, same as the table            |
 
 ```json
 {
@@ -325,35 +327,35 @@ description?, color? }`), `chartType`.
 Same shape as the pie chart, `title` is optional here (the others require
 it):
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `blueprint` | string | yes | |
-| `property` | string | yes | Prefixed, see [Property reference syntax](#property-reference-syntax) |
-| `dataset` | query object | yes | |
-| `title`, `icon`, `description`, `emptyStateText` | string | no | |
-| `dontAggregateOther`, `segmentTableViewConfig` | | no | Same as pie chart |
+| Field                                                                   | Type         | Required | Notes                                                                 |
+| ----------------------------------------------------------------------- | ------------ | -------- | --------------------------------------------------------------------- |
+| `blueprint`                                                             | string       | yes      |                                                                       |
+| `property`                                                              | string       | yes      | Prefixed, see [Property reference syntax](#property-reference-syntax) |
+| `dataset`                                                               | query object | yes      |                                                                       |
+| `title`, `icon`, `description`, `emptyStateText`                        | string       | no       |                                                                       |
+| `dontAggregateOther`, `segmentTableViewConfig`, `dashboardDateProperty` |              | no       | Same as pie chart                                                     |
 
 ### Multi-line chart (`multi-line-chart`)
 
 Trends over time, one or more lines.
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| `title` | string | yes | |
-| `timeInterval` | `hour`\|`day`\|`isoWeek`\|`month`\|`quarter` | yes | Must be `quarter` when `timeRange.preset` is `last2Years` or `last3Years` |
-| `timeRange` | `{ preset }` | yes | Preset one of `today`, `yesterday`, `lastDay`, `lastWeek`, `last2Weeks`, `lastMonth`, `last3Months`, `last6Months`, `last12Months`, `last2Years`, `last3Years` |
-| `lines` | array | yes | See below, at least 1 |
-| `icon`, `xAxisTitle`, `yAxisTitle`, `description`, `emptyStateText` | string | no | |
-| `baselines` | array | no | `{ name?, value, color? }` horizontal reference lines |
-| `nullValueDisplayMode` | `zero` \| `null` | no | |
+| Field                                                               | Type                                         | Required | Notes                                                                                                                                                          |
+| ------------------------------------------------------------------- | -------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                                                             | string                                       | yes      |                                                                                                                                                                |
+| `timeInterval`                                                      | `hour`\|`day`\|`isoWeek`\|`month`\|`quarter` | yes      | Must be `quarter` when `timeRange.preset` is `last2Years` or `last3Years`                                                                                      |
+| `timeRange`                                                         | `{ preset }`                                 | yes      | Preset one of `today`, `yesterday`, `lastDay`, `lastWeek`, `last2Weeks`, `lastMonth`, `last3Months`, `last6Months`, `last12Months`, `last2Years`, `last3Years` |
+| `lines`                                                             | array                                        | yes      | See below, at least 1                                                                                                                                          |
+| `icon`, `xAxisTitle`, `yAxisTitle`, `description`, `emptyStateText` | string                                       | no       |                                                                                                                                                                |
+| `baselines`                                                         | array                                        | no       | `{ name?, value, color? }` horizontal reference lines                                                                                                          |
+| `nullValueDisplayMode`                                              | `zero` \| `null`                             | no       |                                                                                                                                                                |
 
 Each entry in `lines` has `title`, `blueprint`, and a `chartType`:
 
-| `chartType` | Extra fields |
-|---|---|
-| `propertiesValueHistory` | `entity` (identifier), `properties` (array, each prefixed `properties.<name>` or `relations.<name>`) |
+| `chartType`                 | Extra fields                                                                                                    |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `propertiesValueHistory`    | `entity` (identifier), `properties` (array, each prefixed `properties.<name>` or `relations.<name>`)            |
 | `aggregatePropertiesValues` | `func` (`sum`/`average`/`min`/`max`/`median`/`last`), `measureTimeBy`, `properties` (array), `dataset` optional |
-| `countEntities` | `func` (`count`/`average`), `measureTimeBy`, `breakdownProperty` optional, `dataset` optional |
+| `countEntities`             | `func` (`count`/`average`), `measureTimeBy`, `breakdownProperty` optional, `dataset` optional                   |
 
 ### Markdown (`markdown`)
 
