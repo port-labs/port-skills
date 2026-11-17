@@ -2,8 +2,8 @@
 
 An `INTEGRATION_ACTION` node runs an action through an integration installed
 in the Port organization, which brings the integration's credentials and
-status reporting with it. GitHub, GitLab, Azure DevOps and Claude managed
-agents are supported. A GitHub workflow is dispatched with this node type;
+status reporting with it. GitHub, GitLab, Azure DevOps, Claude managed agents
+and Cursor cloud agents are supported. A GitHub workflow is dispatched with this node type;
 there is no separate GitHub node type.
 
 | Config field | Meaning |
@@ -20,6 +20,7 @@ there is no separate GitHub node type.
 | GitLab | `gitlab-v2` (not `gitlab`) |
 | Azure DevOps | `azure-devops` |
 | Claude managed agents | `claude-managed-agents` |
+| Cursor cloud agents | `cursor-cloud-agents` |
 
 For GitLab and Azure DevOps properties, search
 `search_port_knowledge_sources`.
@@ -92,3 +93,32 @@ Its output echoes `environmentId`.
 
 `delete_environment`: `environmentId` (required). The deletion cannot be
 undone; concurrent deletes of one environment run one after another.
+
+## Cursor cloud agents (`cursor-cloud-agents`)
+
+Needs the Cursor Cloud Agents integration installed. It replaces the
+deprecated `CURSOR_AGENT` node: build new Cursor steps with this action.
+
+| Invocation type | What it does |
+|---|---|
+| `create_agent` | Launches a Cursor cloud agent on a repository or pull request. |
+| `trigger_agent` | Sends a follow-up prompt to an existing agent. |
+
+`create_agent`:
+
+| Property | Meaning |
+|---|---|
+| `apiVersion` | `v0` or `v1`. Defaults to `v1`, where the node finishes as soon as the agent is launched. |
+| `prompt` | Required. The task. |
+| `repository` | The GitHub repository URL. On `v0` it is required unless `prUrl` or `config.source` names a workspace. |
+| `ref` | The branch, tag or commit to start from; ignored with `prUrl`. |
+| `prUrl` | A GitHub pull request URL; on `v0` it can replace `repository`. |
+| `reportCompletion` | `v0` only. `true` keeps the node running until Cursor calls back, so use `v0` with it to wait for the agent. |
+| `config` | Optional Cursor API fields merged onto the request, such as `target.autoCreatePr` or `model`. |
+
+`trigger_agent`: `agentId` (required), `prompt`, `reportCompletion` and
+`config`.
+
+Output: `agentId`, `status` (`FINISHED`, `ERROR`, `RUNNING` and others),
+`summary` once the agent is done, and `target.prUrl` and `target.branchName`
+when it opened a pull request. The names are camelCase, not `pr_url`.
