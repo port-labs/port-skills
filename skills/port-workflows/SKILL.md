@@ -1,6 +1,6 @@
 ---
 name: port-workflows
-description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, GitHub/GitLab/Azure DevOps, Claude managed agents or Cursor cloud agents integration actions, Kafka, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
+description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents or Cursor cloud agents integration actions, Kafka, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 # A skill names only tools that exist for every client that can load it.
@@ -59,7 +59,7 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
 2. **Sketch the trigger and the nodes.** Start from a self-service trigger
    when the request does not say what starts the run, since it runs only
    when someone asks for it. Add one node per step. Write Port entities with
-   an upsert entity node, dispatch GitHub, GitLab or Azure DevOps work with an
+   an upsert entity node, call Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps with an
    integration action, and use an HTTP request node for any other external
    call. Pass data between nodes with JQ templates, and read tokens and
    secret URLs from organization secrets with `{{ .secrets["<name>"] }}`.
@@ -103,8 +103,9 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
 - [references/action-nodes.md](references/action-nodes.md): read this when
   you add an HTTP request, upsert entity, Kafka or AI node.
 - [references/integration-actions.md](references/integration-actions.md):
-  read this when a node dispatches a GitHub workflow or drives a Claude
-  managed agent or a Cursor cloud agent through an installed integration.
+  read this when a node calls Jira, Linear, PagerDuty, GitHub, GitLab or
+  Azure DevOps, or drives a Claude managed agent or a Cursor cloud agent,
+  through an installed integration.
 - [references/flow-control.md](references/flow-control.md): read this when
   you branch with a CONDITION node, add an approval with an INPUT node, or
   wire their outlets.

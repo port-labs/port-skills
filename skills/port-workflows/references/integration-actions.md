@@ -2,9 +2,11 @@
 
 An `INTEGRATION_ACTION` node runs an action through an integration installed
 in the Port organization, which brings the integration's credentials and
-status reporting with it. GitHub, GitLab, Azure DevOps, Claude managed agents
-and Cursor cloud agents are supported. A GitHub workflow is dispatched with this node type;
-there is no separate GitHub node type.
+status reporting with it. Jira, Linear, PagerDuty, GitHub, GitLab, Azure
+DevOps, Claude managed agents and Cursor cloud agents are supported. A GitHub
+workflow is dispatched with this node type; there is no separate GitHub node
+type. The templates in the properties cannot read organization secrets or
+encrypted inputs.
 
 | Config field | Meaning |
 |---|---|
@@ -16,14 +18,42 @@ there is no separate GitHub node type.
 
 | Integration | `integrationProvider` |
 |---|---|
+| Jira | `jira` |
+| Linear | `linear` |
+| PagerDuty | `pagerduty` |
 | GitHub | `github-ocean` |
 | GitLab | `gitlab-v2` (not `gitlab`) |
 | Azure DevOps | `azure-devops` |
 | Claude managed agents | `claude-managed-agents` |
 | Cursor cloud agents | `cursor-cloud-agents` |
 
-For GitLab and Azure DevOps properties, search
-`search_port_knowledge_sources`.
+For the properties of Linear, PagerDuty, GitLab and Azure DevOps, search
+`search_port_knowledge_sources`. Linear's `integrationInvocationType` values
+are `create_issue`, `create_sub_issue`, `update_issue`,
+`delegate_issue_to_agent`, `archive_issue`, `delete_issue`,
+`add_issue_comment`, `add_reaction_to_issue` and `add_document`. PagerDuty's
+are `trigger_incident`, `acknowledge_incident` and `resolve_incident`, and
+each takes a required `fromEmail`, the email of a PagerDuty user.
+
+## Jira (`jira`)
+
+`integrationInvocationType` is `create_issue` or `change_issue_status`; Jira
+Cloud only.
+
+`create_issue`:
+
+| Property | Meaning |
+|---|---|
+| `project` | Required. The Jira project key, such as `OPS`. |
+| `issueType` | Required. The issue type name, such as `Task` or `Bug`. |
+| `summary` | Required. |
+| `description` | Optional. |
+| `priority` | Optional priority name, such as `High`. |
+| `assigneeAccountId` | Optional. The assignee's Atlassian account ID, not an email address. |
+
+`change_issue_status`: `issueKey` (required) and `status` (required, the
+target status name such as `Done`, not a transition label). Its output
+carries `issueKey`, `status` and `issueUrl`.
 
 ## GitHub (`github-ocean`)
 
