@@ -164,9 +164,9 @@ The essentials:
   to set it, omit it to leave it unchanged, or pass `null` to clear it. To
   change only the range, pass the page `identifier` and `pageDateFilter`
   without `widgets` or `layout`.
-- Use a relative range (`quickRange`, `last`, `periodToDate`) when the user
-  says things like "last 30 days", because it stays current as time passes.
-  Use `fixed` only for dates the user names.
+- Use a relative range (`quickRange`, `last`, `since`, `periodToDate`) when
+  the user says things like "last 30 days", because it stays current as time
+  passes. Use `fixed` only for dates the user names.
 - Tables, boards, pie charts, and bar charts filter by their
   `dashboardDateProperty`, which defaults to `$createdAt`. Set it when the user
   wants another date. Number and line charts use their own date settings, so
@@ -189,7 +189,8 @@ skill's page-permissions reference. The full rules and an example are in
 - A widget that renders empty or with the wrong entities almost always has a
   dataset on the wrong property, the wrong blueprint, or a misspelled enum
   value. Validate it with `list_entities` before creating the widget.
-- "Column sizes must sum to 12" means one row's `size` values do not add up to 12. Recompute that row, with at most 4 columns of 3-12 each.
+- "Column sizes must sum to 12" means one row's `size` values do not add up to
+  12. Recompute that row, with at most 4 columns of 3-12 each.
 - A row `height` under 400 is rejected, so set every row to at least 400.
 - A layout column whose `id` matches no widget `id` makes the widget never
   render. Keep the two in sync exactly.
@@ -211,5 +212,6 @@ skill's page-permissions reference. The full rules and an example are in
 - Asking the user "add it to a dashboard?" is not the `paramValues`
   confirmation. Show the values table and wait for the user to confirm it in
   a separate turn before the upsert.
-- An entity page's date range goes through `update_entity_page`, not
-  `upsert_dashboard_page`, and it applies to every entity of that blueprint.
+- A date range set on a catalog page or entity page goes through a different
+  tool. Entity pages use `update_entity_page` with `pageDateFilter`, and the
+  range applies to every entity of that blueprint.

@@ -36,25 +36,21 @@ not ask for a date range.
 
 `range.type` is one of the following:
 
-| `type`         | Fields                                                                                                              | Meaning                                                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `quickRange`   | `quickRange`: `today`, `yesterday`, `7d`, `30d`, `3m`, `6m`, `12m`                                                  | `7d` and `30d` are the last 7 or 30 days including today. `3m`, `6m` and `12m` are the last 3, 6 or 12 calendar months. |
-| `fixed`        | `from`, `to`: `YYYY-MM-DD`                                                                                          | Both days inclusive.                                                                                                    |
-| `since`        | `from`: `YYYY-MM-DD`                                                                                                | From that day through today.                                                                                            |
-| `last`         | `amount` (integer, at least 1), `unit` (`day`, `week`, `month`, `quarter`), optional `offset` (integer, at least 0) | The last `amount` units, ending today. With `offset`, the range ends that many units before today.                      |
-| `next`         | `amount`, `unit`, optional `offset`                                                                                 | The next `amount` units, starting today. With `offset`, the range starts that many units after today.                   |
-| `periodToDate` | `period`: `day`, `week`, `month`, `quarter`, `year`                                                                 | From the start of the current period through today. Weeks start on Monday, and quarters are calendar quarters.          |
+| `type` | Fields | Meaning |
+|---|---|---|
+| `quickRange` | `quickRange`: `today`, `yesterday`, `7d`, `30d`, `3m`, `6m`, `12m` | `7d` and `30d` are the last 7 or 30 days including today. `3m`, `6m` and `12m` are the last 3, 6 or 12 calendar months. |
+| `fixed` | `from`, `to`: `YYYY-MM-DD` | Both days inclusive. |
+| `since` | `from`: `YYYY-MM-DD` | From that day through today. |
+| `last` | `amount` (integer, at least 1), `unit` (`day`, `week`, `month`, `quarter`), optional `offset` (integer, at least 0) | The last `amount` units, ending today. With `offset`, the range ends that many units before today. |
+| `next` | `amount`, `unit`, optional `offset` | The next `amount` units, starting today. With `offset`, the range starts that many units after today. |
+| `periodToDate` | `period`: `day`, `week`, `month`, `quarter`, `year` | From the start of the current period through today. Weeks start on Monday, and quarters are calendar quarters. |
 
 ```json
 { "pageDateFilter": { "range": { "type": "quickRange", "quickRange": "30d" } } }
 ```
 
 ```json
-{
-  "pageDateFilter": {
-    "range": { "type": "last", "amount": 2, "unit": "week", "offset": 1 }
-  }
-}
+{ "pageDateFilter": { "range": { "type": "last", "amount": 2, "unit": "week", "offset": 1 } } }
 ```
 
 Pick the type that matches what the user said. "Last 2 weeks" is `last`, not
@@ -64,12 +60,12 @@ Use `fixed` only when the user names specific dates.
 
 ### Which widgets use the range, and which date they filter by
 
-| Widget                                                                            | Date it filters by                                                                                                                                                                                       |
-| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `table-entities-explorer`, `board`, `entities-pie-chart`, `bar-chart`             | The widget's `dashboardDateProperty`. It defaults to `$createdAt` (entity creation date).                                                                                                                |
-| `entities-number-chart`                                                           | The widget's own `measureTimeBy`. A number chart that displays a single property (`displaySingleProperty`) is never filtered.                                                                            |
-| `line-chart`, `multi-line-chart`                                                  | The widget's own `measureTimeBy` (per line in a multi-line chart), or the event date when it has none. A chart that plots the history of a property value has its time range narrowed to the date range. |
-| Everything else (markdown, iframe, links, action card, custom widgets, and so on) | Not filtered.                                                                                                                                                                                            |
+| Widget | Date it filters by |
+|---|---|
+| `table-entities-explorer`, `board`, `entities-pie-chart`, `bar-chart` | The widget's `dashboardDateProperty`. It defaults to `$createdAt` (entity creation date). |
+| `entities-number-chart` | The widget's own `measureTimeBy`. A number chart that displays a single property (`displaySingleProperty`) is never filtered. |
+| `line-chart`, `multi-line-chart` | The widget's own `measureTimeBy`, or the event date when it has none. A chart that plots the history of a property value is not filtered. |
+| Everything else (markdown, iframe, links, action card, custom widgets, and so on) | Not filtered. |
 
 Set `dashboardDateProperty` on a table, board, pie chart, or bar chart when
 the user wants a different date than the creation date. It accepts

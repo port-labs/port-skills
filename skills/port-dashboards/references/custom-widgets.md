@@ -94,13 +94,13 @@ These do not count as confirming `paramValues`:
 Only a param with `type: "object"` may use an object as its `value`. Every
 other type uses a scalar or an array.
 
-| Param type  | `value` when wiring the widget                                                                                  |
-| ----------- | --------------------------------------------------------------------------------------------------------------- |
-| `string`    | A string, not `{ ... }`                                                                                         |
-| `number`    | A number                                                                                                        |
-| `boolean`   | A boolean                                                                                                       |
-| `array`     | An array                                                                                                        |
-| `object`    | An object (record)                                                                                              |
+| Param type  | `value` when wiring the widget                                                                        |
+| ----------- | ----------------------------------------------------------------------------------------------------- |
+| `string`    | A string, not `{ ... }`                                                                               |
+| `number`    | A number                                                                                              |
+| `boolean`   | A boolean                                                                                             |
+| `array`     | An array                                                                                              |
+| `object`    | An object (record)                                                                                    |
 | `blueprint` | The blueprint identifier as a string, not a blueprint object. Port turns it into the full blueprint at runtime. |
 
 Common mistakes:
