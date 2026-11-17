@@ -9,10 +9,17 @@ there is no separate GitHub node type.
 | Config field | Meaning |
 |---|---|
 | `installationId` | Required. The installation to use, from `list_integrations`. |
-| `integrationProvider` | Required. The provider, for example `github-ocean` or `claude-managed-agents`. |
+| `integrationProvider` | Required. The provider's exact id from the table below. |
 | `integrationInvocationType` | Required. The action to run on that provider. |
 | `integrationActionExecutionProperties` | The provider- and action-specific properties listed below. |
 | `onFailure` | `terminate` (the default) or `continue`. |
+
+| Integration | `integrationProvider` |
+|---|---|
+| GitHub | `github-ocean` |
+| GitLab | `gitlab-v2` (not `gitlab`) |
+| Azure DevOps | `azure-devops` |
+| Claude managed agents | `claude-managed-agents` |
 
 For GitLab and Azure DevOps properties, search
 `search_port_knowledge_sources`.
