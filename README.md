@@ -44,7 +44,7 @@ Port's MCP server first.
 | [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your context lake with Port blueprints, properties, and relations. |
 | [`port-context-lake`](skills/port-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
 | [`port-create-custom-oauth-app`](skills/port-create-custom-oauth-app/SKILL.md) | Register an OAuth app for a custom UI and wire up PKCE login. |
-| [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, and permissions. |
+| [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, filters, and a date range. |
 | [`port-getting-started`](skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
 | [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
@@ -95,11 +95,13 @@ The repo also ships as a [Cursor plugin](https://cursor.com/docs/context/plugins
 bundling every skill above plus the [Port MCP server](https://docs.port.io/agent-management/port-mcp-server/overview) for Cursor:
 
 Install from the Cursor Marketplace:
+
 1. Open Cursor Settings → **Plugins**
 2. Search for **Port MCP**
 3. Click **Install**
 
 Or paste the plugin reference in Cursor Settings → Plugins:
+
 ```
 port
 ```
