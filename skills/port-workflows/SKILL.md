@@ -1,6 +1,6 @@
 ---
 name: port-workflows
-description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, GitHub/GitLab/Azure DevOps or Claude managed agents integration actions, Kafka, Cursor agent, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
+description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, GitHub/GitLab/Azure DevOps, Claude managed agents or Cursor cloud agents integration actions, Kafka, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 # A skill names only tools that exist for every client that can load it.
@@ -101,10 +101,10 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
   configure a self-service, event or schedule trigger, its form inputs, or
   the workflow's top-level fields.
 - [references/action-nodes.md](references/action-nodes.md): read this when
-  you add an HTTP request, upsert entity, Kafka, Cursor agent or AI node.
+  you add an HTTP request, upsert entity, Kafka or AI node.
 - [references/integration-actions.md](references/integration-actions.md):
   read this when a node dispatches a GitHub workflow or drives a Claude
-  managed agent through an installed integration.
+  managed agent or a Cursor cloud agent through an installed integration.
 - [references/flow-control.md](references/flow-control.md): read this when
   you branch with a CONDITION node, add an approval with an INPUT node, or
   wire their outlets.

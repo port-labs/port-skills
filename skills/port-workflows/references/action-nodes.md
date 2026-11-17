@@ -65,7 +65,11 @@ provisioned by Port support.
 The consumer reports the node run back to Port, as described in
 [port-api.md](port-api.md).
 
-## `CURSOR_AGENT`
+## `CURSOR_AGENT` (deprecated)
+
+Deprecated: new workflows use the Cursor cloud agents integration action in
+[integration-actions.md](integration-actions.md). Read this section only to
+understand a workflow that already has the node.
 
 Launches a Cursor cloud agent on a GitHub repository or pull request; the run
 waits until the agent finishes.
