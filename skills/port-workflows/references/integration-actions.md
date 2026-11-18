@@ -27,6 +27,12 @@ encrypted inputs.
 | Claude managed agents | `claude-managed-agents` |
 | Cursor cloud agents | `cursor-cloud-agents` |
 
+Use only the `integrationInvocationType` values this page lists for a
+provider; each provider has its own, so Linear's `add_issue_comment` is not a
+Jira action. When the request needs an action that is not listed, such as a
+Jira comment, tell the user it is not available as an integration action and
+use an HTTP request node for that step.
+
 For the properties of Linear, PagerDuty, GitLab and Azure DevOps, search
 `search_port_knowledge_sources`. Linear's `integrationInvocationType` values
 are `create_issue`, `create_sub_issue`, `update_issue`,
