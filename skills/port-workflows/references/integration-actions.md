@@ -33,7 +33,7 @@ Jira action. When the request needs an action that is not listed, such as a
 Jira comment, tell the user it is not available as an integration action and
 use an HTTP request node for that step.
 
-For the properties of Linear, PagerDuty, GitLab and Azure DevOps, search
+For the properties of Linear and PagerDuty, search
 `search_port_knowledge_sources`. Linear's `integrationInvocationType` values
 are `create_issue`, `create_sub_issue`, `update_issue`,
 `delegate_issue_to_agent`, `archive_issue`, `delete_issue`,
@@ -63,7 +63,7 @@ carries `issueKey`, `status` and `issueUrl`.
 
 ## GitHub (`github-ocean`)
 
-`integrationInvocationType` is `dispatch_workflow`.
+`dispatch_workflow`:
 
 | Property | Meaning |
 |---|---|
@@ -71,6 +71,56 @@ carries `issueKey`, `status` and `issueUrl`.
 | `workflow` | Required. The workflow file name, such as `deploy.yml`, or its ID. The GitHub workflow has to accept `workflow_dispatch`. |
 | `workflowInputs` | An object of inputs. GitHub passes every input as a string, so convert other values with `\| tostring`. |
 | `reportWorkflowStatus` | `true` makes Port follow the GitHub run and finish the node with its result. The field is `reportWorkflowStatus`; a `reportStatus` field is not read. |
+
+The other `integrationInvocationType` values. Every one takes `org` and `repo`
+(required) unless the row says otherwise; `prNumber` and `issueNumber` are
+numbers.
+
+| Action | Other properties |
+|---|---|
+| `create_issue` | `title` (required), `body`, `labels`, `assignees`, `milestone` |
+| `edit_issue` | `issueNumber` (required), `title`, `body`, `labels`, `assignees`, `milestone` |
+| `close_issue` | `issueNumber` and `stateReason` (required, `completed`, `not_planned` or `duplicate`), `duplicateIssueId` |
+| `create_pull_request` | `title`, `head` and `base` (required), `body`, `draft` |
+| `update_pull_request` | `prNumber` (required), `title`, `body`, `base` |
+| `close_pull_request` | `prNumber` (required) |
+| `merge_pull_request` | `prNumber` and `mergeMethod` (required, `merge`, `squash` or `rebase`), `commitTitle`, `commitMessage` |
+| `review_pull_request` | `prNumber` and `event` (required, `APPROVE`, `REQUEST_CHANGES` or `COMMENT`), `body` |
+| `create_pr_comment` | `prNumber` and `body` (required) |
+| `edit_pr_comment` | `commentId` and `body` (required) |
+| `delete_pr_comment` | `commentId` (required) |
+| `refresh_pull_requests` | `pullRequests` (required), a list of `{org, repo, prNumber}`; takes no top-level `org` or `repo` |
+| `update_repo_external_custom_properties` | `externalPropertiesMapping` (required, a non-empty object of property name to value) |
+| `bulk_update_external_custom_property_values` | `propertyName` (required) and the repository values to set |
+| `bulk_delete_external_custom_property_values` | `propertyName` (required), `orgs` (a list of organizations); takes no `repo` |
+
+## GitLab (`gitlab-v2`)
+
+`integrationInvocationType` and its properties; `project` is the project path
+or ID, and `mergeRequestIid` is the merge request's number in that project.
+
+| Action | Properties |
+|---|---|
+| `create_merge_request` | `project`, `sourceBranch`, `targetBranch` and `title` (all required) |
+| `update_merge_request` | `id` (the project) and `mergeRequestIid` (required), `title`, `description`, `stateEvent` (`close` or `reopen`), `targetBranch`, `assigneeIds`, `reviewerIds` (numbers) |
+| `create_merge_request_comment` | `project`, `mergeRequestIid` and `body` (all required) |
+| `set_merge_request_comment_reaction` | `project`, `mergeRequestIid`, `noteId` and `name` (the emoji name) required, `removeReaction` |
+| `trigger_pipeline` | `project` and `ref` (required), `pipelineVariables` (an object) |
+
+## Azure DevOps (`azure-devops`)
+
+Every pull request action takes `project`, `repositoryId` and, except for
+`create_pull_request`, `pullRequestId`. Most also take `organization`.
+
+| Action | Other properties |
+|---|---|
+| `create_pull_request` | `title`, `sourceRefName` and `targetRefName` (required), `description` |
+| `update_pull_request` | `title`, `description`, `status`, `targetBranch`, `mergeStrategy`, `deleteSourceBranch`, `mergeCommitMessage`, `bypassPolicy`, `bypassReason`, `transitionWorkItems` |
+| `update_pull_request_labels` | `label` (required) |
+| `close_pull_request` | none |
+| `merge_pull_request` | none |
+| `create_pull_request_thread` | `content` (required), `status`, `filePath`, `line` |
+| `trigger_pipeline` | `project` and `pipelineId` (required), `branch`, `templateParameters`, `variables`; takes no `repositoryId` |
 
 ## Claude managed agents (`claude-managed-agents`)
 
