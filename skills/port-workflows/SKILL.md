@@ -3,11 +3,6 @@ name: port-workflows
 description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents or Cursor cloud agents integration actions, Kafka, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
-# A skill names only tools that exist for every client that can load it.
-# upsert_workflow and suggest_workflow are left out on purpose: their schemas are
-# about 36k and 64k tokens, and a declared tool is added to Port AI's tool list with
-# its full schema, which fills the context window. Port AI finds upsert_workflow through
-# search_tools; the body tells the model never to search for suggest_workflow.
 allowed-tools:
   - list_blueprints
   - list_entities
@@ -34,8 +29,9 @@ and `upsert_workflow`. When a question is not answered
 here, search `search_port_knowledge_sources`. If no Port MCP server is
 connected, the `port-getting-started` skill explains how to connect one.
 
-Save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
-Use `suggest_workflow` only when it is already in your tool list, as in the workflow editor side chat, and never search for it: its schema is very large and fills the context window.
+In the workflow editor side chat, where the page context holds the workflow being edited, propose changes with `suggest_workflow`.
+It is not in your tool list at first, so find it with one `search_tools` call whose query is only `suggest_workflow`.
+Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save, and leave `suggest_workflow` unsearched there: its schema is very large and fills the context window.
 
 ## Build a workflow
 
@@ -55,8 +51,10 @@ Use `suggest_workflow` only when it is already in your tool list, as in the work
    integration action, and use an HTTP request node for any other external
    call. Pass data between nodes with JQ templates, and read tokens and
    secret URLs from organization secrets with `{{ .secrets["<name>"] }}`.
-   Before you write the JSON, load `references/example-workflow.md`, a complete
-   workflow that saves as written.
+   Before you write the JSON, load `references/workflow-interface.md`, the
+   shape of a workflow and how its parts relate. Outside the editor side chat,
+   `upsert_workflow` is not in your tool list at first, so also find it now
+   with one `search_tools` call whose query is only `upsert_workflow`.
 3. **Connect the outlets.** Add one connection per edge, from
    `sourceIdentifier` to `targetIdentifier`, and give every outlet of a
    CONDITION or INPUT node the connection for its branch, so each outcome
@@ -67,14 +65,13 @@ Use `suggest_workflow` only when it is already in your tool list, as in the work
    not have, so when the lookup does not find the one the user named, leave
    it out, say which name was not found, and offer the teams that exist.
 5. **Save or propose.** Save with `upsert_workflow`, or give the user the
-   workflow JSON when they asked for JSON or cannot save. When
-   `suggest_workflow` is already in your tool list, as in the workflow editor
-   side chat, call it instead, with `suggestedWorkflow` set to the complete
+   workflow JSON when they asked for JSON or cannot save. In the workflow
+   editor side chat, find `suggest_workflow` with one `search_tools` call whose
+   query is only `suggest_workflow` and call it instead, with `suggestedWorkflow` set to the complete
    proposed workflow and `currentWorkflow` set to the workflow as it is now in
    the editor; leave `currentWorkflow` out for a new empty workflow. That call
    saves nothing: the user reviews the proposal, applies it and saves it, so
-   the reply describes the workflow as suggested for their review. Never
-   search for `suggest_workflow`.
+   the reply describes the workflow as suggested for their review.
 
 ## Gotchas
 
@@ -92,9 +89,9 @@ Use `suggest_workflow` only when it is already in your tool list, as in the work
 
 ## References
 
-- [references/example-workflow.md](references/example-workflow.md): read this
-  before you write the workflow JSON; it is a complete workflow that saves as
-  written, with a trigger, a branch, actions and every outlet connected.
+- [references/workflow-interface.md](references/workflow-interface.md): read
+  this before you write the workflow JSON; it gives the shape of a workflow,
+  its nodes and its connections, and how they relate.
 - [references/triggers.md](references/triggers.md): read this when you
   configure a self-service, event or schedule trigger, its form inputs, or
   the workflow's top-level fields.
