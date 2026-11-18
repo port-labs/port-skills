@@ -4,24 +4,16 @@ description: "Build, change or fix a Port workflow, Port's node-based automation
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 # A skill names only tools that exist for every client that can load it.
-# This skill breaks that once, for suggest_workflow, because suggest_workflow is
-# the main tool of the workflow editor side chat, and a tool the skill declares
-# is what makes it callable there once the skill is loaded.
-# suggest_workflow exists in every Port AI chat, the main chat and the editor
-# side chat included, and is missing from Port AI agent invocations and from
-# clients outside Port AI such as Claude Code and Cursor.
-# Where it is missing, the model saves the workflow with upsert_workflow or
-# hands the user the workflow JSON to apply themselves.
-# Remove this exception once suggest_workflow exists for every client that can
-# load this skill, or once this skill stops naming suggest_workflow.
+# upsert_workflow and suggest_workflow are left out on purpose: their schemas are
+# about 36k and 64k tokens, and a declared tool is added to Port AI's tool list with
+# its full schema, which fills the context window. Port AI finds upsert_workflow through
+# search_tools; the body tells the model never to search for suggest_workflow.
 allowed-tools:
   - list_blueprints
   - list_entities
   - list_integrations
   - list_workflows
   - get_workflow
-  - upsert_workflow
-  - suggest_workflow
 metadata:
   version: "1.0.0"
   author: port-labs
@@ -38,12 +30,12 @@ next. Each node reads earlier nodes' output through JQ templates.
 
 This skill works through Port's MCP server and its tools `list_blueprints`,
 `list_entities`, `list_integrations`, `list_workflows`, `get_workflow`,
-`upsert_workflow` and `suggest_workflow`. When a question is not answered
+and `upsert_workflow`. When a question is not answered
 here, search `search_port_knowledge_sources`. If no Port MCP server is
 connected, the `port-getting-started` skill explains how to connect one.
 
-`suggest_workflow` exists in every Port AI chat, including the main chat and the workflow editor side chat.
-It does not exist in Port AI agent invocations or in clients outside Port AI such as Claude Code and Cursor, so there you save with `upsert_workflow` or give the user the workflow JSON.
+Save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
+Use `suggest_workflow` only when it is already in your tool list, as in the workflow editor side chat, and never search for it: its schema is very large and fills the context window.
 
 ## Build a workflow
 
@@ -63,6 +55,8 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
    integration action, and use an HTTP request node for any other external
    call. Pass data between nodes with JQ templates, and read tokens and
    secret URLs from organization secrets with `{{ .secrets["<name>"] }}`.
+   Before you write the JSON, load `references/example-workflow.md`, a complete
+   workflow that saves as written.
 3. **Connect the outlets.** Add one connection per edge, from
    `sourceIdentifier` to `targetIdentifier`, and give every outlet of a
    CONDITION or INPUT node the connection for its branch, so each outcome
@@ -72,14 +66,15 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
    rejected when `permissions` names a team or user the organization does
    not have, so when the lookup does not find the one the user named, leave
    it out, say which name was not found, and offer the teams that exist.
-5. **Propose or save.** Where `suggest_workflow` exists, call it with
-   `suggestedWorkflow` set to the complete proposed workflow and
-   `currentWorkflow` set to the workflow as it is now in the editor; leave
-   `currentWorkflow` out for a new empty workflow. The call saves nothing:
-   the user reviews the proposal, applies it and saves it, so the reply
-   describes the workflow as suggested for their review. Elsewhere, save
-   with `upsert_workflow`, or give the user the workflow JSON when they
-   asked for JSON or cannot save.
+5. **Save or propose.** Save with `upsert_workflow`, or give the user the
+   workflow JSON when they asked for JSON or cannot save. When
+   `suggest_workflow` is already in your tool list, as in the workflow editor
+   side chat, call it instead, with `suggestedWorkflow` set to the complete
+   proposed workflow and `currentWorkflow` set to the workflow as it is now in
+   the editor; leave `currentWorkflow` out for a new empty workflow. That call
+   saves nothing: the user reviews the proposal, applies it and saves it, so
+   the reply describes the workflow as suggested for their review. Never
+   search for `suggest_workflow`.
 
 ## Gotchas
 
@@ -97,6 +92,9 @@ It does not exist in Port AI agent invocations or in clients outside Port AI suc
 
 ## References
 
+- [references/example-workflow.md](references/example-workflow.md): read this
+  before you write the workflow JSON; it is a complete workflow that saves as
+  written, with a trigger, a branch, actions and every outlet connected.
 - [references/triggers.md](references/triggers.md): read this when you
   configure a self-service, event or schedule trigger, its form inputs, or
   the workflow's top-level fields.
