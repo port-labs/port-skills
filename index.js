@@ -14,8 +14,8 @@ const skillsByName = Object.fromEntries(skills.map((skill) => [skill.name, skill
 /** Full skills, including instructions and resources. */
 const SKILLS = skills;
 
-/** Metadata-only list (no instructions/resources/allowedTools) for cheap discovery. */
-const SKILL_REGISTRY = skills.map(({ instructions, resources, allowedTools, ...frontmatter }) => frontmatter);
+/** Metadata-only list (no instructions/resources) for cheap discovery. */
+const SKILL_REGISTRY = skills.map(({ instructions, resources, ...frontmatter }) => frontmatter);
 
 /** Look up a full skill by name; undefined if unknown. */
 function getSkill(name) {
