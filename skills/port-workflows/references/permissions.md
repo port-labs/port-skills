@@ -28,7 +28,8 @@ Set `permissions` inside the trigger node's `config`:
 | `{ "teams": [...] }` | Admin + listed teams |
 | `{ "policy": {...} }` | Admin + users matching the policy |
 
-`users` takes Port user IDs, not emails.
+`users` takes user emails, not Port user IDs; a user ID there matches nobody.
+`teams` takes `_team` entity identifiers.
 
 **Evaluation order**: static fields (`roles`, `users`, `teams`) are checked
 first, any match grants access via OR logic. `policy` is only evaluated for
@@ -41,7 +42,7 @@ against it.
 { "permissions": { "roles": ["Member"], "policy": { "combinator": "and", "rules": [{ "property": { "context": "user", "property": "department" }, "operator": "=", "value": "engineering" } ] } } }
 ```
 
-Here, Member role holders execute unconditionally; everyone else must be in
+Here, Member role holders execute unconditionally; everyone else has to be in
 engineering.
 
 ## Static assignment
@@ -50,7 +51,7 @@ engineering.
 {
   "permissions": {
     "roles": ["Member"],
-    "users": ["user-id-1", "user-id-2"],
+    "users": ["alice@example.com", "bob@example.com"],
     "teams": ["platform-team", "sre-team"]
   }
 }
@@ -178,6 +179,6 @@ $identifier`):
 Permissions gate *who* can start a run. To block a run based on context lake
 state (for example, "don't let this run if an entity with this name already
 exists"), that's a runtime validation, not a permission. Add a `CONDITION`
-node as the first step and route the failing branch to a dead end (or a
-node that reports back why it stopped) instead of trying to encode it in
-`policy`.
+node as the first step and route the failing branch to a CONDITION node with
+no outlets (or a node that reports back why it stopped) instead of trying to
+encode it in `policy`; see [flow-control.md](flow-control.md).
