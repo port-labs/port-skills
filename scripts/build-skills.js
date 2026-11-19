@@ -95,31 +95,6 @@ function normalizeMetadata(metadata) {
 	return Object.keys(out).length > 0 ? out : undefined;
 }
 
-/**
- * Normalize the `allowed-tools` frontmatter key into a list of tool names.
- * Accepts the Agent Skills space-separated string form ("a b c") and the YAML
- * list form (- a / - b). YAML comments beside the key are dropped by the YAML
- * parser, so they never reach the output. Returns undefined when the skill
- * declares no tools, and an error message when the value has another shape.
- */
-function normalizeAllowedTools(value) {
-	if (value === undefined || value === null) {
-		return { tools: undefined };
-	}
-	let tools;
-	if (typeof value === 'string') {
-		tools = value.split(/\s+/).filter(Boolean);
-	} else if (Array.isArray(value)) {
-		if (!value.every((item) => typeof item === 'string')) {
-			return { error: "'allowed-tools' list entries must be tool name strings" };
-		}
-		tools = value.map((item) => item.trim()).filter(Boolean);
-	} else {
-		return { error: "'allowed-tools' must be a space-separated string or a YAML list of tool names" };
-	}
-	return { tools: tools.length > 0 ? tools : undefined };
-}
-
 function buildSkill(skillDir) {
 	const skillMdPath = findSkillMd(skillDir);
 	const raw = fs.readFileSync(skillMdPath, 'utf-8');
@@ -135,10 +110,6 @@ function buildSkill(skillDir) {
 	if (!data.description || typeof data.description !== 'string') {
 		errors.push(`${dirName}: missing or invalid 'description' in frontmatter`);
 	}
-	const { tools: allowedTools, error: allowedToolsError } = normalizeAllowedTools(data['allowed-tools']);
-	if (allowedToolsError) {
-		errors.push(`${dirName}: ${allowedToolsError}`);
-	}
 
 	const resources = [
 		...readResourceFiles(path.join(skillDir, 'references'), 'references'),
@@ -151,7 +122,6 @@ function buildSkill(skillDir) {
 		...(data.license ? { license: String(data.license) } : {}),
 		...(data.compatibility ? { compatibility: String(data.compatibility) } : {}),
 		...(normalizeMetadata(data.metadata) ? { metadata: normalizeMetadata(data.metadata) } : {}),
-		...(allowedTools ? { allowedTools } : {}),
 		instructions: content.trim(),
 		...(resources.length > 0 ? { resources } : {}),
 	};
@@ -195,8 +165,4 @@ function main() {
 	console.log(`Built ${skills.length} skill(s) -> ${path.relative(process.cwd(), OUTPUT_FILE)}`);
 }
 
-if (require.main === module) {
-	main();
-}
-
-module.exports = { buildSkill, normalizeAllowedTools, OUTPUT_FILE };
+main();
