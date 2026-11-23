@@ -108,6 +108,19 @@ port
 
 After installing, run `/setup-region` to configure your Port MCP server region (EU or US).
 
+### GitHub Copilot plugin (EU / US)
+
+Port ships one GitHub Copilot CLI plugin per region, each bundling every skill
+above plus only that region's Port MCP server (`plugins/port-eu`,
+`plugins/port-us`). Install the one that matches your Port region:
+
+```bash
+copilot plugin install port-labs/port-skills:plugins/port-eu   # EU: mcp.port.io
+copilot plugin install port-labs/port-skills:plugins/port-us   # US: mcp.us.port.io
+```
+
+The root `plugin.json` is the legacy combined plugin that bundles both regional servers.
+
 ## Contributing
 
 See [`port-skill-creator`](.claude/skills/port-skill-creator/SKILL.md) for the skill format,

@@ -2,7 +2,8 @@
 
 /**
  * Resolves the next release version, writes it into .claude-plugin/plugin.json
- * and prints it to stdout. Run by the release workflow before tagging.
+ * and the GitHub Copilot manifests (root plugin.json, plugins/port-eu,
+ * plugins/port-us) and prints it to stdout. Run by the release workflow before tagging.
  *
  * Git tags are the version source of truth: the next version is the highest
  * existing "vX.Y.Z" tag with its patch incremented. plugin.json is only read as
@@ -16,6 +17,11 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const PLUGIN_PATH = path.join(__dirname, '..', '..', '.claude-plugin', 'plugin.json');
+const COPILOT_PLUGIN_PATHS = [
+	path.join(__dirname, '..', '..', 'plugin.json'),
+	path.join(__dirname, '..', '..', 'plugins', 'port-eu', 'plugin.json'),
+	path.join(__dirname, '..', '..', 'plugins', 'port-us', 'plugin.json'),
+];
 const SEMVER = /^(\d+)\.(\d+)\.(\d+)$/;
 
 function parseVersion(version, source) {
@@ -43,4 +49,9 @@ const [major, minor, patch] = latestTaggedVersion() || parseVersion(plugin.versi
 plugin.version = `${major}.${minor}.${patch + 1}`;
 
 fs.writeFileSync(PLUGIN_PATH, `${JSON.stringify(plugin, null, 2)}\n`);
+for (const file of COPILOT_PLUGIN_PATHS) {
+	const manifest = JSON.parse(fs.readFileSync(file, 'utf-8'));
+	manifest.version = plugin.version;
+	fs.writeFileSync(file, `${JSON.stringify(manifest, null, 2)}\n`);
+}
 console.log(plugin.version);

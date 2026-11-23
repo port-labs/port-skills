@@ -8,6 +8,8 @@ on:
       - '.claude/skills/**'
       - '.claude-plugin/**'
       - '.mcp.json'
+      - 'plugin.json'
+      - 'plugins/**'
   push:
     branches: [main]
     paths:
@@ -15,6 +17,8 @@ on:
       - '.claude/skills/**'
       - '.claude-plugin/**'
       - '.mcp.json'
+      - 'plugin.json'
+      - 'plugins/**'
 
 jobs:
   validate:
