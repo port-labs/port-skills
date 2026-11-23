@@ -1,12 +1,9 @@
 # Integration actions
 
-An `INTEGRATION_ACTION` node runs an action through an integration installed
-in the Port organization, which brings the integration's credentials and
-status reporting with it. Jira, Linear, PagerDuty, GitHub, GitLab, Azure
-DevOps, Claude managed agents and Cursor cloud agents are supported. A GitHub
-workflow is dispatched with this node type; there is no separate GitHub node
-type. The templates in the properties cannot read organization secrets or
-encrypted inputs.
+An `INTEGRATION_ACTION` node runs an action through an integration installed in the Port organization, which brings the integration's credentials and status reporting with it.
+Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents and Cursor cloud agents are supported.
+A GitHub workflow is dispatched with this node type; there is no separate GitHub node type.
+The templates in the properties cannot read organization secrets or encrypted inputs.
 
 | Config field | Meaning |
 |---|---|
@@ -27,24 +24,16 @@ encrypted inputs.
 | Claude managed agents | `claude-managed-agents` |
 | Cursor cloud agents | `cursor-cloud-agents` |
 
-Use only the `integrationInvocationType` values this page lists for a
-provider; each provider has its own, so Linear's `add_issue_comment` is not a
-Jira action. When the request needs an action that is not listed, such as a
-Jira comment, tell the user it is not available as an integration action and
-use an HTTP request node for that step.
+Use only the `integrationInvocationType` values this page lists for a provider; each provider has its own, so Linear's `add_issue_comment` is not a Jira action.
+When the request needs an action that is not listed, such as a Jira comment, tell the user it is not available as an integration action and use an HTTP request node for that step.
 
-For the properties of Linear and PagerDuty, search
-`search_port_knowledge_sources`. Linear's `integrationInvocationType` values
-are `create_issue`, `create_sub_issue`, `update_issue`,
-`delegate_issue_to_agent`, `archive_issue`, `delete_issue`,
-`add_issue_comment`, `add_reaction_to_issue` and `add_document`. PagerDuty's
-are `trigger_incident`, `acknowledge_incident` and `resolve_incident`, and
-each takes a required `fromEmail`, the email of a PagerDuty user.
+For the properties of Linear and PagerDuty, search `search_port_knowledge_sources`.
+Linear's `integrationInvocationType` values are `create_issue`, `create_sub_issue`, `update_issue`, `delegate_issue_to_agent`, `archive_issue`, `delete_issue`, `add_issue_comment`, `add_reaction_to_issue` and `add_document`.
+PagerDuty's are `trigger_incident`, `acknowledge_incident` and `resolve_incident`, and each takes a required `fromEmail`, the email of a PagerDuty user.
 
 ## Jira (`jira`)
 
-`integrationInvocationType` is `create_issue` or `change_issue_status`; Jira
-Cloud only.
+`integrationInvocationType` is `create_issue` or `change_issue_status`; Jira Cloud only.
 
 `create_issue`:
 
@@ -57,9 +46,8 @@ Cloud only.
 | `priority` | Optional priority name, such as `High`. |
 | `assigneeAccountId` | Optional. The assignee's Atlassian account ID, not an email address. |
 
-`change_issue_status`: `issueKey` (required) and `status` (required, the
-target status name such as `Done`, not a transition label). Its output
-carries `issueKey`, `status` and `issueUrl`.
+`change_issue_status`: `issueKey` (required) and `status` (required, the target status name such as `Done`, not a transition label).
+Its output carries `issueKey`, `status` and `issueUrl`.
 
 ## GitHub (`github-ocean`)
 
@@ -72,9 +60,8 @@ carries `issueKey`, `status` and `issueUrl`.
 | `workflowInputs` | An object of inputs. GitHub passes every input as a string, so convert other values with `\| tostring`. |
 | `reportWorkflowStatus` | `true` makes Port follow the GitHub run and finish the node with its result. The field is `reportWorkflowStatus`; a `reportStatus` field is not read. |
 
-The other `integrationInvocationType` values. Every one takes `org` and `repo`
-(required) unless the row says otherwise; `prNumber` and `issueNumber` are
-numbers.
+The other `integrationInvocationType` values.
+Every one takes `org` and `repo` (required) unless the row says otherwise; `prNumber` and `issueNumber` are numbers.
 
 | Action | Other properties |
 |---|---|
@@ -96,8 +83,7 @@ numbers.
 
 ## GitLab (`gitlab-v2`)
 
-`integrationInvocationType` and its properties; `project` is the project path
-or ID, and `mergeRequestIid` is the merge request's number in that project.
+`integrationInvocationType` and its properties; `project` is the project path or ID, and `mergeRequestIid` is the merge request's number in that project.
 
 | Action | Properties |
 |---|---|
@@ -109,8 +95,8 @@ or ID, and `mergeRequestIid` is the merge request's number in that project.
 
 ## Azure DevOps (`azure-devops`)
 
-Every pull request action takes `project`, `repositoryId` and, except for
-`create_pull_request`, `pullRequestId`. Most also take `organization`.
+Every pull request action takes `project`, `repositoryId` and, except for `create_pull_request`, `pullRequestId`.
+Most also take `organization`.
 
 | Action | Other properties |
 |---|---|
@@ -124,8 +110,8 @@ Every pull request action takes `project`, `repositoryId` and, except for
 
 ## Claude managed agents (`claude-managed-agents`)
 
-Needs the Claude Managed Agents integration installed. The
-`integrationInvocationType` values and their properties:
+Needs the Claude Managed Agents integration installed.
+The `integrationInvocationType` values and their properties:
 
 | Invocation type | What it does |
 |---|---|
@@ -157,10 +143,10 @@ Needs the Claude Managed Agents integration installed. The
 | `reportSessionStatus` | `true` makes the node wait until the session ends, which needs a webhook configured on the integration. Defaults to `false`. |
 | `config` | Optional session parameters such as vault IDs, resources or metadata; ignored with `sessionId`. |
 
-`update_agent`: `agentId` (required) and at least one of `name`, `model`,
-`systemPrompt`, or `config` (merged into the agent's config).
+`update_agent`: `agentId` (required) and at least one of `name`, `model`, `systemPrompt`, or `config` (merged into the agent's config).
 
-`archive_agent`: `agentId` (required). The archive cannot be undone.
+`archive_agent`: `agentId` (required).
+The archive cannot be undone.
 
 `create_environment`:
 
@@ -173,17 +159,16 @@ Needs the Claude Managed Agents integration installed. The
 
 Its output `environmentId` can feed a later `trigger_agent` node.
 
-`update_environment`: `environmentId` (required) and at least one of `name`,
-`description`, `scope`, or `config` (merged into the environment's config).
+`update_environment`: `environmentId` (required) and at least one of `name`, `description`, `scope`, or `config` (merged into the environment's config).
 Its output echoes `environmentId`.
 
-`delete_environment`: `environmentId` (required). The deletion cannot be
-undone; concurrent deletes of one environment run one after another.
+`delete_environment`: `environmentId` (required).
+The deletion cannot be undone; concurrent deletes of one environment run one after another.
 
 ## Cursor cloud agents (`cursor-cloud-agents`)
 
-Needs the Cursor Cloud Agents integration installed. It replaces the
-deprecated `CURSOR_AGENT` node: build new Cursor steps with this action.
+Needs the Cursor Cloud Agents integration installed.
+It replaces the deprecated `CURSOR_AGENT` node: build new Cursor steps with this action.
 
 | Invocation type | What it does |
 |---|---|
@@ -202,9 +187,7 @@ deprecated `CURSOR_AGENT` node: build new Cursor steps with this action.
 | `reportCompletion` | `v0` only. `true` keeps the node running until Cursor calls back, so use `v0` with it to wait for the agent. |
 | `config` | Optional Cursor API fields merged onto the request, such as `target.autoCreatePr` or `model`. |
 
-`trigger_agent`: `agentId` (required), `prompt`, `reportCompletion` and
-`config`.
+`trigger_agent`: `agentId` (required), `prompt`, `reportCompletion` and `config`.
 
-Output: `agentId`, `status` (`FINISHED`, `ERROR`, `RUNNING` and others),
-`summary` once the agent is done, and `target.prUrl` and `target.branchName`
-when it opened a pull request. The names are camelCase, not `pr_url`.
+Output: `agentId`, `status` (`FINISHED`, `ERROR`, `RUNNING` and others), `summary` once the agent is done, and `target.prUrl` and `target.branchName` when it opened a pull request.
+The names are camelCase, not `pr_url`.

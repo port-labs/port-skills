@@ -1,10 +1,8 @@
 # Triggers and workflow fields
 
-A trigger node starts a run. A workflow can hold several trigger nodes that
-feed the same downstream graph; whichever one fires is available to later
-nodes as `.outputs.trigger` (see [data-flow.md](data-flow.md)). Trigger nodes
-take only `identifier` and `config`: a `title`, `icon` or `description` on a
-trigger has no effect, so put those on action and flow nodes.
+A trigger node starts a run.
+A workflow can hold several trigger nodes that feed the same downstream graph; whichever one fires is available to later nodes as `.outputs.trigger` (see [data-flow.md](data-flow.md)).
+Trigger nodes take only `identifier` and `config`: a `title`, `icon` or `description` on a trigger has no effect, so put those on action and flow nodes.
 
 ## Workflow top-level fields
 
@@ -19,8 +17,7 @@ trigger has no effect, so put those on action and flow nodes.
 
 ## `SELF_SERVE_TRIGGER`
 
-Runs when a user submits a form, from the self-service hub, an entity page,
-the API, MCP or an AI agent.
+Runs when a user submits a form, from the self-service hub, an entity page, the API, MCP or an AI agent.
 
 | Config field | Meaning |
 |---|---|
@@ -34,25 +31,20 @@ the API, MCP or an AI agent.
 
 Contexts, each an object in the `contexts` array:
 
-- `on: "ENTITY"` with `userInput` naming an entity-format input adds the
-  trigger to the action menu of entities of that input's blueprint, with the
-  input pre-filled by the entity. Several `ENTITY` contexts are allowed when
-  each names a different input.
-- `on: "CREATE_ENTITY"` with `blueprintIdentifier` puts the trigger in that
-  blueprint's create-entity flow. One per blueprint per node.
-- `on: "SELF_SERVICE_HUB"` with `visible: false` hides the trigger's card
-  from the self-service hub while it stays runnable everywhere else. Display
-  only, not access control.
+- `on: "ENTITY"` with `userInput` naming an entity-format input adds the trigger to the action menu of entities of that input's blueprint, with the input pre-filled by the entity.
+  Several `ENTITY` contexts are allowed when each names a different input.
+- `on: "CREATE_ENTITY"` with `blueprintIdentifier` puts the trigger in that blueprint's create-entity flow.
+  One per blueprint per node.
+- `on: "SELF_SERVICE_HUB"` with `visible: false` hides the trigger's card from the self-service hub while it stays runnable everywhere else.
+  Display only, not access control.
 
-Output: each submitted input under its identifier, for example
-`{{ .outputs.trigger.serviceName }}`. An entity-format input holds the
-entity identifier.
+Output: each submitted input under its identifier, for example `{{ .outputs.trigger.serviceName }}`.
+An entity-format input holds the entity identifier.
 
 ## `EVENT_TRIGGER`
 
-Runs when an entity of a blueprint changes. Event-driven runs act as the
-organization's automation identity, so an event trigger has no
-`permissions`.
+Runs when an entity of a blueprint changes.
+Event-driven runs act as the organization's automation identity, so an event trigger has no `permissions`.
 
 | Config field | Meaning |
 |---|---|
@@ -71,9 +63,7 @@ Output:
 | `.outputs.trigger.diff.before` | The entity before the change; `null` for a creation. |
 | `.outputs.trigger.impactedEntity` | Only on `_rule_result` triggers: the catalog entity the scorecard rule evaluated, or `null` when Port could not fetch it. The trigger's `condition` still sees the raw rule-result event. |
 
-With `ANY_ENTITY_CHANGE`, branch on `.outputs.trigger.action` before reading
-`diff.before` or `diff.after`, since one of them is `null` for creations and
-deletions.
+With `ANY_ENTITY_CHANGE`, branch on `.outputs.trigger.action` before reading `diff.before` or `diff.after`, since one of them is `null` for creations and deletions.
 
 ## `SCHEDULE_TRIGGER`
 
@@ -84,6 +74,5 @@ Runs on a cron schedule, evaluated in UTC, with no user inputs.
 | `cron` | Required. A standard five-field cron string, such as `0 9 * * 1-5` for 09:00 UTC on weekdays. |
 | `published` | Defaults to `true`. `false` pauses the schedule without deleting the node. |
 
-Output: `.outputs.trigger.firedAt` (the ISO timestamp of the firing) and
-`.outputs.trigger.scheduleIdentifier`. A workflow can hold several schedule
-triggers with different crons, for example a daily and a weekly run.
+Output: `.outputs.trigger.firedAt` (the ISO timestamp of the firing) and `.outputs.trigger.scheduleIdentifier`.
+A workflow can hold several schedule triggers with different crons, for example a daily and a weekly run.

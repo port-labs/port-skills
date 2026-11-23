@@ -1,7 +1,7 @@
 # Action nodes
 
-An action node does one step of the run. Every action node has an
-`identifier` and a `config` whose `type` names the node, and may also have:
+An action node does one step of the run.
+Every action node has an `identifier` and a `config` whose `type` names the node, and may also have:
 
 | Field | Meaning |
 |---|---|
@@ -10,16 +10,13 @@ An action node does one step of the run. Every action node has an
 | `links` | Up to three URL templates shown on the node run. Links into Port start with `{{ .port.appUrl }}`. |
 | `verbose` | Logs full request and response bodies. Off by default. |
 
-Every node type below except `CURSOR_AGENT`, `AI_AGENT` and `AI` also takes
-`config.onFailure`: `terminate` (the default, which stops the run) or
-`continue` (the run goes on and the node's output carries `error.message`).
-Use `continue` for steps such as notifications that the rest of the run does
-not depend on.
+Every node type below except `CURSOR_AGENT`, `AI_AGENT` and `AI` also takes `config.onFailure`: `terminate` (the default, which stops the run) or `continue` (the run goes on and the node's output carries `error.message`).
+Use `continue` for steps such as notifications that the rest of the run does not depend on.
 
 ## `WEBHOOK` (HTTP request)
 
-Sends one HTTP request. Use it for any external call that has no dedicated
-node type.
+Sends one HTTP request.
+Use it for any external call that has no dedicated node type.
 
 | Config field | Meaning |
 |---|---|
@@ -30,11 +27,9 @@ node type.
 | `synchronized` | Defaults to `true`: the node waits for the response. `false` fires and forgets, and the receiving system then reports the node run back to Port (see [port-api.md](port-api.md)). |
 | `onTimeout` | `fail` (the default) or `continue`. With `continue`, a synchronous node succeeds with `timeout: true`, and an asynchronous one stays in progress waiting for its report. |
 
-Output: `response.data` (the response body) and `response.status`. Calls to
-Port's own API are described in [port-api.md](port-api.md); to create or
-update an entity, the upsert entity node below is simpler than an HTTP call.
-Posting to a chat channel is described in
-[chat-notifications.md](chat-notifications.md).
+Output: `response.data` (the response body) and `response.status`.
+Calls to Port's own API are described in [port-api.md](port-api.md); to create or update an entity, the upsert entity node below is simpler than an HTTP call.
+Posting to a chat channel is described in [chat-notifications.md](chat-notifications.md).
 
 ## `UPSERT_ENTITY`
 
@@ -49,30 +44,26 @@ Creates an entity, or updates the fields it names on an existing one.
 | `mapping.properties` | An object keyed by property identifier, as returned by `list_blueprints`. |
 | `mapping.relations` | An object keyed by relation identifier. A many-relation takes an array, or a template that evaluates to one, such as `{{ .outputs.trigger.dependencies \| fromjson }}`. |
 
-These six are the only keys `mapping` accepts. Output: `response.data`, the
-saved entity.
+These six are the only keys `mapping` accepts.
+Output: `response.data`, the saved entity.
 
 ## `KAFKA`
 
-Publishes a message to the organization's Port-managed Kafka topic
-(`<orgId>.runs`) for the organization's own consumers. The topic is
-provisioned by Port support.
+Publishes a message to the organization's Port-managed Kafka topic (`<orgId>.runs`) for the organization's own consumers.
+The topic is provisioned by Port support.
 
 | Config field | Meaning |
 |---|---|
 | `payload` | Required. An object or array, delivered wrapped with run metadata. |
 
-The consumer reports the node run back to Port, as described in
-[port-api.md](port-api.md).
+The consumer reports the node run back to Port, as described in [port-api.md](port-api.md).
 
 ## `CURSOR_AGENT` (deprecated)
 
-Deprecated: new workflows use the Cursor cloud agents integration action in
-[integration-actions.md](integration-actions.md). Read this section only to
-understand a workflow that already has the node.
+Deprecated: new workflows use the Cursor cloud agents integration action in [integration-actions.md](integration-actions.md).
+Read this section only to understand a workflow that already has the node.
 
-Launches a Cursor cloud agent on a GitHub repository or pull request; the run
-waits until the agent finishes.
+Launches a Cursor cloud agent on a GitHub repository or pull request; the run waits until the agent finishes.
 
 | Config field | Meaning |
 |---|---|
@@ -83,15 +74,13 @@ waits until the agent finishes.
 | `model` | A model name; left out, Cursor's default. |
 | `target.autoCreatePr`, `target.branchName` | Whether to open a pull request, and the branch to push to. |
 
-Output: `agentId`, `status` (`FINISHED` or `ERROR`), `summary`,
-`target.prUrl` and `target.branchName`.
+Output: `agentId`, `status` (`FINISHED` or `ERROR`), `summary`, `target.prUrl` and `target.branchName`.
 
 ## `AI_AGENT` and `AI`
 
 Both invoke Port AI, and the run waits for the invocation to finish.
-`AI_AGENT` calls an existing Port AI agent by identifier, with the tools and
-system prompt configured on the agent. `AI` is a one-off invocation
-configured on the node.
+`AI_AGENT` calls an existing Port AI agent by identifier, with the tools and system prompt configured on the agent.
+`AI` is a one-off invocation configured on the node.
 
 | Config field | `AI_AGENT` | `AI` |
 |---|---|---|
@@ -105,13 +94,7 @@ configured on the node.
 
 Output: `response` and `invocationIdentifier`.
 
-An AI node succeeds even when it answers in free text, and a later node that
-expects fields then gets nothing. When a later node reads fields, set
-`outputSchema` to an object schema with only those fields; `response` then
-holds that object as a JSON string, read with
-`{{ .outputs.<node>.response | fromjson | .severity }}`.
+An AI node succeeds even when it answers in free text, and a later node that expects fields then gets nothing.
+When a later node reads fields, set `outputSchema` to an object schema with only those fields; `response` then holds that object as a JSON string, read with `{{ .outputs.<node>.response | fromjson | .severity }}`.
 
-When the prompt has the AI call `list_entities` with `include`, add
-`list_blueprints` to `tools` and ask it to read the blueprint first, because
-`include` takes property identifiers, not titles, and a guessed identifier
-fails the call.
+When the prompt has the AI call `list_entities` with `include`, add `list_blueprints` to `tools` and ask it to read the blueprint first, because `include` takes property identifiers, not titles, and a guessed identifier fails the call.
