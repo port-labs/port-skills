@@ -39,7 +39,7 @@ Every page (dashboard or otherwise) supports:
 | `layout`         | array of rows          | See [The 12-column layout grid](#the-12-column-layout-grid)                                                                 |
 | `widgets`        | array                  | The widget objects placed on the page                                                                                       |
 | `pageFilters`    | array                  | Optional. Page-level filters. Set it as described in Step 6 of the skill                                                    |
-| `pageDateFilter` | object \| null         | Optional. The page date range, `{ "range": ... }`. Set it as described in Step 6 of the skill                               |
+| `pageDateFilter` | object \| null         | Optional. The page date range, `{ "range": ..., "exclude": ... }`. Set it as described in Step 6 of the skill               |
 
 Before creating a page, check the existing sidebar structure so the new
 page lands in a sensible place:
