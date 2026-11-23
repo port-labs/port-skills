@@ -1,6 +1,6 @@
 # Chat notifications
 
-A workflow posts to a chat tool with a `WEBHOOK` node (see [webhook.md](webhook.md)).
+A workflow posts to a chat tool with a `WEBHOOK` node (see [action-nodes.md](action-nodes.md)).
 There is no dedicated chat node type.
 
 ## Slack message through an incoming webhook
@@ -25,4 +25,4 @@ Slack answers `200` even when the post fails, with `ok: false` in `response.data
 
 ## Notifying approvers
 
-An INPUT node notifies its responders itself, and its `notifications` array can also call a webhook URL when the node starts waiting, described in [input.md](input.md).
+An INPUT node notifies its responders itself, and its `notifications` array can also call a webhook URL when the node starts waiting, described in [flow-control.md](flow-control.md).

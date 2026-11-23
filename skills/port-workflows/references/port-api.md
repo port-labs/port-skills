@@ -21,7 +21,7 @@ Each rule has a `property` (such as `$identifier`, `$title`, `$team` or a proper
 The matches come back in `response.data.entities`; a `variables` entry such as `entity` set to `{{ .result.response.data.entities[0] }}` hands later nodes the first match (see [data-flow.md](data-flow.md)).
 Following a relation means one lookup per hop, each fed by the previous node's variables.
 
-To create or update an entity, the `UPSERT_ENTITY` node in [upsert-entity.md](upsert-entity.md) is simpler than an HTTP call.
+To create or update an entity, the `UPSERT_ENTITY` node in [action-nodes.md](action-nodes.md) is simpler than an HTTP call.
 
 To start another workflow, send `POST {{ .port.apiUrl }}/v1/workflows/<workflow identifier>/runs`.
 

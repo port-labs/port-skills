@@ -175,4 +175,4 @@ Restrict to the manager of the entity's owning team, comparing a mirror property
 
 Permissions gate *who* can start a run.
 To block a run based on context lake state (for example, "don't let this run if an entity with this name already exists"), that's a runtime validation, not a permission.
-Add a `CONDITION` node as the first step and route the failing branch to a CONDITION node with no outlets (or a node that reports back why it stopped) instead of trying to encode it in `policy`; see [condition.md](condition.md).
+Add a `CONDITION` node as the first step and route the failing branch to a CONDITION node with no outlets (or a node that reports back why it stopped) instead of trying to encode it in `policy`; see [flow-control.md](flow-control.md).
