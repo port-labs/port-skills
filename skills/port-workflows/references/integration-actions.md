@@ -1,5 +1,14 @@
 # Integration actions
 
+## Contents
+
+- [Jira (`jira`)](#jira-jira)
+- [GitHub (`github-ocean`)](#github-github-ocean)
+- [GitLab (`gitlab-v2`)](#gitlab-gitlab-v2)
+- [Azure DevOps (`azure-devops`)](#azure-devops-azure-devops)
+- [Claude managed agents (`claude-managed-agents`)](#claude-managed-agents-claude-managed-agents)
+- [Cursor cloud agents (`cursor-cloud-agents`)](#cursor-cloud-agents-cursor-cloud-agents)
+
 An `INTEGRATION_ACTION` node runs an action through an integration installed in the Port organization, which brings the integration's credentials and status reporting with it.
 Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents and Cursor cloud agents are supported.
 A GitHub workflow is dispatched with this node type; there is no separate GitHub node type.

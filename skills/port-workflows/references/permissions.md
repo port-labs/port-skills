@@ -1,5 +1,16 @@
 # Permissions reference
 
+## Contents
+
+- [Default behavior](#default-behavior)
+- [Static assignment](#static-assignment)
+- [Dynamic permissions (`policy`)](#dynamic-permissions-policy)
+  - [Contexts](#contexts)
+  - [Dot notation for entity-format form inputs](#dot-notation-for-entity-format-form-inputs)
+  - [Operators](#operators)
+- [Common patterns](#common-patterns)
+- [Validation vs. permissions](#validation-vs-permissions)
+
 Permissions control who can see and execute a `SELF_SERVE_TRIGGER` node from Port's self-service page; a workflow a user can't execute is hidden from them entirely.
 Event triggers have no `permissions` field, they run under the organization's automation identity.
 Admins can always execute every workflow regardless of this configuration.

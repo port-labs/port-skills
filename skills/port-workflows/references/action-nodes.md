@@ -1,5 +1,13 @@
 # Action nodes
 
+## Contents
+
+- [`WEBHOOK` (HTTP request)](#webhook-http-request)
+- [`UPSERT_ENTITY`](#upsert_entity)
+- [`KAFKA`](#kafka)
+- [`CURSOR_AGENT` (deprecated)](#cursor_agent-deprecated)
+- [`AI_AGENT` and `AI`](#ai_agent-and-ai)
+
 An action node does one step of the run.
 Every action node has an `identifier` and a `config` whose `type` names the node, and may also have:
 
