@@ -1,7 +1,7 @@
 # Workflow interface
 
 The shape `upsert_workflow` and `suggest_workflow` take, as types.
-Field details are in the other references: triggers in [triggers.md](triggers.md), nodes in [action-nodes.md](action-nodes.md) and [integration-actions.md](integration-actions.md), branching in [flow-control.md](flow-control.md).
+Each trigger, node type and integration has its own reference with its fields, listed in the skill's references.
 
 ```ts
 Workflow = {
@@ -44,3 +44,48 @@ How the parts relate:
 - A connection leaving any other node sets neither of the two.
 - A node with no outgoing connection ends its branch.
 - `onFailure: "continue"` lets the run go on after a step the rest does not depend on.
+
+## Workflow top-level fields
+
+| Field | Meaning |
+|---|---|
+| `identifier` | Required. Up to 60 characters of letters, digits and `@ _ : -`. Saving again with the same identifier updates the workflow and creates a new version. |
+| `title`, `icon`, `description` | Shown in the workflows page and the self-service hub. |
+| `category` | A grouping label for the workflow's self-service triggers in the workflows page, the self-service hub and the entity action menu. Set on the workflow, not on a trigger. |
+| `allowAnyoneToViewRuns` | Whether users other than the one who ran it can see a run. Defaults to `true`. |
+| `nodes` | The trigger, action and flow nodes. |
+| `connections` | The edges between nodes, described below. |
+
+## Connections
+
+`connections` is an array of edges.
+Each edge has `sourceIdentifier` and `targetIdentifier`, the identifiers of two nodes in `nodes`.
+
+- A trigger node is only ever a source.
+- A node, and each outlet of a CONDITION or INPUT node, has at most one outgoing connection.
+  Two steps that both follow one node run one after the other, chained, or in separate workflows.
+- An edge leaving a CONDITION or INPUT node sets `sourceOutletIdentifier` to one of that node's outlet identifiers.
+  On a CONDITION, an edge can set `fallback: true` instead, for the path taken when no outlet matches.
+- Edges leaving any other node set neither field.
+- A node with no outgoing edge ends its branch of the run.
+
+## Trigger nodes
+
+A trigger node starts a run.
+A workflow can hold several trigger nodes that feed the same downstream graph; whichever one fires is available to later nodes as `.outputs.trigger` (see [data-flow.md](data-flow.md)).
+Trigger nodes take only `identifier` and `config`: a `title`, `icon` or `description` on a trigger has no effect, so put those on action and flow nodes.
+
+## Action node fields
+
+An action node does one step of the run.
+Every action node has an `identifier` and a `config` whose `type` names the node, and may also have:
+
+| Field | Meaning |
+|---|---|
+| `title`, `icon`, `description` | Shown on the node in the editor and in the run view. |
+| `variables` | Reshapes the node's output after it runs, described in [data-flow.md](data-flow.md). Setting it replaces the node's whole default output. |
+| `links` | Up to three URL templates shown on the node run. Links into Port start with `{{ .port.appUrl }}`. |
+| `verbose` | Logs full request and response bodies. Off by default. |
+
+Every action node type except `CURSOR_AGENT`, `AI_AGENT` and `AI` also takes `config.onFailure`: `terminate` (the default, which stops the run) or `continue` (the run goes on and the node's output carries `error.message`).
+Use `continue` for steps such as notifications that the rest of the run does not depend on.

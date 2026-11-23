@@ -70,11 +70,24 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
 
 ## References
 
-- [references/workflow-interface.md](references/workflow-interface.md): read this before you write the workflow JSON; it gives the shape of a workflow, its nodes and its connections, and how they relate.
-- [references/triggers.md](references/triggers.md): read this when you configure a self-service, event or schedule trigger, its form inputs, or the workflow's top-level fields.
-- [references/action-nodes.md](references/action-nodes.md): read this when you add an HTTP request, upsert entity, Kafka or AI node.
-- [references/integration-actions.md](references/integration-actions.md): read this when a node calls Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps, or drives a Claude managed agent or a Cursor cloud agent, through an installed integration.
-- [references/flow-control.md](references/flow-control.md): read this when you branch with a CONDITION node, add an approval with an INPUT node, or wire their outlets.
+- [references/workflow-interface.md](references/workflow-interface.md): read this before you write the workflow JSON; it gives the shape of a workflow, its top-level fields, its nodes and its connections, and how they relate.
+- [references/self-serve-trigger.md](references/self-serve-trigger.md): read this when the workflow starts from a self-service form, its inputs or the places it appears.
+- [references/event-trigger.md](references/event-trigger.md): read this when the workflow reacts to an entity being created, updated or deleted, or to a timer property expiring.
+- [references/schedule-trigger.md](references/schedule-trigger.md): read this when the workflow runs on a cron schedule.
+- [references/webhook.md](references/webhook.md): read this when you add an HTTP request node.
+- [references/upsert-entity.md](references/upsert-entity.md): read this when you add a node that creates or updates a Port entity.
+- [references/kafka.md](references/kafka.md): read this when you add a node that publishes to the organization's Kafka topic.
+- [references/ai.md](references/ai.md): read this when you add a node that calls Port AI or a Port AI agent.
+- [references/cursor-agent.md](references/cursor-agent.md): read this when a workflow you read already has the deprecated `CURSOR_AGENT` node.
+- [references/integration-action.md](references/integration-action.md): read this when a node calls Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps, or drives a Claude managed agent or a Cursor cloud agent, through an installed integration; it links to one reference per provider.
+- [references/integration-jira.md](references/integration-jira.md): read this when a node creates a Jira issue or changes its status.
+- [references/integration-github.md](references/integration-github.md): read this when a node dispatches a GitHub workflow or acts on GitHub issues, pull requests or repository properties.
+- [references/integration-gitlab.md](references/integration-gitlab.md): read this when a node acts on GitLab merge requests or triggers a GitLab pipeline.
+- [references/integration-azure-devops.md](references/integration-azure-devops.md): read this when a node acts on Azure DevOps pull requests or triggers an Azure DevOps pipeline.
+- [references/integration-claude-managed-agents.md](references/integration-claude-managed-agents.md): read this when a node creates, runs or changes a Claude managed agent or its environment.
+- [references/integration-cursor-cloud-agents.md](references/integration-cursor-cloud-agents.md): read this when a node launches or prompts a Cursor cloud agent.
+- [references/condition.md](references/condition.md): read this when you branch with a CONDITION node or end a branch on purpose.
+- [references/input.md](references/input.md): read this when you add an approval or another human step with an INPUT node, its buttons, outlets and responders.
 - [references/data-flow.md](references/data-flow.md): read this when a node reads trigger inputs, earlier node outputs, secrets or run metadata, or reshapes its own output with `variables`.
 - [references/port-api.md](references/port-api.md): read this when a node calls Port's own API, links into the Port app, reports an asynchronous node back, or the workflow is applied through the REST API instead of MCP.
 - [references/permissions.md](references/permissions.md): read this when you decide who may run a self-service trigger, including dynamic policies.

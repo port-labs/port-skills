@@ -23,7 +23,7 @@ Dot notation, `.outputs.fetch_service.response`, is shorter but reads a hyphen a
 | An INPUT node's chosen outlet | `.outputs["<node>"].selectedOutlet.identifier` |
 | A failed node's error, when `onFailure` is `continue` | `.outputs["<node>"].error.message` |
 
-The output of each node type is listed with the node in [triggers.md](triggers.md), [action-nodes.md](action-nodes.md), [integration-actions.md](integration-actions.md) and [flow-control.md](flow-control.md).
+The output of each node type is listed in that node type's own reference, such as [webhook.md](webhook.md) or [input.md](input.md).
 
 ## Secrets
 
