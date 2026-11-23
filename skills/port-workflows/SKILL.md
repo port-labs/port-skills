@@ -34,7 +34,7 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
 ## Build a workflow
 
 1. **Find what already exists.**
-   Call `list_blueprints` for the blueprints and property identifiers the workflow reads or writes, `list_integrations` for the installed integrations an integration action needs, and `list_entities` when an input or responder has to name real entities, such as `_team` identifiers, passing the names the user gave in its `identifiers` parameter.
+   Call `list_blueprints` for the blueprints and property identifiers the workflow reads or writes, `list_integrations` for the installed integrations an integration action needs, and `list_entities` when an input or responder has to name real entities, such as `_team` identifiers, passing the blueprint in its required `blueprintIdentifier` parameter and the names the user gave in its `identifiers` parameter.
    Call `list_workflows`, then `get_workflow`, to see whether a workflow already does this job; extending it keeps one source of truth.
    In the workflow editor side chat, the workflow in the page context is the one being edited.
 2. **Sketch the trigger and the nodes.**
