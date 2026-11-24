@@ -176,6 +176,10 @@ The essentials:
   the user wants the current, unfinished period left out of a relative range,
   for example "last 30 days, not including today". Do not combine it with
   `next`.
+- Set `ignoreDashboardDateFilter: true` on any widget the date range should
+  not narrow, such as an all-time total beside a filtered chart. It works on
+  tables, boards, pie charts, bar charts, number charts, line charts, and
+  multi-line charts. Leave it out otherwise: the widget is then filtered.
 - Leave `pageDateFilter` out when the user did not ask for a date range.
 
 ## Step 7 - Private pages

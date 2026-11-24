@@ -109,6 +109,16 @@ the user wants a different date than the creation date. It accepts
 format is `date-time`. Do not set it on number or line charts: they ignore
 it, and their date is changed in the widget itself (`measureTimeBy`).
 
+### Keeping a widget out of the date range
+
+Set `ignoreDashboardDateFilter: true` on a widget to exclude it from the page
+date range, for example an all-time total next to charts that follow the
+range. The flag is a boolean on the widget itself. Leaving it out, or setting
+it to `false`, keeps the widget filtered. It works on `table-entities-explorer`,
+`board`, `entities-pie-chart`, `bar-chart`, `entities-number-chart`,
+`line-chart`, and `multi-line-chart`. Other widgets are never filtered, so
+they do not need it.
+
 ### Combining with other filters
 
 The date range does not replace other filters. It is combined with `AND` with

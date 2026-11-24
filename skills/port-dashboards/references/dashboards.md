@@ -235,6 +235,7 @@ Browsable, filterable, sortable, groupable table of entities.
 | `entitiesQueryMode`                     | `"optimized"` \| other | no       |                                                                                                                                                              |
 | `entitiesQueryMaxResults`               | number                 | no       | Only allowed when `entitiesQueryMode` is `"optimized"`                                                                                                       |
 | `dashboardDateProperty`                 | string                 | no       | The date the page date range filters by: `$createdAt` (default), `$updatedAt`, or a `date-time` property of the blueprint                                    |
+| `ignoreDashboardDateFilter`             | boolean                | no       | If true, the page date range does not filter this widget. Defaults to false                                                                                  |
 | `blueprintConfig`                       | object                 | no       | Per-blueprint tab config: `filterSettings`, `groupSettings`, `sortSettings`, `propertiesSettings`, `tabIndex`, `hidden`, `title` (<=20 chars), `description` |
 
 ```json
@@ -271,7 +272,8 @@ Common fields: `title` (required), `blueprint` (required), `unit`
 `unit` is `custom`), `unitAlignment`, `displayFormatting`
 (`none`/`round`/`custom`; `decimalPlaces` required when `custom`),
 `conditionalFormatting` (array of `{ operator, value, message?,
-description?, color? }`), `chartType`.
+description?, color? }`), `chartType`, `ignoreDashboardDateFilter` (boolean:
+if true, the page date range does not filter the chart).
 
 `chartType` selects which extra fields are required:
 
@@ -310,6 +312,7 @@ description?, color? }`), `chartType`.
 | `dontAggregateOther`                    | boolean      | no       | If true, don't fold small slices into "Other"                         |
 | `segmentTableViewConfig`                | object       | no       | Per-segment table view overrides                                      |
 | `dashboardDateProperty`                 | string       | no       | The date the page date range filters by, same as the table            |
+| `ignoreDashboardDateFilter`             | boolean      | no       | If true, the page date range does not filter this widget              |
 
 ```json
 {
@@ -334,6 +337,7 @@ it):
 | `dataset`                                                               | query object | yes      |                                                                       |
 | `title`, `icon`, `description`, `emptyStateText`                        | string       | no       |                                                                       |
 | `dontAggregateOther`, `segmentTableViewConfig`, `dashboardDateProperty` |              | no       | Same as pie chart                                                     |
+| `ignoreDashboardDateFilter`                                             | boolean      | no       | Same as pie chart                                                     |
 
 ### Multi-line chart (`multi-line-chart`)
 
@@ -348,6 +352,7 @@ Trends over time, one or more lines.
 | `icon`, `xAxisTitle`, `yAxisTitle`, `description`, `emptyStateText` | string                                       | no       |                                                                                                                                                                |
 | `baselines`                                                         | array                                        | no       | `{ name?, value, color? }` horizontal reference lines                                                                                                          |
 | `nullValueDisplayMode`                                              | `zero` \| `null`                             | no       |                                                                                                                                                                |
+| `ignoreDashboardDateFilter`                                         | boolean                                      | no       | If true, the page date range does not filter any line of the chart                                                                                             |
 
 Each entry in `lines` has `title`, `blueprint`, and a `chartType`:
 
