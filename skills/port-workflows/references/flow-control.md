@@ -9,7 +9,9 @@ Each edge has `sourceIdentifier` and `targetIdentifier`, the identifiers of two 
 - A node, and each outlet of a CONDITION or INPUT node, has at most one outgoing connection.
   Two steps that both follow one node run one after the other, chained, or in separate workflows.
 - An edge leaving a CONDITION or INPUT node sets `sourceOutletIdentifier` to one of that node's outlet identifiers.
-  On a CONDITION, an edge can set `fallback: true` instead, for the path taken when no outlet matches.
+  An edge can set `fallback: true` instead.
+  On a CONDITION it is the path taken when no outlet matches.
+  On an INPUT it is the "On timeout" path, taken when nobody responds within the node's `timeoutMinutes` (7 days by default); an INPUT that times out with no `fallback` edge fails the run.
 - Edges leaving any other node set neither field.
 - A node with no outgoing edge ends its branch of the run.
 

@@ -64,7 +64,7 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
 - The GitHub integration action reports the run back to Port only through `reportWorkflowStatus`, so set that field and not `reportStatus`.
 - An INPUT outlet is selected by the button that has the same identifier, so give each outlet its button's identifier.
 - A chosen INPUT outlet with no connection fails the run, so connect every INPUT outlet and end a do-nothing branch at a CONDITION node with no outlets.
-- An UPSERT_ENTITY `mapping` accepts only `identifier`, `title`, `icon`, `team`, `properties` and `relations`, so any other key there is rejected.
+- An UPSERT_ENTITY `mapping` reads only `identifier`, `title`, `icon`, `team`, `properties` and `relations`; any other key there is dropped without an error, so a property placed at that level never reaches the entity.
 - A self-service trigger saved without `permissions` can be run only by admins, so set permissions whenever anyone else is meant to run it.
 - A `suggest_workflow` call saves nothing, so tell the user the workflow was suggested, not created.
 

@@ -3,6 +3,8 @@
 ## Contents
 
 - [Jira (`jira`)](#jira-jira)
+- [Linear (`linear`)](#linear-linear)
+- [PagerDuty (`pagerduty`)](#pagerduty-pagerduty)
 - [GitHub (`github-ocean`)](#github-github-ocean)
 - [GitLab (`gitlab-v2`)](#gitlab-gitlab-v2)
 - [Azure DevOps (`azure-devops`)](#azure-devops-azure-devops)
@@ -12,7 +14,9 @@
 An `INTEGRATION_ACTION` node runs an action through an integration installed in the Port organization, which brings the integration's credentials and status reporting with it.
 Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents and Cursor cloud agents are supported.
 A GitHub workflow is dispatched with this node type; there is no separate GitHub node type.
-The templates in the properties cannot read organization secrets or encrypted inputs.
+A property reads an organization secret with `{{ .secrets["<name>"] }}` only when it is a top-level string property the action marks sensitive, such as `gitAccessToken` on Claude's `trigger_agent`.
+A secret on any other property, including an object such as `workflowInputs`, is rejected.
+The templates cannot read encrypted inputs.
 
 | Config field | Meaning |
 |---|---|
@@ -34,15 +38,11 @@ The templates in the properties cannot read organization secrets or encrypted in
 | Cursor cloud agents | `cursor-cloud-agents` |
 
 Use only the `integrationInvocationType` values this page lists for a provider; each provider has its own, so Linear's `add_issue_comment` is not a Jira action.
-When the request needs an action that is not listed, such as a Jira comment, tell the user it is not available as an integration action and use an HTTP request node for that step.
-
-For the properties of Linear and PagerDuty, search `search_port_knowledge_sources`.
-Linear's `integrationInvocationType` values are `create_issue`, `create_sub_issue`, `update_issue`, `delegate_issue_to_agent`, `archive_issue`, `delete_issue`, `add_issue_comment`, `add_reaction_to_issue` and `add_document`.
-PagerDuty's are `trigger_incident`, `acknowledge_incident` and `resolve_incident`, and each takes a required `fromEmail`, the email of a PagerDuty user.
+When the request needs an action that is not listed, tell the user it is not available as an integration action and use an HTTP request node for that step.
 
 ## Jira (`jira`)
 
-`integrationInvocationType` is `create_issue` or `change_issue_status`; Jira Cloud only.
+`integrationInvocationType` is `create_issue`, `update_issue`, `change_issue_status`, `add_comment` or `delete_issue`; Jira Cloud only.
 
 `create_issue`:
 
@@ -54,9 +54,44 @@ PagerDuty's are `trigger_incident`, `acknowledge_incident` and `resolve_incident
 | `description` | Optional. |
 | `priority` | Optional priority name, such as `High`. |
 | `assigneeAccountId` | Optional. The assignee's Atlassian account ID, not an email address. |
+| `parentKey` | Optional. The parent issue key, such as `OPS-12`, when creating a sub-task. |
+| `fields` | Optional object of other Jira fields, in the Jira REST API field format. |
+
+`update_issue`: `issueKey` (required), and `summary`, `description`, `priority`, `assigneeAccountId` and `fields` to change.
 
 `change_issue_status`: `issueKey` (required) and `status` (required, the target status name such as `Done`, not a transition label).
 Its output carries `issueKey`, `status` and `issueUrl`.
+
+`add_comment`: `issueKey` and `comment` (both required).
+
+`delete_issue`: `issueKey` (required) and `deleteSubtasks` (defaults to `false`).
+
+## Linear (`linear`)
+
+`teamId`, `assigneeId`, `stateId`, `projectId`, `cycleId` and the entries of `labelIds` are Linear UUIDs.
+`issueId` and `parentId` take a UUID or an issue identifier such as `ENG-123`.
+
+| Action | Properties |
+|---|---|
+| `create_issue` | `teamId` and `title` (required), `description` (Markdown), `assigneeId`, `stateId`, `projectId`, `cycleId`, `priority`, `labelIds` |
+| `create_sub_issue` | `parentId` and `title` (required), `teamId` (defaults to the parent's team), `description`, `assigneeId`, `stateId`, `priority` |
+| `update_issue` | `issueId` (required), `title`, `description`, `assigneeId`, `stateId`, `projectId`, `cycleId`, `priority`, `labelIds` |
+| `add_issue_comment` | `issueId` and `body` (required, Markdown) |
+| `add_document` | `title` (required), `content` (Markdown), `initiativeId`, `teamId`, `issueId`, `releaseId`, `cycleId`, `projectId` |
+| `add_reaction_to_issue` | `issueId` and `emoji` (required, a shortcode such as `eyes`) |
+| `archive_issue` | `issueId` (required) |
+| `delete_issue` | `issueId` (required) |
+| `delegate_issue_to_agent` | `issueId` and `delegateId` (required, the agent app user's UUID) |
+
+## PagerDuty (`pagerduty`)
+
+Every action requires `fromEmail`, the email of a PagerDuty user.
+
+| Action | Other properties |
+|---|---|
+| `trigger_incident` | `service` (required, the service ID) and `title` (required), `details`, `urgency`, `incidentKey`, `escalationPolicyId` |
+| `acknowledge_incident` | `incidentId` (required) |
+| `resolve_incident` | `incidentId` (required), `resolution` (a note added to the incident) |
 
 ## GitHub (`github-ocean`)
 
@@ -76,7 +111,7 @@ Every one takes `org` and `repo` (required) unless the row says otherwise; `prNu
 |---|---|
 | `create_issue` | `title` (required), `body`, `labels`, `assignees`, `milestone` |
 | `edit_issue` | `issueNumber` (required), `title`, `body`, `labels`, `assignees`, `milestone` |
-| `close_issue` | `issueNumber` and `stateReason` (required, `completed`, `not_planned` or `duplicate`), `duplicateIssueId` |
+| `close_issue` | `issueNumber` (required), `stateReason` (`completed`, the default, `not_planned` or `duplicate`), `duplicateIssueId` (required when `stateReason` is `duplicate`) |
 | `create_pull_request` | `title`, `head` and `base` (required), `body`, `draft` |
 | `update_pull_request` | `prNumber` (required), `title`, `body`, `base` |
 | `close_pull_request` | `prNumber` (required) |
@@ -104,8 +139,9 @@ Every one takes `org` and `repo` (required) unless the row says otherwise; `prNu
 
 ## Azure DevOps (`azure-devops`)
 
-Every pull request action takes `project`, `repositoryId` and, except for `create_pull_request`, `pullRequestId`.
-Most also take `organization`.
+Every pull request action requires `project`, `repositoryId` and, except for `create_pull_request`, `pullRequestId`.
+`create_pull_request`, `close_pull_request`, `merge_pull_request` and `update_pull_request_labels` also require `organization`, the organization configured on the integration.
+`update_pull_request`, `create_pull_request_thread` and `trigger_pipeline` take no `organization`.
 
 | Action | Other properties |
 |---|---|
@@ -126,6 +162,7 @@ The `integrationInvocationType` values and their properties:
 |---|---|
 | `create_agent` | Creates an agent and registers it in the catalog. |
 | `trigger_agent` | Starts a session, or continues an idle one, and sends it a prompt. |
+| `cancel_session` | Interrupts a running session. |
 | `update_agent` | Changes an agent's name, model, system prompt or config. |
 | `archive_agent` | Archives an agent permanently. |
 | `create_environment` | Creates an environment and registers it in the catalog. |
@@ -151,6 +188,8 @@ The `integrationInvocationType` values and their properties:
 | `sessionId` | An idle session to continue. With it, `environmentId` and `config` are ignored. |
 | `reportSessionStatus` | `true` makes the node wait until the session ends, which needs a webhook configured on the integration. Defaults to `false`. |
 | `config` | Optional session parameters such as vault IDs, resources or metadata; ignored with `sessionId`. |
+
+`cancel_session`: `sessionId` (required, a running session) and `sessionThreadId` (optional; without it, every thread in the session is interrupted).
 
 `update_agent`: `agentId` (required) and at least one of `name`, `model`, `systemPrompt`, or `config` (merged into the agent's config).
 
@@ -189,12 +228,14 @@ It replaces the deprecated `CURSOR_AGENT` node: build new Cursor steps with this
 | Property | Meaning |
 |---|---|
 | `apiVersion` | `v0` or `v1`. Defaults to `v1`, where the node finishes as soon as the agent is launched. |
-| `prompt` | Required. The task. |
+| `prompt` | The task. Set it or `config.prompt.text`. |
 | `repository` | The GitHub repository URL. On `v0` it is required unless `prUrl` or `config.source` names a workspace. |
 | `ref` | The branch, tag or commit to start from; ignored with `prUrl`. |
 | `prUrl` | A GitHub pull request URL; on `v0` it can replace `repository`. |
 | `reportCompletion` | `v0` only. `true` keeps the node running until Cursor calls back, so use `v0` with it to wait for the agent. |
-| `config` | Optional Cursor API fields merged onto the request, such as `target.autoCreatePr` or `model`. |
+| `model` | Optional Cursor model, a string or an object such as `{"id": "composer-2.5"}`. Left out, the account default is used. |
+| `autoCreatePr` | `true` opens a pull request when the agent finishes. Defaults to `false`. |
+| `config` | Optional Cursor API fields shallow-merged onto the top level of the request body; a nested object or array replaces the whole value. Set `model` and `autoCreatePr` with their own properties: on `v1` the request field is `autoCreatePR`, so `config.target.autoCreatePr` does not set it. |
 
 `trigger_agent`: `agentId` (required), `prompt`, `reportCompletion` and `config`.
 

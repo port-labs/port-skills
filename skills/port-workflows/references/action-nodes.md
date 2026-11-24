@@ -52,7 +52,7 @@ Creates an entity, or updates the fields it names on an existing one.
 | `mapping.properties` | An object keyed by property identifier, as returned by `list_blueprints`. |
 | `mapping.relations` | An object keyed by relation identifier. A many-relation takes an array, or a template that evaluates to one, such as `{{ .outputs.trigger.dependencies \| fromjson }}`. |
 
-These six are the only keys `mapping` accepts.
+These six are the only keys `mapping` reads; any other key is dropped without an error.
 Output: `response.data`, the saved entity.
 
 ## `KAFKA`
