@@ -29,8 +29,9 @@ the page's widgets show to a window of time. It appears in the Port UI as a
 calendar chip at the start of the filter bar, and it is stored on the page as
 `pageDateFilter`.
 
-`pageDateFilter` is `{ "range": <range> }`. Leave it out when the user did
-not ask for a date range.
+`pageDateFilter` is `{ "range": <range> }`, with an optional `"exclude"` (see
+[Leaving out the current period](#leaving-out-the-current-period)). Leave it
+out when the user did not ask for a date range.
 
 ### Range types
 
@@ -61,6 +62,37 @@ Pick the type that matches what the user said. "Last 2 weeks" is `last`, not
 a `fixed` pair of dates: a relative range moves forward with time, so the
 dashboard stays current, while a `fixed` range always shows the same days.
 Use `fixed` only when the user names specific dates.
+
+### Leaving out the current period
+
+Set `exclude` next to `range` to cut the current, unfinished period off the
+end of the range. It is one of:
+
+| `exclude`        | Leaves out                           |
+| ---------------- | ------------------------------------ |
+| `today`          | Today                                |
+| `currentWeek`    | The current week, starting on Monday |
+| `currentMonth`   | The current calendar month           |
+| `currentQuarter` | The current calendar quarter         |
+
+The range then ends the day before the excluded period starts. A range that
+already ends before that day is not changed, and a range that lies entirely
+inside the excluded period shows nothing. Only one value is allowed.
+
+```json
+{
+  "pageDateFilter": {
+    "range": { "type": "quickRange", "quickRange": "30d" },
+    "exclude": "today"
+  }
+}
+```
+
+Use it with a relative range such as `last`, `quickRange`, `since`, or
+`periodToDate` when the user says "not including today" or "completed weeks
+only". Do not combine it with `next`: a `next` range starts today, so
+excluding the current period leaves it empty. To clear it, resend
+`pageDateFilter` without `exclude`.
 
 ### Which widgets use the range, and which date they filter by
 

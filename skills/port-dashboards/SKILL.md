@@ -160,7 +160,8 @@ The essentials:
 
 - `pageFilters` replaces the whole list. Call `get_page` first, then send the
   full list back.
-- `pageDateFilter` is `{ "range": { ... } }`. Pass it to `upsert_dashboard_page`
+- `pageDateFilter` is `{ "range": { ... }, "exclude": ... }`, where `exclude` is
+  optional. Pass it to `upsert_dashboard_page`
   to set it, omit it to leave it unchanged, or pass `null` to clear it. To
   change only the range, pass the page `identifier` and `pageDateFilter`
   without `widgets` or `layout`.
@@ -171,6 +172,10 @@ The essentials:
   `dashboardDateProperty`, which defaults to `$createdAt`. Set it when the user
   wants another date. Number and line charts use their own date settings, so
   do not set it on them.
+- Add `exclude` (`today`, `currentWeek`, `currentMonth`, or `currentQuarter`) when
+  the user wants the current, unfinished period left out of a relative range,
+  for example "last 30 days, not including today". Do not combine it with
+  `next`.
 - Set `ignoreDashboardDateFilter: true` on any widget the date range should
   not narrow, such as an all-time total beside a filtered chart. It works on
   tables, boards, pie charts, bar charts, number charts, line charts, and
@@ -193,8 +198,7 @@ skill's page-permissions reference. The full rules and an example are in
 - A widget that renders empty or with the wrong entities almost always has a
   dataset on the wrong property, the wrong blueprint, or a misspelled enum
   value. Validate it with `list_entities` before creating the widget.
-- "Column sizes must sum to 12" means one row's `size` values do not add up to
-  12. Recompute that row, with at most 4 columns of 3-12 each.
+- "Column sizes must sum to 12" means one row's `size` values do not add up to 12. Recompute that row, with at most 4 columns of 3-12 each.
 - A row `height` under 400 is rejected, so set every row to at least 400.
 - A layout column whose `id` matches no widget `id` makes the widget never
   render. Keep the two in sync exactly.
