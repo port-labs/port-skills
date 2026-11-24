@@ -28,8 +28,7 @@ When a question is not answered here, search `search_port_knowledge_sources`.
 If no Port MCP server is connected, the `port-getting-started` skill explains how to connect one.
 
 In the workflow editor side chat, where the page context holds the workflow being edited, propose changes with `suggest_workflow`.
-It is not in your tool list at first, so find it with one `search_tools` call whose query is only `suggest_workflow`.
-Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save, and leave `suggest_workflow` unsearched there: its schema is very large and fills the context window.
+Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
 
 ## Build a workflow
 
@@ -43,7 +42,6 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
    Write Port entities with an upsert entity node, call Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps with an integration action, and use an HTTP request node for any other external call.
    Pass data between nodes with JQ templates, and read tokens and secret URLs from organization secrets with `{{ .secrets["<name>"] }}`.
    Before you write the JSON, load `references/workflow-interface.md`, the shape of a workflow and how its parts relate.
-   Outside the editor side chat, `upsert_workflow` is not in your tool list at first, so also find it now with one `search_tools` call whose query is only `upsert_workflow`.
 3. **Connect the outlets.**
    Add one connection per edge, from `sourceIdentifier` to `targetIdentifier`, and give every outlet of a CONDITION or INPUT node the connection for its branch, so each outcome the user described has a path.
 4. **Set permissions.**
@@ -51,7 +49,7 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
    A save is rejected when `permissions` names a team or user the organization does not have, so when the lookup does not find the one the user named, leave it out, say which name was not found, and offer the teams that exist.
 5. **Save or propose.**
    Save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
-   In the workflow editor side chat, find `suggest_workflow` with one `search_tools` call whose query is only `suggest_workflow` and call it instead, with `suggestedWorkflow` set to the complete proposed workflow and `currentWorkflow` set to the workflow as it is now in the editor; leave `currentWorkflow` out for a new empty workflow.
+   In the workflow editor side chat, call `suggest_workflow` instead, with `suggestedWorkflow` set to the complete proposed workflow and `currentWorkflow` set to the workflow as it is now in the editor; leave `currentWorkflow` out for a new empty workflow.
    That call saves nothing: the user reviews the proposal, applies it and saves it, so the reply describes the workflow as suggested for their review.
 
 ## Gotchas
