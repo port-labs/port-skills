@@ -41,15 +41,15 @@ Port's MCP server first.
 <!-- SKILL_INDEX_START -->
 | Skill | What it does |
 |---|---|
-| [`port-blueprints`](plugin/skills/port-blueprints/SKILL.md) | Model your context lake with Port blueprints, properties, and relations. |
-| [`port-context-lake`](plugin/skills/port-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
-| [`port-create-custom-oauth-app`](plugin/skills/port-create-custom-oauth-app/SKILL.md) | Register an OAuth app for a custom UI and wire up PKCE login. |
-| [`port-dashboards`](plugin/skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, filters, and a date range. |
-| [`port-getting-started`](plugin/skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
-| [`port-integrations`](plugin/skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
-| [`port-permissions`](plugin/skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
-| [`port-terraform`](plugin/skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
-| [`port-workflows`](plugin/skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
+| [`port-blueprints`](skills/port-blueprints/SKILL.md) | Model your context lake with Port blueprints, properties, and relations. |
+| [`port-context-lake`](skills/port-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
+| [`port-create-custom-oauth-app`](skills/port-create-custom-oauth-app/SKILL.md) | Register an OAuth app for a custom UI and wire up PKCE login. |
+| [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, filters, and a date range. |
+| [`port-getting-started`](skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
+| [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
+| [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
+| [`port-terraform`](skills/port-terraform/SKILL.md) | Manage Port resources as code with the Terraform provider. |
+| [`port-workflows`](skills/port-workflows/SKILL.md) | Build Port workflows with triggers, action nodes, and conditions. |
 <!-- SKILL_INDEX_END -->
 
 ## Install
@@ -71,7 +71,7 @@ directory:
 
 ```bash
 git clone https://github.com/port-labs/port-skills /tmp/port-skills
-cp -r /tmp/port-skills/plugin/skills/port-workflows ~/.claude/skills/
+cp -r /tmp/port-skills/skills/port-workflows ~/.claude/skills/
 rm -rf /tmp/port-skills
 ```
 

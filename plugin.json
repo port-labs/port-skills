@@ -21,6 +21,6 @@
     "ai-software-factory",
     "ai-factory"
   ],
-  "skills": "plugin/skills/",
-  "mcpServers": "plugin/.mcp.json"
+  "skills": "skills/",
+  "mcpServers": ".mcp.json"
 }

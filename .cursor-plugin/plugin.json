@@ -21,6 +21,5 @@
     "devops",
     "mcp"
   ],
-  "logo": "assets/icon.svg",
-  "skills": "./plugin/skills/"
+  "logo": "assets/icon.svg"
 }

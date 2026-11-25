@@ -5,9 +5,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'plugin/**'
+      - 'skills/**'
       - '.claude/skills/**'
       - '.claude-plugin/**'
+      - '.mcp.json'
 
 permissions:
   contents: write
@@ -69,7 +70,7 @@ jobs:
           BRANCH="release/v$VERSION"
 
           git checkout -b "$BRANCH"
-          git add plugin/.claude-plugin/plugin.json package.json package-lock.json
+          git add .claude-plugin/plugin.json package.json package-lock.json
           git commit -m "chore(release): sync manifests to v$VERSION"
           git push origin "$BRANCH"
 

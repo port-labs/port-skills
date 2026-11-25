@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Resolves the next release version, writes it into plugin/.claude-plugin/plugin.json
+ * Resolves the next release version, writes it into .claude-plugin/plugin.json
  * and prints it to stdout. Run by the release workflow before tagging.
  *
  * Git tags are the version source of truth: the next version is the highest
@@ -15,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const PLUGIN_PATH = path.join(__dirname, '..', '..', 'plugin', '.claude-plugin', 'plugin.json');
+const PLUGIN_PATH = path.join(__dirname, '..', '..', '.claude-plugin', 'plugin.json');
 const SEMVER = /^(\d+)\.(\d+)\.(\d+)$/;
 
 function parseVersion(version, source) {

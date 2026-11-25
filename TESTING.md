@@ -6,7 +6,7 @@ and behaves correctly.
 ## Validate the manifests
 
 ```bash
-claude plugin validate ./plugin
+claude plugin validate .
 ```
 
 Add `--strict` to also fail on unrecognized or misspelled fields in
@@ -14,7 +14,7 @@ Add `--strict` to also fail on unrecognized or misspelled fields in
 review pipeline runs on every submission:
 
 ```bash
-claude plugin validate ./plugin --strict
+claude plugin validate . --strict
 ```
 
 ## Load the plugin without installing it
@@ -23,7 +23,7 @@ Point Claude Code at this directory with `--plugin-dir`. This loads the
 plugin for that session only, no marketplace or install step needed:
 
 ```bash
-claude --plugin-dir /path/to/port-skills/plugin
+claude --plugin-dir /path/to/port-skills
 ```
 
 If you already have `port-skills` installed from a marketplace, the local
@@ -33,7 +33,7 @@ uninstalling first.
 You can load multiple plugin directories at once by repeating the flag:
 
 ```bash
-claude --plugin-dir ./port-skills/plugin --plugin-dir ./some-other-plugin
+claude --plugin-dir ./port-skills --plugin-dir ./some-other-plugin
 ```
 
 To test a build already packaged as a `.zip` and hosted at a URL (for
@@ -50,7 +50,7 @@ Once loaded, check each component:
 - Run `/help` and confirm skills appear under the `port-skills:` namespace.
 - Try each skill directly, e.g. `/port-skills:port-workflows`, and with a
   natural-language prompt that should trigger it automatically.
-- Confirm the Port MCP server connects (`plugin/.mcp.json`) and
+- Confirm the Port MCP server connects (`.mcp.json` at the plugin root) and
   its tools are usable.
 - If you edited a `SKILL.md`, changes apply immediately in the running
   session. For anything else (`.mcp.json`, hooks, agents), run

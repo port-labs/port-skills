@@ -4,15 +4,17 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - 'plugin/**'
+      - 'skills/**'
       - '.claude/skills/**'
       - '.claude-plugin/**'
+      - '.mcp.json'
   push:
     branches: [main]
     paths:
-      - 'plugin/**'
+      - 'skills/**'
       - '.claude/skills/**'
       - '.claude-plugin/**'
+      - '.mcp.json'
 
 jobs:
   validate:
