@@ -115,10 +115,14 @@ clobbering unrelated fields.
 
 ```bash
 curl -L -X POST 'https://api.port.io/v1/blueprints' \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
   --data @blueprint.json
  ```
+
+The user supplies the access token (`YOUR_ACCESS_TOKEN` is a placeholder).
+Never read it from the shell environment or from files on their machine; ask
+them for it, or use the Port MCP tools instead.
 
 Fallback: a `422` usually means `required` lists a property that isn't in
 `properties`, or a relation `target` that doesn't exist yet. Fix the JSON and
