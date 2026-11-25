@@ -409,6 +409,246 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 }
 ```
 
+#### c.json
+
+```json
+{
+	"name": "main",
+	"commit": {
+		"sha": "ea36a236fc25fe83ff1b6552c731e7ef56c3db90",
+		"node_id": "C_kwDOO-iDDNoAKGVhMzZhMjM2ZmMyNWZlODNmZjFiNjU1MmM3MzFlN2VmNTZjM2RiOTA",
+		"commit": {
+			"author": {
+				"name": "Melody Daniel",
+				"email": "melodyogonna@gmail.com",
+				"date": "2025-06-20T12:42:20Z"
+			},
+			"committer": {
+				"name": "Melody Daniel",
+				"email": "melodyogonna@gmail.com",
+				"date": "2025-06-20T12:42:20Z"
+			},
+			"message": "Add dummy_file_df085cf9-9502-461f-96af-2cd96f9f4b67.txt",
+			"tree": {
+				"sha": "d1e944dd64c105a2eb50af9efc0db0f97037b20d",
+				"url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/trees/d1e944dd64c105a2eb50af9efc0db0f97037b20d"
+			},
+			"url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/commits/ea36a236fc25fe83ff1b6552c731e7ef56c3db90",
+			"comment_count": 0,
+			"verification": {
+				"verified": false,
+				"reason": "unsigned",
+				"signature": null,
+				"payload": null,
+				"verified_at": null
+			}
+		},
+		"url": "https://api.github.com/repos/port-gh-app-dev/large-repo/commits/ea36a236fc25fe83ff1b6552c731e7ef56c3db90",
+		"html_url": "https://github.com/port-gh-app-dev/large-repo/commit/ea36a236fc25fe83ff1b6552c731e7ef56c3db90",
+		"comments_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/commits/ea36a236fc25fe83ff1b6552c731e7ef56c3db90/comments",
+		"author": {
+			"login": "melodyogonna",
+			"id": 24739630,
+			"node_id": "MDQ6VXNlcjI0NzM5NjMw",
+			"avatar_url": "https://avatars.githubusercontent.com/u/24739630?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/melodyogonna",
+			"html_url": "https://github.com/melodyogonna",
+			"followers_url": "https://api.github.com/users/melodyogonna/followers",
+			"following_url": "https://api.github.com/users/melodyogonna/following{/other_user}",
+			"gists_url": "https://api.github.com/users/melodyogonna/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/melodyogonna/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/melodyogonna/subscriptions",
+			"organizations_url": "https://api.github.com/users/melodyogonna/orgs",
+			"repos_url": "https://api.github.com/users/melodyogonna/repos",
+			"events_url": "https://api.github.com/users/melodyogonna/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/melodyogonna/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"committer": {
+			"login": "melodyogonna",
+			"id": 24739630,
+			"node_id": "MDQ6VXNlcjI0NzM5NjMw",
+			"avatar_url": "https://avatars.githubusercontent.com/u/24739630?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/melodyogonna",
+			"html_url": "https://github.com/melodyogonna",
+			"followers_url": "https://api.github.com/users/melodyogonna/followers",
+			"following_url": "https://api.github.com/users/melodyogonna/following{/other_user}",
+			"gists_url": "https://api.github.com/users/melodyogonna/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/melodyogonna/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/melodyogonna/subscriptions",
+			"organizations_url": "https://api.github.com/users/melodyogonna/orgs",
+			"repos_url": "https://api.github.com/users/melodyogonna/repos",
+			"events_url": "https://api.github.com/users/melodyogonna/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/melodyogonna/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"parents": [
+			{
+				"sha": "7610fc3494db8c448087f737860cb916a5c8f2bf",
+				"url": "https://api.github.com/repos/port-gh-app-dev/large-repo/commits/7610fc3494db8c448087f737860cb916a5c8f2bf",
+				"html_url": "https://github.com/port-gh-app-dev/large-repo/commit/7610fc3494db8c448087f737860cb916a5c8f2bf"
+			}
+		]
+	},
+	"_links": {
+		"self": "https://api.github.com/repos/port-gh-app-dev/large-repo/branches/main",
+		"html": "https://github.com/port-gh-app-dev/large-repo/tree/main"
+	},
+	"protected": false,
+	"protection": {
+		"enabled": false,
+		"required_status_checks": {
+			"enforcement_level": "off",
+			"contexts": [],
+			"checks": []
+		}
+	},
+	"protection_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/branches/main/protection",
+	"__repository": "large-repo",
+	"__repository_object": {
+		"id": 1005093644,
+		"node_id": "R_kgDOO-iDDA",
+		"name": "large-repo",
+		"full_name": "port-gh-app-dev/large-repo",
+		"private": false,
+		"owner": {
+			"login": "port-gh-app-dev",
+			"id": 216844958,
+			"node_id": "O_kgDODOzKng",
+			"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/port-gh-app-dev",
+			"html_url": "https://github.com/port-gh-app-dev",
+			"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+			"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+			"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+			"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+			"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+			"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+			"type": "Organization",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"html_url": "https://github.com/port-gh-app-dev/large-repo",
+		"description": null,
+		"fork": false,
+		"url": "https://api.github.com/repos/port-gh-app-dev/large-repo",
+		"forks_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/forks",
+		"keys_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/keys{/key_id}",
+		"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/collaborators{/collaborator}",
+		"teams_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/teams",
+		"hooks_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/hooks",
+		"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues/events{/number}",
+		"events_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/events",
+		"assignees_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/assignees{/user}",
+		"branches_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/branches{/branch}",
+		"tags_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/tags",
+		"blobs_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/blobs{/sha}",
+		"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/tags{/sha}",
+		"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/refs{/sha}",
+		"trees_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/trees{/sha}",
+		"statuses_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/statuses/{sha}",
+		"languages_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/languages",
+		"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/stargazers",
+		"contributors_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/contributors",
+		"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/subscribers",
+		"subscription_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/subscription",
+		"commits_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/commits{/sha}",
+		"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/commits{/sha}",
+		"comments_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/comments{/number}",
+		"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues/comments{/number}",
+		"contents_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/contents/{+path}",
+		"compare_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/compare/{base}...{head}",
+		"merges_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/merges",
+		"archive_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/{archive_format}{/ref}",
+		"downloads_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/downloads",
+		"issues_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues{/number}",
+		"pulls_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/pulls{/number}",
+		"milestones_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/milestones{/number}",
+		"notifications_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/notifications{?since,all,participating}",
+		"labels_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/labels{/name}",
+		"releases_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/releases{/id}",
+		"deployments_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/deployments",
+		"created_at": "2025-06-19T16:51:39Z",
+		"updated_at": "2025-06-20T12:42:23Z",
+		"pushed_at": "2025-06-20T12:42:20Z",
+		"git_url": "git://github.com/port-gh-app-dev/large-repo.git",
+		"ssh_url": "git@github.com:port-gh-app-dev/large-repo.git",
+		"clone_url": "https://github.com/port-gh-app-dev/large-repo.git",
+		"svn_url": "https://github.com/port-gh-app-dev/large-repo",
+		"homepage": null,
+		"size": 1134663,
+		"stargazers_count": 0,
+		"watchers_count": 0,
+		"language": null,
+		"has_issues": true,
+		"has_projects": true,
+		"has_downloads": true,
+		"has_wiki": true,
+		"has_pages": false,
+		"has_discussions": false,
+		"forks_count": 0,
+		"mirror_url": null,
+		"archived": false,
+		"disabled": false,
+		"open_issues_count": 0,
+		"license": null,
+		"allow_forking": true,
+		"is_template": false,
+		"web_commit_signoff_required": false,
+		"has_pull_requests": true,
+		"pull_request_creation_policy": "all",
+		"topics": [],
+		"visibility": "public",
+		"forks": 0,
+		"open_issues": 0,
+		"watchers": 0,
+		"default_branch": "main",
+		"permissions": {
+			"admin": true,
+			"maintain": true,
+			"push": true,
+			"triage": true,
+			"pull": true
+		},
+		"security_and_analysis": {
+			"secret_scanning": {
+				"status": "enabled"
+			},
+			"secret_scanning_push_protection": {
+				"status": "disabled"
+			},
+			"dependabot_security_updates": {
+				"status": "disabled"
+			},
+			"secret_scanning_non_provider_patterns": {
+				"status": "enabled"
+			},
+			"secret_scanning_ai_detection": {
+				"status": "disabled"
+			},
+			"secret_scanning_validity_checks": {
+				"status": "enabled"
+			},
+			"secret_scanning_delegated_alert_dismissal": {
+				"status": "disabled"
+			}
+		},
+		"custom_properties": {}
+	},
+	"__organization": "port-gh-app-dev"
+}
+```
+
 ### code-scanning-alerts
 
 #### a.json
@@ -535,6 +775,68 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 }
 ```
 
+#### c.json
+
+```json
+{
+	"number": 3,
+	"created_at": "2025-09-09T19:04:54Z",
+	"updated_at": "2025-09-09T19:04:54Z",
+	"url": "https://api.github.com/repos/port-gh-app-dev/perf-[REDACTED]-repo-01ad96e1/code-scanning/alerts/3",
+	"html_url": "https://github.com/port-gh-app-dev/perf-[REDACTED]-repo-01ad96e1/security/code-scanning/3",
+	"state": "open",
+	"fixed_at": null,
+	"dismissed_by": null,
+	"dismissed_at": null,
+	"dismissed_reason": null,
+	"dismissed_comment": null,
+	"rule": {
+		"id": "actions/missing-workflow-permissions",
+		"severity": "warning",
+		"description": "Workflow does not contain permissions",
+		"name": "actions/missing-workflow-permissions",
+		"tags": [
+			"actions",
+			"external/cwe/cwe-275",
+			"maintainability",
+			"security"
+		],
+		"full_description": "Workflows should contain explicit permissions to restrict the scope of the default GITHUB_TOKEN.",
+		"help": "## Overview\n\nIf a GitHub Actions job or workflow has no explicit permissions set, then the repository permissions are used. Repositories created under organizations inherit the organization permissions. The organizations or repositories created before February 2023 have the default permissions set to read-write. Often these permissions do not adhere to the principle of least privilege and can be reduced to read-only, leaving the `write` permission only to a specific types as `issues: write` or `pull-requests: write`.\n\nNote that this query cannot check whether the organization or repository token settings are set to read-only. However, even if they are, it is recommended to define explicit permissions (`contents: read` and `packages: read` are equivalent to the read-only default) so that (a) the actual needs of the workflow are documented, and (b) the permissions will remain restricted if the default is subsequently changed, or the workflow is copied to a different repository or organization.\n\n## Recommendation\n\nAdd the `permissions` key to the job or the root of workflow (in this case it is applied to all jobs in the workflow that do not have their own `permissions` key) and assign the least privileges required to complete the task.\n\n## Example\n\n### Incorrect Usage\n\n```yaml\nname: \"My workflow\"\n# No permissions block\n```\n\n### Correct Usage\n\n```yaml\nname: \"My workflow\"\npermissions:\n  contents: read\n  pull-requests: write\n```\n\nor\n\n```yaml\njobs:\n  my-job:\n    permissions:\n      contents: read\n      pull-requests: write\n```\n\n## References\n\n- GitHub Docs: [Assigning permissions to jobs](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/assigning-permissions-to-jobs).\n",
+		"security_severity_level": "medium"
+	},
+	"tool": {
+		"name": "CodeQL",
+		"guid": null,
+		"version": "2.24.1"
+	},
+	"most_recent_instance": {
+		"ref": "refs/heads/main",
+		"analysis_key": "dynamic/github-code-scanning/codeql:analyze",
+		"environment": "{\"build-mode\":\"none\",\"category\":\"/language:actions\",\"language\":\"actions\",\"runner\":\"[\\\"ubuntu-la[REDACTED]\\\"]\"}",
+		"category": "/language:actions",
+		"state": "open",
+		"commit_sha": "eec5819df85585dd1e002fb58ecd44deee65b3ac",
+		"message": {
+			"text": "Actions job or workflow does not limit the permissions of the GITHUB_TOKEN. Consider setting an explicit permissions block, using the following as a minimal starting point: {{contents: read}}"
+		},
+		"location": {
+			"path": ".github/workflows/ci_workflow_2_pvoz.yml",
+			"start_line": 7,
+			"end_line": 13,
+			"start_column": 5,
+			"end_column": 45
+		},
+		"classifications": []
+	},
+	"instances_url": "https://api.github.com/repos/port-gh-app-dev/perf-[REDACTED]-repo-01ad96e1/code-scanning/alerts/3/instances",
+	"dismissal_approved_by": null,
+	"assignees": [],
+	"__repository": "perf-[REDACTED]-repo-01ad96e1",
+	"__organization": "port-gh-app-dev"
+}
+```
+
 ### collaborator
 
 #### a.json
@@ -592,6 +894,41 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 	"repos_url": "https://api.github.com/users/melodyogonna/repos",
 	"events_url": "https://api.github.com/users/melodyogonna/events{/privacy}",
 	"received_events_url": "https://api.github.com/users/melodyogonna/received_events",
+	"type": "User",
+	"user_view_type": "public",
+	"site_admin": false,
+	"permissions": {
+		"admin": true,
+		"maintain": true,
+		"push": true,
+		"triage": true,
+		"pull": true
+	},
+	"role_name": "admin",
+	"__repository": "perf-[REDACTED]-repo-adfd348e"
+}
+```
+
+#### c.json
+
+```json
+{
+	"login": "emekanwaoma",
+	"id": 66322582,
+	"node_id": "MDQ6VXNlcjY2MzIyNTgy",
+	"avatar_url": "https://avatars.githubusercontent.com/u/66322582?v=4",
+	"gravatar_id": "",
+	"url": "https://api.github.com/users/emekanwaoma",
+	"html_url": "https://github.com/emekanwaoma",
+	"followers_url": "https://api.github.com/users/emekanwaoma/followers",
+	"following_url": "https://api.github.com/users/emekanwaoma/following{/other_user}",
+	"gists_url": "https://api.github.com/users/emekanwaoma/gists{/gist_id}",
+	"starred_url": "https://api.github.com/users/emekanwaoma/starred{/owner}{/repo}",
+	"subscriptions_url": "https://api.github.com/users/emekanwaoma/subscriptions",
+	"organizations_url": "https://api.github.com/users/emekanwaoma/orgs",
+	"repos_url": "https://api.github.com/users/emekanwaoma/repos",
+	"events_url": "https://api.github.com/users/emekanwaoma/events{/privacy}",
+	"received_events_url": "https://api.github.com/users/emekanwaoma/received_events",
 	"type": "User",
 	"user_view_type": "public",
 	"site_admin": false,
@@ -835,6 +1172,141 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 	"html_url": "https://github.com/port-gh-app-dev/vscode/security/dependabot/236",
 	"created_at": "2026-03-14T00:38:59Z",
 	"updated_at": "2026-03-14T00:38:59Z",
+	"dismissal_request": null,
+	"assignees": [],
+	"dismissed_at": null,
+	"dismissed_by": null,
+	"dismissed_reason": null,
+	"dismissed_comment": null,
+	"fixed_at": null,
+	"auto_dismissed_at": null,
+	"__repository": "vscode",
+	"__organization": "port-gh-app-dev"
+}
+```
+
+#### c.json
+
+```json
+{
+	"number": 235,
+	"state": "open",
+	"dependency": {
+		"package": {
+			"ecosystem": "npm",
+			"name": "undici"
+		},
+		"manifest_path": "remote/package-lock.json",
+		"scope": "runtime",
+		"relationship": "transitive"
+	},
+	"security_advisory": {
+		"ghsa_id": "GHSA-v9p9-hfj2-hcw8",
+		"cve_id": "CVE-2026-2229",
+		"summary": "Undici has Unhandled Exception in WebSocket Client Due to Invalid server_max_window_bits Validation",
+		"description": "### Impact\n\nThe undici WebSocket client is vulnerable to a denial-of-service attack due to improper validation of the `server_max_window_bits` parameter in the permessage-deflate extension. When a WebSocket client connects to a server, it automatically advertises support for permessage-deflate compression. A malicious server can respond with an out-of-range `server_max_window_bits` value (outside zlib's valid range of 8-15). When the server subsequently sends a compressed frame, the client attempts to create a zlib InflateRaw instance with the invalid windowBits value, causing a synchronous RangeError exception that is not caught, resulting in immediate process termination.\n\nThe vulnerability exists because:\n\n1. The `isValidClientWindowBits()` function only validates that the value contains ASCII digits, not that it falls within the valid range 8-15\n2. The `createInflateRaw()` call is not wrapped in a try-catch block\n3. The resulting exception propagates up through the call stack and crashes the Node.js process\n\n### Patches\n_Has the problem been patched? What versions should users upgrade to?_\n\n### Workarounds\n_Is there a way for users to fix or remediate the vulnerability without upgrading?_",
+		"severity": "high",
+		"identifiers": [
+			{
+				"value": "GHSA-v9p9-hfj2-hcw8",
+				"type": "GHSA"
+			},
+			{
+				"value": "CVE-2026-2229",
+				"type": "CVE"
+			}
+		],
+		"references": [
+			{
+				"url": "https://github.com/nodejs/undici/security/advisories/GHSA-v9p9-hfj2-hcw8"
+			},
+			{
+				"url": "https://nvd.nist.gov/vuln/detail/CVE-2026-2229"
+			},
+			{
+				"url": "https://hackerone.com/reports/3487486"
+			},
+			{
+				"url": "https://cna.openjsf.org/security-advisories.html"
+			},
+			{
+				"url": "https://datatracker.ietf.org/doc/html/rfc7692"
+			},
+			{
+				"url": "https://nodejs.org/api/zlib.html#class-zlibinflateraw"
+			},
+			{
+				"url": "https://github.com/advisories/GHSA-v9p9-hfj2-hcw8"
+			}
+		],
+		"published_at": "2026-03-13T20:41:41Z",
+		"updated_at": "2026-03-13T20:41:44Z",
+		"withdrawn_at": null,
+		"vulnerabilities": [
+			{
+				"package": {
+					"ecosystem": "npm",
+					"name": "undici"
+				},
+				"severity": "high",
+				"vulnerable_version_range": "< 6.24.0",
+				"first_patched_version": {
+					"identifier": "6.24.0"
+				}
+			},
+			{
+				"package": {
+					"ecosystem": "npm",
+					"name": "undici"
+				},
+				"severity": "high",
+				"vulnerable_version_range": ">= 7.0.0, < 7.24.0",
+				"first_patched_version": {
+					"identifier": "7.24.0"
+				}
+			}
+		],
+		"cvss_severities": {
+			"cvss_v3": {
+				"vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+				"score": 7.5
+			},
+			"cvss_v4": {
+				"vector_string": null,
+				"score": 0
+			}
+		},
+		"epss": {
+			"percentage": 0.00186,
+			"percentile": 0.40303
+		},
+		"cvss": {
+			"vector_string": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+			"score": 7.5
+		},
+		"cwes": [
+			{
+				"cwe_id": "CWE-248",
+				"name": "Uncaught Exception"
+			}
+		],
+		"classification": "general"
+	},
+	"security_vulnerability": {
+		"package": {
+			"ecosystem": "npm",
+			"name": "undici"
+		},
+		"severity": "high",
+		"vulnerable_version_range": ">= 7.0.0, < 7.24.0",
+		"first_patched_version": {
+			"identifier": "7.24.0"
+		}
+	},
+	"url": "https://api.github.com/repos/port-gh-app-dev/vscode/dependabot/alerts/235",
+	"html_url": "https://github.com/port-gh-app-dev/vscode/security/dependabot/235",
+	"created_at": "2026-03-14T00:38:55Z",
+	"updated_at": "2026-03-14T00:38:55Z",
 	"dismissal_request": null,
 	"assignees": [],
 	"dismissed_at": null,
@@ -1633,6 +2105,84 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 }
 ```
 
+#### c.json
+
+```json
+{
+	"url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1",
+	"repository_url": "https://api.github.com/repos/port-gh-app-dev/vscode",
+	"labels_url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1/labels{/name}",
+	"comments_url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1/comments",
+	"events_url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1/events",
+	"html_url": "https://github.com/port-gh-app-dev/vscode/pull/1",
+	"id": 3518483026,
+	"node_id": "PR_kwDOO_1yIM6t6MM5",
+	"number": 1,
+	"title": "Sonarqube",
+	"user": {
+		"login": "melodyogonna",
+		"id": 24739630,
+		"node_id": "MDQ6VXNlcjI0NzM5NjMw",
+		"avatar_url": "https://avatars.githubusercontent.com/u/24739630?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/melodyogonna",
+		"html_url": "https://github.com/melodyogonna",
+		"followers_url": "https://api.github.com/users/melodyogonna/followers",
+		"following_url": "https://api.github.com/users/melodyogonna/following{/other_user}",
+		"gists_url": "https://api.github.com/users/melodyogonna/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/melodyogonna/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/melodyogonna/subscriptions",
+		"organizations_url": "https://api.github.com/users/melodyogonna/orgs",
+		"repos_url": "https://api.github.com/users/melodyogonna/repos",
+		"events_url": "https://api.github.com/users/melodyogonna/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/melodyogonna/received_events",
+		"type": "User",
+		"user_view_type": "public",
+		"site_admin": false
+	},
+	"labels": [],
+	"state": "open",
+	"locked": false,
+	"assignee": null,
+	"assignees": [],
+	"milestone": null,
+	"comments": 0,
+	"created_at": "2025-10-15T15:09:07Z",
+	"updated_at": "2025-10-15T15:09:07Z",
+	"closed_at": null,
+	"author_association": "MEMBER",
+	"type": null,
+	"active_lock_reason": null,
+	"draft": false,
+	"pull_request": {
+		"url": "https://api.github.com/repos/port-gh-app-dev/vscode/pulls/1",
+		"html_url": "https://github.com/port-gh-app-dev/vscode/pull/1",
+		"diff_url": "https://github.com/port-gh-app-dev/vscode/pull/1.diff",
+		"patch_url": "https://github.com/port-gh-app-dev/vscode/pull/1.patch",
+		"merged_at": null
+	},
+	"body": "<!-- Thank you for submitting a Pull Request. Please:\r\n* Read our Pull Request guidelines:\r\n  https://github.com/microsoft/vscode/wiki/How-to-Contribute#pull-requests\r\n* Associate an issue with the Pull Request.\r\n* Ensure that the code is up-to-date with the `main` branch.\r\n* Include a description of the proposed changes and how to [REDACTED] them.\r\n-->\r\n",
+	"closed_by": null,
+	"reactions": {
+		"url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1/reactions",
+		"total_count": 0,
+		"+1": 0,
+		"-1": 0,
+		"laugh": 0,
+		"hooray": 0,
+		"confused": 0,
+		"heart": 0,
+		"rocket": 0,
+		"eyes": 0
+	},
+	"timeline_url": "https://api.github.com/repos/port-gh-app-dev/vscode/issues/1/timeline",
+	"performed_via_github_app": null,
+	"state_reason": null,
+	"__repository": "vscode",
+	"__organization": "port-gh-app-dev"
+}
+```
+
 ### plugin
 
 #### a.json
@@ -1737,6 +2287,49 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 		"name": "port-custom-widgets",
 		"full_name": "acme/port-custom-widgets",
 		"html_url": "https://github.com/acme/port-custom-widgets",
+		"default_branch": "main"
+	},
+	"__branch": "main",
+	"__organization": "acme"
+}
+```
+
+#### c.json
+
+```json
+{
+	"plugin": {
+		"name": "opencode-hooks",
+		"displayName": "opencode-hooks",
+		"description": "",
+		"version": null,
+		"supports": {
+			"claude": false,
+			"cursor": false,
+			"codex": false,
+			"agents": false,
+			"kimi": false,
+			"opencode": true,
+			"pi": true,
+			"antigravity": false
+		},
+		"claude": {},
+		"cursor": {},
+		"codex": {},
+		"agents": {},
+		"kimi": {},
+		"opencode": {
+			"detected": true
+		},
+		"pi": {
+			"detected": true
+		},
+		"antigravity": {}
+	},
+	"__repository": {
+		"name": "opencode-hooks",
+		"full_name": "acme/opencode-hooks",
+		"html_url": "https://github.com/acme/opencode-hooks",
 		"default_branch": "main"
 	},
 	"__branch": "main",
@@ -2430,6 +3023,367 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 }
 ```
 
+#### c.json
+
+```json
+{
+	"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1",
+	"id": 3156305786,
+	"node_id": "PR_kwDOO-eDos68IWd6",
+	"html_url": "https://github.com/port-gh-app-dev/small-repo/pull/1",
+	"diff_url": "https://github.com/port-gh-app-dev/small-repo/pull/1.diff",
+	"patch_url": "https://github.com/port-gh-app-dev/small-repo/pull/1.patch",
+	"issue_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/1",
+	"number": 1,
+	"state": "open",
+	"locked": false,
+	"title": "Bump SonarSource/sonarqube-scan-action from 5 to 6 in /.github/workflows",
+	"user": {
+		"login": "dependabot[bot]",
+		"id": 49699333,
+		"node_id": "MDM6Qm90NDk2OTkzMzM=",
+		"avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/dependabot%5Bbot%5D",
+		"html_url": "https://github.com/apps/dependabot",
+		"followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+		"following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+		"gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+		"organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+		"repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+		"events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+		"type": "Bot",
+		"user_view_type": "public",
+		"site_admin": false
+	},
+	"body": "Bumps [SonarSource/sonarqube-scan-action](https://github.com/sonarsource/sonarqube-scan-action) from 5 to 6.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/sonarsource/sonarqube-scan-action/releases\">SonarSource/sonarqube-scan-action's releases</a>.</em></p>\n<blockquote>\n<h2>v6.0.0</h2>\n<h2>BREAKING CHANGE!</h2>\n<p>In order to prevent command-line injection, the actions has been rewritten from Bash to JS, and the <code>args</code> input is now parsed differently. When updating to v6, you might have to update your workflow to change how arguments are quoted.\nFor example, if you were previously passing:</p>\n<pre lang=\"yaml\"><code>- uses: SonarSource/sonarqube-scan-action@&lt;action version&gt;\n  with:\n    args: &gt;\n      -Dsonar.projectName=&quot;My Project&quot;\n</code></pre>\n<p>you should now pass:</p>\n<pre lang=\"yaml\"><code>- uses: SonarSource/sonarqube-scan-action@&lt;action version&gt;\n  with:\n    args: &gt;\n      &quot;-Dsonar.projectName=My Project&quot;\n</code></pre>\n<p>For more <code>args</code> passing examples, please refer to the <a href=\"https://github.com/SonarSource/sonarqube-scan-action/tree/master?tab=readme-ov-file#args\">README</a> file</p>\n<h2>What's Changed</h2>\n<ul>\n<li>SQSCANGHA-106 Migrate from Bash to JS by <a href=\"https://github.com/jeremy-davis-sonarsource\"><code>@​jeremy-davis-sonarsource</code></a> in <a href=\"https://redirect.github.com/SonarSource/sonarqube-scan-action/pull/208\">SonarSource/sonarqube-scan-action#208</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/SonarSource/sonarqube-scan-action/compare/v5.3.1...v6.0.0\">https://github.com/SonarSource/sonarqube-scan-action/compare/v5.3.1...v6.0.0</a></p>\n<h2>v5.3.2</h2>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/SonarSource/sonarqube-scan-action/compare/v5.3.1...v5.3.2\">https://github.com/SonarSource/sonarqube-scan-action/compare/v5.3.1...v5.3.2</a></p>\n<h2>v5.3.1</h2>\n<h2>OVERLOOKED BREAKING CHANGE!</h2>\n<p>In order to prevent command-line injection, the way to parse the <code>args</code> input has been changed, but this is possibly a breaking change regarding support of quotes.</p>\n<p>For example, if you were previously passing:</p>\n<pre lang=\"yaml\"><code>- uses: SonarSource/sonarqube-scan-action@&lt;action version&gt;\n  with:\n    args: &gt;\n      -Dsonar.projectName=&quot;My Project&quot;\n</code></pre>\n<p>you should now pass:</p>\n<pre lang=\"yaml\"><code>- uses: SonarSource/sonarqube-scan-action@&lt;action version&gt;\n  with:\n    args: &gt;\n      &quot;-Dsonar.projectName=My Project&quot;\n</code></pre>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/fd88b7d7ccbaefd23d8f36f73b59db7a3d246602\"><code>fd88b7d</code></a> SQSCANGHA-119 New Readme structure</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/27a157d2340e5fea28d60904924f01766fd66dfe\"><code>27a157d</code></a> SQSCANGHA-118 Update the README to document the breaking change for args parsing</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/e327da8e7856f7924529230d1ff7c1487eaf757a\"><code>e327da8</code></a> NO-JIRA Add documentation for contribution</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/ff001fd60075371d6a718f7bdb70514d38aeaa60\"><code>ff001fd</code></a> SQSCANGHA-107 Migrate install-build-wrapper</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/a88c96d7e45f0b6ea8ff876b52043d5d1f14a804\"><code>a88c96d</code></a> SQSCANGHA-107 Make room for install-build-wrapper action</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/a64281002cbd123eadac8e639a2c821a87660c41\"><code>a642810</code></a> SQSCANGHA-112 SQSCANGHA-113 Fixes from review and keytool refactor</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/60aee7033be5cd8ea3b942e3d552dc74074fde62\"><code>60aee70</code></a> NO-JIRA Disable fail fast on matrix jobs</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/502204eab40a6365f41dfd0ee96a1046116228b2\"><code>502204e</code></a> NO-JIRA Fix [REDACTED] assertion</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/0b794a06fae2d7d391ae19b91eb1f2d9d08ccccd\"><code>0b794a0</code></a> SQSCANGHA-112 Delete legacy shell script</li>\n<li><a href=\"https://github.com/SonarSource/sonarqube-scan-action/commit/ece10df5d76d338d13498c2fe5b93ab2d4e14494\"><code>ece10df</code></a> SQSCANGHA-112 Extract installation step and other fixes</li>\n<li>Additional commits viewable in <a href=\"https://github.com/sonarsource/sonarqube-scan-action/compare/v5...v6\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=SonarSource/sonarqube-scan-action&package-manager=github_actions&previous-version=5&new-version=6)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\nYou can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/port-gh-app-dev/small-repo/network/alerts).\n\n</details>",
+	"created_at": "2026-01-08T14:14:27Z",
+	"updated_at": "2026-01-08T14:14:28Z",
+	"closed_at": null,
+	"merged_at": null,
+	"merge_commit_sha": "928a59f50ed5d03c37ac51256f4bf78181ef1440",
+	"assignee": null,
+	"assignees": [],
+	"requested_reviewers": [],
+	"requested_teams": [],
+	"labels": [
+		{
+			"id": 9957500741,
+			"node_id": "LA_kwDOO-eDos8AAAACUYNnRQ",
+			"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels/dependencies",
+			"name": "dependencies",
+			"color": "0366d6",
+			"default": false,
+			"description": "Pull requests that update a dependency file"
+		},
+		{
+			"id": 9957500749,
+			"node_id": "LA_kwDOO-eDos8AAAACUYNnTQ",
+			"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels/github_actions",
+			"name": "github_actions",
+			"color": "000000",
+			"default": false,
+			"description": "Pull requests that update GitHub Actions code"
+		}
+	],
+	"milestone": null,
+	"draft": false,
+	"commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1/commits",
+	"review_comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1/comments",
+	"review_comment_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/comments{/number}",
+	"comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/1/comments",
+	"statuses_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/72ae9601c8c06aec08c3e8a72618747d7c41b68e",
+	"head": {
+		"label": "port-gh-app-dev:dependabot/github_actions/dot-github/workflows/SonarSource/sonarqube-scan-action-6",
+		"ref": "dependabot/github_actions/dot-github/workflows/SonarSource/sonarqube-scan-action-6",
+		"sha": "72ae9601c8c06aec08c3e8a72618747d7c41b68e",
+		"user": {
+			"login": "port-gh-app-dev",
+			"id": 216844958,
+			"node_id": "O_kgDODOzKng",
+			"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/port-gh-app-dev",
+			"html_url": "https://github.com/port-gh-app-dev",
+			"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+			"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+			"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+			"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+			"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+			"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+			"type": "Organization",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"repo": {
+			"id": 1005028258,
+			"node_id": "R_kgDOO-eDog",
+			"name": "small-repo",
+			"full_name": "port-gh-app-dev/small-repo",
+			"private": false,
+			"owner": {
+				"login": "port-gh-app-dev",
+				"id": 216844958,
+				"node_id": "O_kgDODOzKng",
+				"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+				"gravatar_id": "",
+				"url": "https://api.github.com/users/port-gh-app-dev",
+				"html_url": "https://github.com/port-gh-app-dev",
+				"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+				"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+				"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+				"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+				"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+				"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+				"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+				"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+				"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+				"type": "Organization",
+				"user_view_type": "public",
+				"site_admin": false
+			},
+			"html_url": "https://github.com/port-gh-app-dev/small-repo",
+			"description": null,
+			"fork": false,
+			"url": "https://api.github.com/repos/port-gh-app-dev/small-repo",
+			"forks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/forks",
+			"keys_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/keys{/key_id}",
+			"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/collaborators{/collaborator}",
+			"teams_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/teams",
+			"hooks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/hooks",
+			"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/events{/number}",
+			"events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/events",
+			"assignees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/assignees{/user}",
+			"branches_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/branches{/branch}",
+			"tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/tags",
+			"blobs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/blobs{/sha}",
+			"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/tags{/sha}",
+			"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/refs{/sha}",
+			"trees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/trees{/sha}",
+			"statuses_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/{sha}",
+			"languages_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/languages",
+			"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/stargazers",
+			"contributors_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contributors",
+			"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscribers",
+			"subscription_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscription",
+			"commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/commits{/sha}",
+			"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/commits{/sha}",
+			"comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/comments{/number}",
+			"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/comments{/number}",
+			"contents_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contents/{+path}",
+			"compare_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/compare/{base}...{head}",
+			"merges_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/merges",
+			"archive_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/{archive_format}{/ref}",
+			"downloads_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/downloads",
+			"issues_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues{/number}",
+			"pulls_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls{/number}",
+			"milestones_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/milestones{/number}",
+			"notifications_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/notifications{?since,all,participating}",
+			"labels_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels{/name}",
+			"releases_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/releases{/id}",
+			"deployments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/deployments",
+			"created_at": "2025-06-19T14:51:39Z",
+			"updated_at": "2025-11-12T14:54:08Z",
+			"pushed_at": "2026-01-08T14:14:27Z",
+			"git_url": "git://github.com/port-gh-app-dev/small-repo.git",
+			"ssh_url": "git@github.com:port-gh-app-dev/small-repo.git",
+			"clone_url": "https://github.com/port-gh-app-dev/small-repo.git",
+			"svn_url": "https://github.com/port-gh-app-dev/small-repo",
+			"homepage": null,
+			"size": 70,
+			"stargazers_count": 0,
+			"watchers_count": 0,
+			"language": "Python",
+			"has_issues": true,
+			"has_projects": true,
+			"has_downloads": true,
+			"has_wiki": true,
+			"has_pages": false,
+			"has_discussions": false,
+			"forks_count": 0,
+			"mirror_url": null,
+			"archived": false,
+			"disabled": false,
+			"open_issues_count": 1,
+			"license": null,
+			"allow_forking": true,
+			"is_template": false,
+			"web_commit_signoff_required": false,
+			"topics": [],
+			"visibility": "public",
+			"forks": 0,
+			"open_issues": 1,
+			"watchers": 0,
+			"default_branch": "main"
+		}
+	},
+	"base": {
+		"label": "port-gh-app-dev:main",
+		"ref": "main",
+		"sha": "55619858bf20a10d0c5768d8e6c3b344a1138be4",
+		"user": {
+			"login": "port-gh-app-dev",
+			"id": 216844958,
+			"node_id": "O_kgDODOzKng",
+			"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/port-gh-app-dev",
+			"html_url": "https://github.com/port-gh-app-dev",
+			"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+			"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+			"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+			"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+			"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+			"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+			"type": "Organization",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"repo": {
+			"id": 1005028258,
+			"node_id": "R_kgDOO-eDog",
+			"name": "small-repo",
+			"full_name": "port-gh-app-dev/small-repo",
+			"private": false,
+			"owner": {
+				"login": "port-gh-app-dev",
+				"id": 216844958,
+				"node_id": "O_kgDODOzKng",
+				"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+				"gravatar_id": "",
+				"url": "https://api.github.com/users/port-gh-app-dev",
+				"html_url": "https://github.com/port-gh-app-dev",
+				"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+				"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+				"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+				"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+				"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+				"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+				"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+				"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+				"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+				"type": "Organization",
+				"user_view_type": "public",
+				"site_admin": false
+			},
+			"html_url": "https://github.com/port-gh-app-dev/small-repo",
+			"description": null,
+			"fork": false,
+			"url": "https://api.github.com/repos/port-gh-app-dev/small-repo",
+			"forks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/forks",
+			"keys_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/keys{/key_id}",
+			"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/collaborators{/collaborator}",
+			"teams_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/teams",
+			"hooks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/hooks",
+			"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/events{/number}",
+			"events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/events",
+			"assignees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/assignees{/user}",
+			"branches_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/branches{/branch}",
+			"tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/tags",
+			"blobs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/blobs{/sha}",
+			"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/tags{/sha}",
+			"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/refs{/sha}",
+			"trees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/trees{/sha}",
+			"statuses_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/{sha}",
+			"languages_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/languages",
+			"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/stargazers",
+			"contributors_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contributors",
+			"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscribers",
+			"subscription_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscription",
+			"commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/commits{/sha}",
+			"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/commits{/sha}",
+			"comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/comments{/number}",
+			"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/comments{/number}",
+			"contents_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contents/{+path}",
+			"compare_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/compare/{base}...{head}",
+			"merges_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/merges",
+			"archive_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/{archive_format}{/ref}",
+			"downloads_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/downloads",
+			"issues_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues{/number}",
+			"pulls_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls{/number}",
+			"milestones_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/milestones{/number}",
+			"notifications_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/notifications{?since,all,participating}",
+			"labels_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels{/name}",
+			"releases_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/releases{/id}",
+			"deployments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/deployments",
+			"created_at": "2025-06-19T14:51:39Z",
+			"updated_at": "2025-11-12T14:54:08Z",
+			"pushed_at": "2026-01-08T14:14:27Z",
+			"git_url": "git://github.com/port-gh-app-dev/small-repo.git",
+			"ssh_url": "git@github.com:port-gh-app-dev/small-repo.git",
+			"clone_url": "https://github.com/port-gh-app-dev/small-repo.git",
+			"svn_url": "https://github.com/port-gh-app-dev/small-repo",
+			"homepage": null,
+			"size": 70,
+			"stargazers_count": 0,
+			"watchers_count": 0,
+			"language": "Python",
+			"has_issues": true,
+			"has_projects": true,
+			"has_downloads": true,
+			"has_wiki": true,
+			"has_pages": false,
+			"has_discussions": false,
+			"forks_count": 0,
+			"mirror_url": null,
+			"archived": false,
+			"disabled": false,
+			"open_issues_count": 1,
+			"license": null,
+			"allow_forking": true,
+			"is_template": false,
+			"web_commit_signoff_required": false,
+			"topics": [],
+			"visibility": "public",
+			"forks": 0,
+			"open_issues": 1,
+			"watchers": 0,
+			"default_branch": "main"
+		}
+	},
+	"_links": {
+		"self": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1"
+		},
+		"html": {
+			"href": "https://github.com/port-gh-app-dev/small-repo/pull/1"
+		},
+		"issue": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/1"
+		},
+		"comments": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/1/comments"
+		},
+		"review_comments": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1/comments"
+		},
+		"review_comment": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/comments{/number}"
+		},
+		"commits": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls/1/commits"
+		},
+		"statuses": {
+			"href": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/72ae9601c8c06aec08c3e8a72618747d7c41b68e"
+		}
+	},
+	"author_association": "NONE",
+	"auto_merge": null,
+	"active_lock_reason": null,
+	"__repository": "small-repo",
+	"__organization": "port-gh-app-dev"
+}
+```
+
 ### repository
 
 #### a.json
@@ -2848,6 +3802,291 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 }
 ```
 
+#### c.json
+
+```json
+{
+	"id": 1005093644,
+	"node_id": "R_kgDOO-iDDA",
+	"name": "large-repo",
+	"full_name": "port-gh-app-dev/large-repo",
+	"private": false,
+	"owner": {
+		"login": "port-gh-app-dev",
+		"id": 216844958,
+		"node_id": "O_kgDODOzKng",
+		"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/port-gh-app-dev",
+		"html_url": "https://github.com/port-gh-app-dev",
+		"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+		"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+		"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+		"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+		"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+		"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+		"type": "Organization",
+		"user_view_type": "public",
+		"site_admin": false
+	},
+	"html_url": "https://github.com/port-gh-app-dev/large-repo",
+	"description": null,
+	"fork": false,
+	"url": "https://api.github.com/repos/port-gh-app-dev/large-repo",
+	"forks_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/forks",
+	"keys_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/keys{/key_id}",
+	"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/collaborators{/collaborator}",
+	"teams_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/teams",
+	"hooks_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/hooks",
+	"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues/events{/number}",
+	"events_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/events",
+	"assignees_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/assignees{/user}",
+	"branches_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/branches{/branch}",
+	"tags_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/tags",
+	"blobs_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/blobs{/sha}",
+	"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/tags{/sha}",
+	"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/refs{/sha}",
+	"trees_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/trees{/sha}",
+	"statuses_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/statuses/{sha}",
+	"languages_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/languages",
+	"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/stargazers",
+	"contributors_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/contributors",
+	"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/subscribers",
+	"subscription_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/subscription",
+	"commits_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/commits{/sha}",
+	"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/git/commits{/sha}",
+	"comments_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/comments{/number}",
+	"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues/comments{/number}",
+	"contents_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/contents/{+path}",
+	"compare_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/compare/{base}...{head}",
+	"merges_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/merges",
+	"archive_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/{archive_format}{/ref}",
+	"downloads_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/downloads",
+	"issues_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/issues{/number}",
+	"pulls_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/pulls{/number}",
+	"milestones_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/milestones{/number}",
+	"notifications_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/notifications{?since,all,participating}",
+	"labels_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/labels{/name}",
+	"releases_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/releases{/id}",
+	"deployments_url": "https://api.github.com/repos/port-gh-app-dev/large-repo/deployments",
+	"created_at": "2025-06-19T16:51:39Z",
+	"updated_at": "2025-06-20T12:42:23Z",
+	"pushed_at": "2025-06-20T12:42:20Z",
+	"git_url": "git://github.com/port-gh-app-dev/large-repo.git",
+	"ssh_url": "git@github.com:port-gh-app-dev/large-repo.git",
+	"clone_url": "https://github.com/port-gh-app-dev/large-repo.git",
+	"svn_url": "https://github.com/port-gh-app-dev/large-repo",
+	"homepage": null,
+	"size": 1134663,
+	"stargazers_count": 0,
+	"watchers_count": 0,
+	"language": null,
+	"has_issues": true,
+	"has_projects": true,
+	"has_downloads": true,
+	"has_wiki": true,
+	"has_pages": false,
+	"has_discussions": false,
+	"forks_count": 0,
+	"mirror_url": null,
+	"archived": false,
+	"disabled": false,
+	"open_issues_count": 0,
+	"license": null,
+	"allow_forking": true,
+	"is_template": false,
+	"web_commit_signoff_required": false,
+	"topics": [],
+	"visibility": "public",
+	"forks": 0,
+	"open_issues": 0,
+	"watchers": 0,
+	"default_branch": "main",
+	"permissions": {
+		"admin": true,
+		"maintain": true,
+		"push": true,
+		"triage": true,
+		"pull": true
+	},
+	"security_and_analysis": {
+		"secret_scanning": {
+			"status": "enabled"
+		},
+		"secret_scanning_push_protection": {
+			"status": "disabled"
+		},
+		"dependabot_security_updates": {
+			"status": "disabled"
+		},
+		"secret_scanning_non_provider_patterns": {
+			"status": "enabled"
+		},
+		"secret_scanning_ai_detection": {
+			"status": "disabled"
+		},
+		"secret_scanning_validity_checks": {
+			"status": "enabled"
+		},
+		"secret_scanning_delegated_alert_dismissal": {
+			"status": "disabled"
+		}
+	},
+	"custom_properties": {},
+	"__teams": [],
+	"__collaborators": [
+		{
+			"login": "MPTG94",
+			"id": 9868797,
+			"node_id": "MDQ6VXNlcjk4Njg3OTc=",
+			"avatar_url": "https://avatars.githubusercontent.com/u/9868797?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/MPTG94",
+			"html_url": "https://github.com/MPTG94",
+			"followers_url": "https://api.github.com/users/MPTG94/followers",
+			"following_url": "https://api.github.com/users/MPTG94/following{/other_user}",
+			"gists_url": "https://api.github.com/users/MPTG94/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/MPTG94/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/MPTG94/subscriptions",
+			"organizations_url": "https://api.github.com/users/MPTG94/orgs",
+			"repos_url": "https://api.github.com/users/MPTG94/repos",
+			"events_url": "https://api.github.com/users/MPTG94/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/MPTG94/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false,
+			"permissions": {
+				"admin": true,
+				"maintain": true,
+				"push": true,
+				"triage": true,
+				"pull": true
+			},
+			"role_name": "admin"
+		},
+		{
+			"login": "melodyogonna",
+			"id": 24739630,
+			"node_id": "MDQ6VXNlcjI0NzM5NjMw",
+			"avatar_url": "https://avatars.githubusercontent.com/u/24739630?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/melodyogonna",
+			"html_url": "https://github.com/melodyogonna",
+			"followers_url": "https://api.github.com/users/melodyogonna/followers",
+			"following_url": "https://api.github.com/users/melodyogonna/following{/other_user}",
+			"gists_url": "https://api.github.com/users/melodyogonna/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/melodyogonna/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/melodyogonna/subscriptions",
+			"organizations_url": "https://api.github.com/users/melodyogonna/orgs",
+			"repos_url": "https://api.github.com/users/melodyogonna/repos",
+			"events_url": "https://api.github.com/users/melodyogonna/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/melodyogonna/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false,
+			"permissions": {
+				"admin": true,
+				"maintain": true,
+				"push": true,
+				"triage": true,
+				"pull": true
+			},
+			"role_name": "admin"
+		},
+		{
+			"login": "emekanwaoma",
+			"id": 66322582,
+			"node_id": "MDQ6VXNlcjY2MzIyNTgy",
+			"avatar_url": "https://avatars.githubusercontent.com/u/66322582?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/emekanwaoma",
+			"html_url": "https://github.com/emekanwaoma",
+			"followers_url": "https://api.github.com/users/emekanwaoma/followers",
+			"following_url": "https://api.github.com/users/emekanwaoma/following{/other_user}",
+			"gists_url": "https://api.github.com/users/emekanwaoma/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/emekanwaoma/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/emekanwaoma/subscriptions",
+			"organizations_url": "https://api.github.com/users/emekanwaoma/orgs",
+			"repos_url": "https://api.github.com/users/emekanwaoma/repos",
+			"events_url": "https://api.github.com/users/emekanwaoma/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/emekanwaoma/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false,
+			"permissions": {
+				"admin": true,
+				"maintain": true,
+				"push": true,
+				"triage": true,
+				"pull": true
+			},
+			"role_name": "admin"
+		},
+		{
+			"login": "mk-armah",
+			"id": 85971733,
+			"node_id": "MDQ6VXNlcjg1OTcxNzMz",
+			"avatar_url": "https://avatars.githubusercontent.com/u/85971733?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/mk-armah",
+			"html_url": "https://github.com/mk-armah",
+			"followers_url": "https://api.github.com/users/mk-armah/followers",
+			"following_url": "https://api.github.com/users/mk-armah/following{/other_user}",
+			"gists_url": "https://api.github.com/users/mk-armah/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/mk-armah/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/mk-armah/subscriptions",
+			"organizations_url": "https://api.github.com/users/mk-armah/orgs",
+			"repos_url": "https://api.github.com/users/mk-armah/repos",
+			"events_url": "https://api.github.com/users/mk-armah/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/mk-armah/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false,
+			"permissions": {
+				"admin": false,
+				"maintain": false,
+				"push": false,
+				"triage": false,
+				"pull": true
+			},
+			"role_name": "read"
+		},
+		{
+			"login": "asafa-seca",
+			"id": 241728778,
+			"node_id": "U_kgDODmh9Cg",
+			"avatar_url": "https://avatars.githubusercontent.com/u/241728778?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/asafa-seca",
+			"html_url": "https://github.com/asafa-seca",
+			"followers_url": "https://api.github.com/users/asafa-seca/followers",
+			"following_url": "https://api.github.com/users/asafa-seca/following{/other_user}",
+			"gists_url": "https://api.github.com/users/asafa-seca/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/asafa-seca/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/asafa-seca/subscriptions",
+			"organizations_url": "https://api.github.com/users/asafa-seca/orgs",
+			"repos_url": "https://api.github.com/users/asafa-seca/repos",
+			"events_url": "https://api.github.com/users/asafa-seca/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/asafa-seca/received_events",
+			"type": "User",
+			"user_view_type": "public",
+			"site_admin": false,
+			"permissions": {
+				"admin": false,
+				"maintain": false,
+				"push": false,
+				"triage": false,
+				"pull": true
+			},
+			"role_name": "read"
+		}
+	]
+}
+```
+
 ### skill
 
 #### a.json
@@ -2905,6 +4144,30 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 		"default_branch": "main"
 	},
 	"__branch": "main",
+	"__organization": "acme"
+}
+```
+
+#### c.json
+
+```json
+{
+	"skill": {
+		"name": "release-notes",
+		"description": "",
+		"instructions": "# Release notes\n\nSummarize merged pull requests since the previous tag.\n",
+		"frontmatter": {},
+		"path": "packages/agent-kit/skills/release-notes",
+		"skillMdPath": "packages/agent-kit/skills/release-notes/SKILL.md",
+		"root": "packages/agent-kit/skills"
+	},
+	"__repository": {
+		"name": "agent-monorepo",
+		"full_name": "acme/agent-monorepo",
+		"html_url": "https://github.com/acme/agent-monorepo",
+		"default_branch": "main"
+	},
+	"__branch": "develop",
 	"__organization": "acme"
 }
 ```
@@ -3005,6 +4268,25 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 	"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/workflows/192825736",
 	"html_url": "https://github.com/port-gh-app-dev/small-repo/blob/main/.github/workflows/port-kafka.yaml",
 	"badge_url": "https://github.com/port-gh-app-dev/small-repo/workflows/Kafka%20Exporter%20Workflow/badge.svg",
+	"__repository": "small-repo",
+	"__organization": "port-gh-app-dev"
+}
+```
+
+#### c.json
+
+```json
+{
+	"id": 221776494,
+	"node_id": "W_kwDOO-eDos4NOApu",
+	"name": "Dependabot Updates",
+	"path": "dynamic/dependabot/dependabot-updates",
+	"state": "active",
+	"created_at": "2026-01-08T15:13:57.000+01:00",
+	"updated_at": "2026-01-08T15:13:57.000+01:00",
+	"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/workflows/221776494",
+	"html_url": "https://github.com/port-gh-app-dev/small-repo/actions/workflows/dependabot/dependabot-updates",
+	"badge_url": "https://github.com/port-gh-app-dev/small-repo/actions/workflows/dependabot/dependabot-updates/badge.svg",
 	"__repository": "small-repo",
 	"__organization": "port-gh-app-dev"
 }
@@ -3322,6 +4604,237 @@ Raw data examples for `test_integration_mapping` when `get_integration_kinds_wit
 		"tree_id": "a7571c306ff5e43d21fe01fcaccfeba756004b8b",
 		"message": "Update GitHub Actions workflow for custom properties sync",
 		"timestamp": "2026-03-17T17:03:55Z",
+		"author": {
+			"name": "PagesCoffy",
+			"email": "isaac.p.coffie@gmail.com"
+		},
+		"committer": {
+			"name": "GitHub",
+			"email": "noreply@github.com"
+		}
+	},
+	"repository": {
+		"id": 1005028258,
+		"node_id": "R_kgDOO-eDog",
+		"name": "small-repo",
+		"full_name": "port-gh-app-dev/small-repo",
+		"private": false,
+		"owner": {
+			"login": "port-gh-app-dev",
+			"id": 216844958,
+			"node_id": "O_kgDODOzKng",
+			"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/port-gh-app-dev",
+			"html_url": "https://github.com/port-gh-app-dev",
+			"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+			"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+			"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+			"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+			"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+			"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+			"type": "Organization",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"html_url": "https://github.com/port-gh-app-dev/small-repo",
+		"description": null,
+		"fork": false,
+		"url": "https://api.github.com/repos/port-gh-app-dev/small-repo",
+		"forks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/forks",
+		"keys_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/keys{/key_id}",
+		"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/collaborators{/collaborator}",
+		"teams_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/teams",
+		"hooks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/hooks",
+		"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/events{/number}",
+		"events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/events",
+		"assignees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/assignees{/user}",
+		"branches_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/branches{/branch}",
+		"tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/tags",
+		"blobs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/blobs{/sha}",
+		"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/tags{/sha}",
+		"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/refs{/sha}",
+		"trees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/trees{/sha}",
+		"statuses_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/{sha}",
+		"languages_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/languages",
+		"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/stargazers",
+		"contributors_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contributors",
+		"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscribers",
+		"subscription_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscription",
+		"commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/commits{/sha}",
+		"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/commits{/sha}",
+		"comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/comments{/number}",
+		"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/comments{/number}",
+		"contents_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contents/{+path}",
+		"compare_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/compare/{base}...{head}",
+		"merges_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/merges",
+		"archive_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/{archive_format}{/ref}",
+		"downloads_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/downloads",
+		"issues_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues{/number}",
+		"pulls_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls{/number}",
+		"milestones_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/milestones{/number}",
+		"notifications_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/notifications{?since,all,participating}",
+		"labels_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels{/name}",
+		"releases_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/releases{/id}",
+		"deployments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/deployments"
+	},
+	"head_repository": {
+		"id": 1005028258,
+		"node_id": "R_kgDOO-eDog",
+		"name": "small-repo",
+		"full_name": "port-gh-app-dev/small-repo",
+		"private": false,
+		"owner": {
+			"login": "port-gh-app-dev",
+			"id": 216844958,
+			"node_id": "O_kgDODOzKng",
+			"avatar_url": "https://avatars.githubusercontent.com/u/216844958?v=4",
+			"gravatar_id": "",
+			"url": "https://api.github.com/users/port-gh-app-dev",
+			"html_url": "https://github.com/port-gh-app-dev",
+			"followers_url": "https://api.github.com/users/port-gh-app-dev/followers",
+			"following_url": "https://api.github.com/users/port-gh-app-dev/following{/other_user}",
+			"gists_url": "https://api.github.com/users/port-gh-app-dev/gists{/gist_id}",
+			"starred_url": "https://api.github.com/users/port-gh-app-dev/starred{/owner}{/repo}",
+			"subscriptions_url": "https://api.github.com/users/port-gh-app-dev/subscriptions",
+			"organizations_url": "https://api.github.com/users/port-gh-app-dev/orgs",
+			"repos_url": "https://api.github.com/users/port-gh-app-dev/repos",
+			"events_url": "https://api.github.com/users/port-gh-app-dev/events{/privacy}",
+			"received_events_url": "https://api.github.com/users/port-gh-app-dev/received_events",
+			"type": "Organization",
+			"user_view_type": "public",
+			"site_admin": false
+		},
+		"html_url": "https://github.com/port-gh-app-dev/small-repo",
+		"description": null,
+		"fork": false,
+		"url": "https://api.github.com/repos/port-gh-app-dev/small-repo",
+		"forks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/forks",
+		"keys_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/keys{/key_id}",
+		"collaborators_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/collaborators{/collaborator}",
+		"teams_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/teams",
+		"hooks_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/hooks",
+		"issue_events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/events{/number}",
+		"events_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/events",
+		"assignees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/assignees{/user}",
+		"branches_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/branches{/branch}",
+		"tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/tags",
+		"blobs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/blobs{/sha}",
+		"git_tags_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/tags{/sha}",
+		"git_refs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/refs{/sha}",
+		"trees_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/trees{/sha}",
+		"statuses_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/statuses/{sha}",
+		"languages_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/languages",
+		"stargazers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/stargazers",
+		"contributors_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contributors",
+		"subscribers_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscribers",
+		"subscription_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/subscription",
+		"commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/commits{/sha}",
+		"git_commits_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/git/commits{/sha}",
+		"comments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/comments{/number}",
+		"issue_comment_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues/comments{/number}",
+		"contents_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/contents/{+path}",
+		"compare_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/compare/{base}...{head}",
+		"merges_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/merges",
+		"archive_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/{archive_format}{/ref}",
+		"downloads_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/downloads",
+		"issues_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/issues{/number}",
+		"pulls_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/pulls{/number}",
+		"milestones_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/milestones{/number}",
+		"notifications_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/notifications{?since,all,participating}",
+		"labels_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/labels{/name}",
+		"releases_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/releases{/id}",
+		"deployments_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/deployments"
+	},
+	"__repository": "small-repo",
+	"__organization": "port-gh-app-dev"
+}
+```
+
+#### c.json
+
+```json
+{
+	"id": 23204012445,
+	"name": "Kafka Exporter Workflow",
+	"node_id": "WFR_kwLOO-eDos8AAAAFZxEhnQ",
+	"head_branch": "main",
+	"head_sha": "c81600174e6f7523b239915bdb78354ceb32a738",
+	"path": ".github/workflows/port-kafka.yaml",
+	"display_title": "Add baseUrl to sync_custom_properties workflow",
+	"run_number": 15,
+	"event": "push",
+	"status": "completed",
+	"conclusion": "failure",
+	"workflow_id": 192825736,
+	"check_suite_id": 60946034995,
+	"check_suite_node_id": "CS_kwDOO-eDos8AAAAOMKqxMw",
+	"url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445",
+	"html_url": "https://github.com/port-gh-app-dev/small-repo/actions/runs/23204012445",
+	"pull_requests": [],
+	"created_at": "2026-03-17T16:08:37Z",
+	"updated_at": "2026-03-17T16:09:01Z",
+	"actor": {
+		"login": "PeyGis",
+		"id": 15999660,
+		"node_id": "MDQ6VXNlcjE1OTk5NjYw",
+		"avatar_url": "https://avatars.githubusercontent.com/u/15999660?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/PeyGis",
+		"html_url": "https://github.com/PeyGis",
+		"followers_url": "https://api.github.com/users/PeyGis/followers",
+		"following_url": "https://api.github.com/users/PeyGis/following{/other_user}",
+		"gists_url": "https://api.github.com/users/PeyGis/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/PeyGis/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/PeyGis/subscriptions",
+		"organizations_url": "https://api.github.com/users/PeyGis/orgs",
+		"repos_url": "https://api.github.com/users/PeyGis/repos",
+		"events_url": "https://api.github.com/users/PeyGis/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/PeyGis/received_events",
+		"type": "User",
+		"user_view_type": "public",
+		"site_admin": false
+	},
+	"run_attempt": 1,
+	"referenced_workflows": [],
+	"run_started_at": "2026-03-17T16:08:37Z",
+	"triggering_actor": {
+		"login": "PeyGis",
+		"id": 15999660,
+		"node_id": "MDQ6VXNlcjE1OTk5NjYw",
+		"avatar_url": "https://avatars.githubusercontent.com/u/15999660?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/PeyGis",
+		"html_url": "https://github.com/PeyGis",
+		"followers_url": "https://api.github.com/users/PeyGis/followers",
+		"following_url": "https://api.github.com/users/PeyGis/following{/other_user}",
+		"gists_url": "https://api.github.com/users/PeyGis/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/PeyGis/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/PeyGis/subscriptions",
+		"organizations_url": "https://api.github.com/users/PeyGis/orgs",
+		"repos_url": "https://api.github.com/users/PeyGis/repos",
+		"events_url": "https://api.github.com/users/PeyGis/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/PeyGis/received_events",
+		"type": "User",
+		"user_view_type": "public",
+		"site_admin": false
+	},
+	"jobs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445/jobs",
+	"logs_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445/logs",
+	"check_suite_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/check-suites/60946034995",
+	"artifacts_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445/artifacts",
+	"cancel_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445/cancel",
+	"rerun_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/runs/23204012445/rerun",
+	"previous_attempt_url": null,
+	"workflow_url": "https://api.github.com/repos/port-gh-app-dev/small-repo/actions/workflows/192825736",
+	"head_commit": {
+		"id": "c81600174e6f7523b239915bdb78354ceb32a738",
+		"tree_id": "be5f8dcafb9087a1e8b2668776cd2a6bacc6effa",
+		"message": "Add baseUrl to sync_custom_properties workflow",
+		"timestamp": "2026-03-17T16:08:34Z",
 		"author": {
 			"name": "PagesCoffy",
 			"email": "isaac.p.coffie@gmail.com"
