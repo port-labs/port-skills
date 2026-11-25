@@ -10,7 +10,7 @@ problem. Same reachability requirement as the OAuth `redirect_uri` in [registeri
 ```ts
 import { serve } from 'https://deno.land/std/http/server.ts';
 
-const PORT_API_BASE = Deno.env.get('PORT_API_BASE') ?? '{PORT_API_BASE}';
+const PORT_API_BASE = '{PORT_API_BASE}';
 
 const CORS_HEADERS = {
 	'Access-Control-Allow-Origin': '*',

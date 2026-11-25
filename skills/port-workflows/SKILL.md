@@ -131,10 +131,14 @@ Action: use the endpoints below (`workflow_identifier` is the workflow's
 
 ```bash
 curl -L -X POST 'https://api.port.io/v1/workflows' \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
   --data @workflow.json
  ```
+
+The user supplies the access token (`YOUR_ACCESS_TOKEN` is a placeholder).
+Never read it from the shell environment or from files on their machine; ask
+them for it, or use the Port MCP tools instead.
 
 Fallback: a `409` on create means the `identifier` is taken, `PUT` an update
 instead. A `422` usually means a `connections` entry references a node
