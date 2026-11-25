@@ -2,9 +2,9 @@
 
 ## Calling Port's API from a node
 
-Port's API host differs by region, and the run knows it as `.port.apiUrl` (no trailing slash, no `/v1`).
+Port's API host differs by region, and the run knows it as `.port.apiUrl` (ending at the host, so append `/v1/...`).
 An HTTP request node calling Port starts its `url` with `{{ .port.apiUrl }}/v1/...`.
-Port authenticates these calls itself, so the node sets no `Authorization` header.
+Port authenticates these calls itself, so the node's headers leave out `Authorization`.
 
 Entity routes are scoped by blueprint:
 
@@ -14,7 +14,7 @@ Entity routes are scoped by blueprint:
 | All entities of a blueprint | `GET {{ .port.apiUrl }}/v1/blueprints/<blueprint>/entities` |
 | Search entities of a blueprint | `POST {{ .port.apiUrl }}/v1/blueprints/<blueprint>/entities/search` |
 
-`/v1/entities/search` and `/v1/entities?blueprint=...` are not supported routes, so a search always names its blueprint in the path.
+A search names its blueprint in the path, `/v1/blueprints/<blueprint>/entities/search`, the supported route.
 
 The search body is `{ "query": <query> }`, where the query has a `combinator` (`and` or `or`) and `rules`.
 Each rule has a `property` (such as `$identifier`, `$title`, `$team` or a property identifier), an `operator` (such as `=`, `!=`, `in`, `contains`) and a `value`, which can be a template.
@@ -29,7 +29,7 @@ For any other route, its parameters or its response, search `search_port_knowled
 
 ## Linking into the Port app
 
-The app host also differs by region, and the run knows it as `.port.appUrl` (no trailing slash).
+The app host also differs by region, and the run knows it as `.port.appUrl` (ending at the host, so append `/...`).
 A link to an entity page is `{{ .port.appUrl }}/<blueprint>Entity?identifier=<identifier>`, with the identifier URL-encoded by `@uri` when it can hold special characters.
 `{{ .workflowNodeRun.url }}` links straight to the current node run.
 
@@ -41,7 +41,7 @@ Since the receiver runs outside the workflow, include `{{ .port.apiUrl }}` and `
 
 ## Applying a workflow through the REST API
 
-Where no Port MCP server is connected, a workflow is applied over Port's REST API.
+Without a Port MCP server, a workflow is applied over Port's REST API.
 The base URL is the API host of the organization's region, listed in Port's API documentation.
 
 1. Get a token: `POST <Port API URL>/v1/auth/access_token` with `clientId` and `clientSecret` from the Port app's Credentials menu.
@@ -58,4 +58,4 @@ The base URL is the API host of the organization's region, listed in Port's API 
 | Run | `POST /v1/workflows/<workflow identifier>/runs` |
 
 A `409` on create means the identifier is taken, so update it with `PUT`.
-A `422` usually means a connection names a node that does not exist, or an edge leaving a CONDITION or INPUT node has no `sourceOutletIdentifier`.
+A `422` usually means a connection names a node missing from `nodes`, or an edge leaving a CONDITION, DECISION or INPUT node lacks its `sourceOutletIdentifier`.

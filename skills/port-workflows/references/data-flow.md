@@ -8,7 +8,7 @@ Only JQ syntax works inside the braces.
 
 `.outputs["<node identifier>"]` holds the output of any node that already ran in this run.
 Bracket notation works for every identifier.
-Dot notation, `.outputs.fetch_service.response`, is shorter but reads a hyphen as subtraction, so `.outputs.fetch-service` silently returns nothing; keep node identifiers snake_case when you use dot notation.
+Dot notation, `.outputs.fetch_service.response`, is shorter and reads a hyphen as subtraction, so keep node identifiers snake_case when you use dot notation, as in `.outputs.fetch_service`.
 
 `.outputs.trigger` always holds the output of the trigger that fired this run, whatever its identifier, which keeps templates working in a workflow with several triggers.
 
@@ -23,7 +23,7 @@ Dot notation, `.outputs.fetch_service.response`, is shorter but reads a hyphen a
 | An INPUT node's chosen outlet | `.outputs["<node>"].selectedOutlet.identifier` |
 | A failed node's error, when `onFailure` is `continue` | `.outputs["<node>"].error.message` |
 
-The output of each node type is listed with the node in [triggers.md](triggers.md), [action-nodes.md](action-nodes.md), [integration-actions.md](integration-actions.md) and [flow-control.md](flow-control.md).
+The output of each node type is listed with the node in [triggers.md](triggers.md), [action-nodes.md](action-nodes.md), the provider files linked from [integration-actions.md](integration-actions.md) and [flow-control.md](flow-control.md).
 
 ## Secrets
 
@@ -45,7 +45,7 @@ Available in every node:
 | Port's API and app origins for the region | `.port.apiUrl`, `.port.appUrl` |
 
 `.workflowNodeRun` describes whichever node is running, so it changes from node to node.
-`.port.apiUrl` and `.port.appUrl` have no trailing slash; their use is described in [port-api.md](port-api.md).
+`.port.apiUrl` and `.port.appUrl` end without a slash, so add the path with a leading `/`; their use is described in [port-api.md](port-api.md).
 
 ## Reshaping output with `variables`
 
@@ -57,7 +57,7 @@ Each key becomes an output field, and each value is a template that can read:
 
 Because `variables` replaces the whole default output, a later node can read only the keys `variables` declares.
 To keep the response next to an extracted field, declare it too, such as `response` set to `{{ .result.response }}`.
-Use `variables` to pull one field out of a large response, drop data later nodes do not need, or join a node's result with earlier outputs.
+Use `variables` to pull one field out of a large response, keep only the data later nodes read, or join a node's result with earlier outputs.
 
 ## JQ helpers that come up often
 

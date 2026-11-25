@@ -1,6 +1,6 @@
 ---
 name: port-workflows
-description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents or Cursor cloud agents integration actions, Kafka, AI), condition and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Not for blueprint or data-model design (port-blueprints, port-context-lake), integration mapping YAML (port-integrations), blueprint, entity or page permissions (port-permissions), Port's legacy self-service actions and automations, or CI/CD pipeline files such as GitHub Actions YAML, which a workflow can dispatch but does not replace."
+description: "Build, change or fix a Port workflow, Port's node-based automation graph: a self-service, event or schedule trigger, action nodes (HTTP request, upsert entity, Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps, Claude managed agents, Cursor cloud agents or Devin integration actions, Kafka, AI, run summary, execute workflow), condition, AI decision and approval (input) nodes, the connections and JQ templates between them, and who may run the trigger. Use when asked to create or edit a Port workflow, add an approval step or a branch, turn a form into a self-service workflow, react to entity changes, run something on a schedule, or propose a workflow in Port's workflow editor. Data-model design belongs to port-blueprints and port-context-lake, integration mapping YAML to port-integrations, and blueprint, entity or page permissions to port-permissions; Port's legacy self-service actions and automations, and CI/CD pipeline files such as GitHub Actions YAML, belong elsewhere; a workflow dispatches them."
 license: MIT
 compatibility: "Claude Code, Cursor, Codex CLI, GitHub Copilot"
 allowed-tools:
@@ -24,11 +24,11 @@ One or more trigger nodes start a run, action and flow nodes do the work, and `c
 Each node reads earlier nodes' output through JQ templates.
 
 This skill works through Port's MCP server and its tools `list_blueprints`, `list_entities`, `list_integrations`, `list_workflows`, `get_workflow`, and `upsert_workflow`.
-When a question is not answered here, search `search_port_knowledge_sources`.
-If no Port MCP server is connected, the `port-getting-started` skill explains how to connect one.
+For a question this skill leaves open, search `search_port_knowledge_sources`.
+To connect a Port MCP server, follow the `port-getting-started` skill.
 
 In the workflow editor side chat, where the page context holds the workflow being edited, propose changes with `suggest_workflow`.
-Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
+Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or saving is unavailable.
 
 ## Build a workflow
 
@@ -37,20 +37,20 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
    Call `list_workflows`, then `get_workflow`, to see whether a workflow already does this job; extending it keeps one source of truth.
    In the workflow editor side chat, the workflow in the page context is the one being edited.
 2. **Sketch the trigger and the nodes.**
-   Start from a self-service trigger when the request does not say what starts the run, since it runs only when someone asks for it.
+   Start from a self-service trigger when the request leaves open what starts the run, since it runs only when someone asks for it.
    Add one node per step.
-   Write Port entities with an upsert entity node, call Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps with an integration action, and use an HTTP request node for any other external call.
+   Write Port entities with an upsert entity node, call Jira, Linear, PagerDuty, GitHub, GitLab, Azure DevOps or Devin with an integration action, and use an HTTP request node for any other external call.
    Pass data between nodes with JQ templates, and read tokens and secret URLs from organization secrets with `{{ .secrets["<name>"] }}`.
-   Before you write the JSON, load `references/workflow-interface.md`, the shape of a workflow and how its parts relate.
+   Before you write the JSON, load `references/example-workflow.md`, a complete workflow that saves as written.
 3. **Connect the outlets.**
    Add one connection per edge, from `sourceIdentifier` to `targetIdentifier`, and give every outlet of a CONDITION or INPUT node the connection for its branch, so each outcome the user described has a path.
 4. **Set permissions.**
    Give each self-service trigger a `permissions` object naming the roles, teams or users who may run it.
-   A save is rejected when `permissions` names a team or user the organization does not have, so when the lookup does not find the one the user named, leave it out, say which name was not found, and offer the teams that exist.
+   A save succeeds only when every team and user in `permissions` exists in the organization, so when the lookup misses the one the user named, leave it out, name the one that is missing, and offer the teams that exist.
 5. **Save or propose.**
-   Save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or cannot save.
+   Save with `upsert_workflow`, or give the user the workflow JSON when they asked for JSON or saving is unavailable.
    In the workflow editor side chat, call `suggest_workflow` instead, with `suggestedWorkflow` set to the complete proposed workflow and `currentWorkflow` set to the workflow as it is now in the editor; leave `currentWorkflow` out for a new empty workflow.
-   That call saves nothing: the user reviews the proposal, applies it and saves it, so the reply describes the workflow as suggested for their review.
+   That call only proposes: the user reviews the proposal, applies it and saves it, so the reply describes the workflow as suggested for their review.
 
 ## Gotchas
 
@@ -68,11 +68,11 @@ Anywhere else, save with `upsert_workflow`, or give the user the workflow JSON w
 
 ## References
 
-- [references/workflow-interface.md](references/workflow-interface.md): read this before you write the workflow JSON; it gives the shape of a workflow, its nodes and its connections, and how they relate.
-- [references/triggers.md](references/triggers.md): read this when you configure a self-service, event or schedule trigger, its form inputs, or the workflow's top-level fields.
-- [references/action-nodes.md](references/action-nodes.md): read this when you add an HTTP request, upsert entity, Kafka or AI node.
-- [references/integration-actions.md](references/integration-actions.md): read this when a node calls Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps, or drives a Claude managed agent or a Cursor cloud agent, through an installed integration.
-- [references/flow-control.md](references/flow-control.md): read this when you branch with a CONDITION node, add an approval with an INPUT node, or wire their outlets.
+- [references/example-workflow.md](references/example-workflow.md): read this before you write the workflow JSON; it is a complete workflow that saves as written, with a trigger, a branch, actions and every outlet connected.
+- [references/triggers.md](references/triggers.md): read this when you configure a self-service, event, schedule or workflow trigger, its form inputs, or the workflow's top-level fields.
+- [references/action-nodes.md](references/action-nodes.md): read this when you add an HTTP request, upsert entity, Kafka, AI, run summary or execute workflow node.
+- [references/integration-actions.md](references/integration-actions.md): read this when a node calls Jira, Linear, PagerDuty, GitHub, GitLab or Azure DevOps, or drives a Claude managed agent, a Cursor cloud agent or Devin, through an installed integration; each provider's actions sit in their own file, linked from that page.
+- [references/flow-control.md](references/flow-control.md): read this when you branch with a CONDITION node or an AI DECISION node, add an approval with an INPUT node, or wire their outlets.
 - [references/data-flow.md](references/data-flow.md): read this when a node reads trigger inputs, earlier node outputs, secrets or run metadata, or reshapes its own output with `variables`.
 - [references/port-api.md](references/port-api.md): read this when a node calls Port's own API, links into the Port app, reports an asynchronous node back, or the workflow is applied through the REST API instead of MCP.
 - [references/permissions.md](references/permissions.md): read this when you decide who may run a self-service trigger, including dynamic policies.

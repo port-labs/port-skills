@@ -11,8 +11,8 @@
 - [Common patterns](#common-patterns)
 - [Validation vs. permissions](#validation-vs-permissions)
 
-Permissions control who can see and execute a `SELF_SERVE_TRIGGER` node from Port's self-service page; a workflow a user can't execute is hidden from them entirely.
-Event triggers have no `permissions` field, they run under the organization's automation identity.
+Permissions control who can see and execute a `SELF_SERVE_TRIGGER` node from Port's self-service page; a user sees only the workflows they can execute.
+Event triggers run under the organization's automation identity, so they leave out the `permissions` field.
 Admins can always execute every workflow regardless of this configuration.
 
 Set `permissions` inside the trigger node's `config`:
@@ -37,12 +37,12 @@ Set `permissions` inside the trigger node's `config`:
 | `{ "teams": [...] }` | Admin + listed teams |
 | `{ "policy": {...} }` | Admin + users matching the policy |
 
-`users` takes user emails, not Port user IDs; a user ID there matches nobody.
+`users` takes user emails, which is how it matches people.
 `teams` takes `_team` entity identifiers.
 
 **Evaluation order**: static fields (`roles`, `users`, `teams`) are checked first, any match grants access via OR logic.
-`policy` is only evaluated for users that don't match a static field, it's an *additional* access path, not a further restriction.
-Machine tokens bypass static checks entirely when no `policy` is present; if a `policy` is defined, machine tokens are evaluated against it.
+`policy` is evaluated for users who match no static field, so it is an *additional* access path that widens access.
+Machine tokens pass the static checks when the trigger has no `policy`; when a `policy` is defined, machine tokens are evaluated against it.
 
 ```json
 { "permissions": { "roles": ["Member"], "policy": { "combinator": "and", "rules": [{ "property": { "context": "user", "property": "department" }, "operator": "=", "value": "engineering" } ] } } }
@@ -95,7 +95,7 @@ Multiple values in the same field are OR'd (any listed team is enough).
 | `inputName.$team` | Entity's owning team(s) | array |
 | `inputName.propertyName` | A blueprint property of the entity | actual blueprint type |
 
-Deep traversal (`input.relation.nested`) isn't supported, add a mirror or calculation property on the blueprint to flatten the value you need instead.
+A policy reads one relation level, so add a mirror or calculation property on the blueprint to flatten a deeper value such as `input.relation.nested`.
 
 ### Operators
 
@@ -174,5 +174,5 @@ Restrict to the manager of the entity's owning team, comparing a mirror property
 ## Validation vs. permissions
 
 Permissions gate *who* can start a run.
-To block a run based on context lake state (for example, "don't let this run if an entity with this name already exists"), that's a runtime validation, not a permission.
-Add a `CONDITION` node as the first step and route the failing branch to a CONDITION node with no outlets (or a node that reports back why it stopped) instead of trying to encode it in `policy`; see [flow-control.md](flow-control.md).
+Stopping a run based on context lake state (for example, "stop when an entity with this name already exists") is a runtime validation, handled in the workflow.
+Add a `CONDITION` node as the first step and route the failing branch to a CONDITION node with no outlets (or a node that reports back why it stopped), and keep `policy` for who may run the trigger; see [flow-control.md](flow-control.md).
