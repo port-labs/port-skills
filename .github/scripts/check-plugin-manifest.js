@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Cross-checks .claude-plugin/plugin.json and marketplace.json so the two
+ * Cross-checks plugin/.claude-plugin/plugin.json and .claude-plugin/marketplace.json so the two
  * manifests can't silently drift apart (mismatched name, missing entry,
  * invalid version).
  *
@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO_ROOT = path.join(__dirname, '..', '..');
-const PLUGIN_PATH = path.join(REPO_ROOT, '.claude-plugin', 'plugin.json');
+const PLUGIN_PATH = path.join(REPO_ROOT, 'plugin', '.claude-plugin', 'plugin.json');
 const MARKETPLACE_PATH = path.join(REPO_ROOT, '.claude-plugin', 'marketplace.json');
 
 function readJson(filePath) {
@@ -34,9 +34,9 @@ function checkManifests() {
 	}
 
 	const entries = marketplace.plugins || [];
-	const entry = entries.find((p) => p.source === './' || p.source === '.');
+	const entry = entries.find((p) => p.source === './plugin');
 	if (!entry) {
-		errors.push('marketplace.json has no plugin entry with source "./" pointing at this repo.');
+		errors.push('marketplace.json has no plugin entry with source "./plugin" pointing at the plugin folder.');
 	} else if (entry.name !== plugin.name) {
 		errors.push(`marketplace.json plugin name "${entry.name}" does not match plugin.json name "${plugin.name}".`);
 	}

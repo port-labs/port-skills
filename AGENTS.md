@@ -7,6 +7,12 @@ relevant `skills/*/SKILL.md` instead of this file.
 
 ## TL;DR
 
+- **The shipped plugin lives in `plugin/`** (`plugin/.claude-plugin/plugin.json`,
+  `plugin/skills/`, `plugin/.mcp.json`) and is what gets submitted to Anthropic's
+  directory. Repo tooling (`AGENTS.md`, `package.json`, `index.js`, `scripts/`,
+  `.claude/skills/`, ...) stays outside it on purpose; don't move it in.
+  Never add credentials read from the user's machine (env vars, home-dir
+  files) to the manifests or `.mcp.json`; the MCP servers use OAuth sign-in.
 - Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and
   [`.claude/skills/port-skill-creator/SKILL.md`](.claude/skills/port-skill-creator/SKILL.md)
   (+ its `references/skill-writing-guide.md`) before writing or editing a
@@ -18,9 +24,9 @@ relevant `skills/*/SKILL.md` instead of this file.
   the territory, extend it instead of shipping a second skill that
   contradicts it when both load.
 - **Prefer nesting over a new top-level skill.** If the new content is a
-  sub-topic of an existing skill's job (see `skills/port-dashboards/port-dashboard-plugins/`
+  sub-topic of an existing skill's job (see `plugin/skills/port-dashboards/port-dashboard-plugins/`
   for the pattern), nest it under that skill's directory rather than adding
-  a sibling under `skills/`.
+  a sibling under `plugin/skills/`.
 - **Every skill is namespaced `port-<name>`**, directory and frontmatter
   `name` both, enforced by `validate-skill.js`. There's no unprefixed skill
   in this repo.
@@ -32,6 +38,6 @@ relevant `skills/*/SKILL.md` instead of this file.
 - Before committing: `node .claude/skills/port-skill-creator/scripts/validate-skill.js --all`,
   then `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js` and
   commit the resulting `README.md` diff. CI re-checks both.
-- Don't hand-bump `.claude-plugin/plugin.json`'s `version`. CI does that
+- Don't hand-bump `plugin/.claude-plugin/plugin.json`'s `version`. CI does that
   automatically (and tags a release) on every merge to `main` that touches
-  `skills/`, `.claude/skills/`, `.claude-plugin/`, or `.mcp.json`.
+  `plugin/`, `.claude/skills/`, or `.claude-plugin/`.

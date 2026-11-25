@@ -11,5 +11,5 @@ Quick links:
 
 - Format and body structure: [`.claude/skills/port-skill-creator/SKILL.md`](.claude/skills/port-skill-creator/SKILL.md)
 - Full writing guide: [`.claude/skills/port-skill-creator/references/skill-writing-guide.md`](.claude/skills/port-skill-creator/references/skill-writing-guide.md)
-- Validator: `node .claude/skills/port-skill-creator/scripts/validate-skill.js skills/port-<your-skill>`
+- Validator: `node .claude/skills/port-skill-creator/scripts/validate-skill.js plugin/skills/port-<your-skill>`
 - Regenerate the README index: `node .claude/skills/port-skill-creator/scripts/generate-skill-index.js`

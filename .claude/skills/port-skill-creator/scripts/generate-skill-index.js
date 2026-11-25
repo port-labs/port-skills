@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Regenerates the skill index table in README.md from the skills/ directory,
+ * Regenerates the skill index table in README.md from the plugin/skills/ directory,
  * so the README table can never drift from what's actually shipped.
  *
  * Usage: node .claude/skills/port-skill-creator/scripts/generate-skill-index.js
@@ -12,7 +12,7 @@ const path = require('path');
 const { parseFrontmatter, findSkillMd } = require('./validate-skill.js');
 
 const REPO_ROOT = path.join(__dirname, '..', '..', '..', '..');
-const SKILLS_DIR = path.join(REPO_ROOT, 'skills');
+const SKILLS_DIR = path.join(REPO_ROOT, 'plugin', 'skills');
 const README_PATH = path.join(REPO_ROOT, 'README.md');
 const START_MARKER = '<!-- SKILL_INDEX_START -->';
 const END_MARKER = '<!-- SKILL_INDEX_END -->';
@@ -57,7 +57,7 @@ function loadSkills() {
 
 function buildTable(skills) {
 	const header = '| Skill | What it does |\n|---|---|';
-	const rows = skills.map((s) => `| [\`${s.name}\`](skills/${s.name}/SKILL.md) | ${s.description}. |`);
+	const rows = skills.map((s) => `| [\`${s.name}\`](plugin/skills/${s.name}/SKILL.md) | ${s.description}. |`);
 	return [header, ...rows].join('\n');
 }
 

@@ -3,11 +3,12 @@
 #
 # Standalone example: this file includes its own `terraform` and `provider`
 # blocks. If you copy more than one file from this skill's assets/ into the
-# same directory, keep only one `terraform`/`provider` block and rename any
+# same directory, keep only one `terraform`/`provider` block and one set of `variable` blocks and rename any
 # clashing resource labels or identifiers.
 #
-# terraform init && terraform plan will succeed once PORT_CLIENT_ID and
-# PORT_CLIENT_SECRET are set (see the Port docs for how to find them:
+# terraform init && terraform plan will succeed once the user supplies the
+# port_client_id and port_client_secret variables (see the Port docs for how
+# to find them:
 # https://docs.port.io/build-your-software-catalog/custom-integration/api#find-your-port-credentials).
 
 terraform {
@@ -19,9 +20,20 @@ terraform {
   }
 }
 
+variable "port_client_id" {
+  type        = string
+  description = "Port API client ID (see the Port docs: Find your Port credentials)"
+}
+
+variable "port_client_secret" {
+  type        = string
+  description = "Port API client secret"
+  sensitive   = true
+}
+
 provider "port" {
-  client_id = "" # or set the environment variable PORT_CLIENT_ID
-  secret    = "" # or set the environment variable PORT_CLIENT_SECRET
+  client_id = var.port_client_id
+  secret    = var.port_client_secret
   base_url  = "https://api.port.io"
 }
 

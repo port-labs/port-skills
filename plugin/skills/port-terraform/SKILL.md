@@ -51,7 +51,9 @@ but not covered in depth here.
 
 Precondition: no `port` provider block exists in the working directory yet.
 Action: add a `terraform` block pinning `port-labs/port-labs`, and a
-`provider "port"` block with credentials from environment variables, then
+`provider "port"` block whose credentials come from sensitive Terraform
+variables the user supplies (never read credentials from the user's
+environment or files yourself, and never write real values into `.tf` files), then
 run `terraform init`:
 
 ```hcl
@@ -64,9 +66,18 @@ terraform {
   }
 }
 
+variable "port_client_id" {
+  type = string
+}
+
+variable "port_client_secret" {
+  type      = string
+  sensitive = true
+}
+
 provider "port" {
-  client_id = "" # or set the environment variable PORT_CLIENT_ID
-  secret    = "" # or set the environment variable PORT_CLIENT_SECRET
+  client_id = var.port_client_id
+  secret    = var.port_client_secret
   base_url  = "https://api.port.io"
 }
  ```
@@ -191,8 +202,8 @@ Complete, standalone `.tf` files (each includes its own `terraform` and
 
 ## Quick reference
 
-- Provider: `provider "port" { client_id, secret, base_url }`, or
-  `PORT_CLIENT_ID`/`PORT_CLIENT_SECRET` env vars.
+- Provider: `provider "port" { client_id, secret, base_url }`, with the
+  credentials passed in as Terraform variables the user supplies.
 - Resources: `port_blueprint`, `port_entity`, `port_scorecard`,
   `port_action`, `port_webhook`, `port_integration`,
   `port_aggregation_properties`.

@@ -3,7 +3,7 @@
 /**
  * Build script for the @port-labs/port-skills npm package.
  *
- * Scans skills/** for every directory containing a SKILL.md (including nested
+ * Scans plugin/skills/** for every directory containing a SKILL.md (including nested
  * sub-skills such as port-dashboards/port-dashboard-plugins), parses the
  * frontmatter, reads each skill's references/ and assets/ files, and emits a
  * single data file (dist/skills.generated.json) that index.js serves.
@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const SKILLS_DIR = path.join(__dirname, '..', 'skills');
+const SKILLS_DIR = path.join(__dirname, '..', 'plugin', 'skills');
 const OUTPUT_DIR = path.join(__dirname, '..', 'dist');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, 'skills.generated.json');
 

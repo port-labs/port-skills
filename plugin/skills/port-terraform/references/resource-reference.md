@@ -19,16 +19,16 @@ concepts map onto HCL arguments.
 
 ```hcl
 provider "port" {
-  client_id = "..." # or PORT_CLIENT_ID
-  secret    = "..." # or PORT_CLIENT_SECRET
+  client_id = var.port_client_id
+  secret    = var.port_client_secret
   base_url  = "https://api.port.io"
 }
 ```
 
 | Argument | Type | Notes |
 |---|---|---|
-| `client_id` | string | Or set env var `PORT_CLIENT_ID`. |
-| `secret` | string, sensitive | Or set env var `PORT_CLIENT_SECRET`. |
+| `client_id` | string | Pass in via a Terraform variable. |
+| `secret` | string, sensitive | Pass in via a sensitive Terraform variable. |
 | `token` | string, sensitive | Alternative to `client_id`/`secret`: a pre-fetched bearer token. |
 | `base_url` | string | `https://api.port.io` (EU/US default) or your org's region-specific API host. |
 | `blueprint_property_type_change_protection` | bool, default `true` | When `true`, changing a property's `type` in a `port_blueprint` resource is blocked instead of silently deleting and recreating the property (which drops its data). Leave this on unless you've already migrated the data yourself. |

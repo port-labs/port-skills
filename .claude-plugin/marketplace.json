@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "port-skills",
-      "source": "./",
+      "source": "./plugin",
       "description": "Connect to Port's agentic SDLC platform in natural language: query the Context Lake, orchestrate workflows, manage agents, and enforce governance.",
       "category": "agentic-sdlc-platform",
       "tags": ["platform engineering", "agents"]
