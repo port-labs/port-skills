@@ -1,36 +1,35 @@
+# Example workflow
+
+A complete workflow that saves as written: a self-service trigger, a branch on one input, two HTTP request nodes, an entity upsert and a chat message.
+Copy its shape and change the identifiers, blueprints, inputs and URLs to match the request.
+
+What to copy from it:
+
+- The trigger sets `permissions` and lists its `userInputs`, with `required` and `order`.
+- Only the CONDITION node's edges set `sourceOutletIdentifier` or `fallback`.
+  Every other edge has just `sourceIdentifier` and `targetIdentifier`.
+- Every outlet of the CONDITION node has an edge, the `prod` outlet and the `fallback`.
+- Both branches join at one node, `update_entity`, because each node, and each outlet of a CONDITION node, has at most one outgoing edge, while a node can have any number of incoming ones.
+- Nodes whose failure the run should survive set `"onFailure": "continue"`.
+- Secrets are read as `{{ .secrets["<name>"] }}`.
+
+```json
 {
   "identifier": "deploy-service",
   "title": "Deploy service",
   "icon": "Deployment",
   "description": "Deploy a service to an environment, using a canary rollout for production.",
-  "category": "Deployments",
-  "allowAnyoneToViewRuns": true,
   "nodes": [
     {
       "identifier": "trigger",
       "config": {
         "type": "SELF_SERVE_TRIGGER",
-        "permissions": {
-          "roles": ["Member"]
-        },
+        "permissions": { "roles": ["Member"] },
         "userInputs": {
           "properties": {
-            "service": {
-              "type": "string",
-              "format": "entity",
-              "blueprint": "service",
-              "title": "Service"
-            },
-            "version": {
-              "type": "string",
-              "title": "Version",
-              "description": "Git tag or commit SHA to deploy."
-            },
-            "environment": {
-              "type": "string",
-              "title": "Environment",
-              "enum": ["staging", "production"]
-            }
+            "service": { "type": "string", "format": "entity", "blueprint": "service", "title": "Service" },
+            "version": { "type": "string", "title": "Version", "description": "Git tag or commit SHA to deploy." },
+            "environment": { "type": "string", "title": "Environment", "enum": ["staging", "production"] }
           },
           "required": ["service", "version", "environment"],
           "order": ["service", "version", "environment"]
@@ -90,19 +89,18 @@
           "identifier": "{{ .outputs.trigger.service }}",
           "properties": {
             "lastDeployedVersion": "{{ .outputs.trigger.version }}",
-            "lastDeployedEnvironment": "{{ .outputs.trigger.environment }}",
-            "lastDeployedAt": "{{ now | todateiso8601 }}"
+            "lastDeployedEnvironment": "{{ .outputs.trigger.environment }}"
           }
         },
         "onFailure": "continue"
       }
     },
     {
-      "identifier": "notify_slack",
-      "title": "Notify Slack",
+      "identifier": "notify_chat",
+      "title": "Notify chat",
       "config": {
         "type": "WEBHOOK",
-        "url": "{{ .secrets[\"slack-webhook-url\"] }}",
+        "url": "{{ .secrets[\"chat-webhook-url\"] }}",
         "method": "POST",
         "onFailure": "continue",
         "body": {
@@ -117,6 +115,7 @@
     { "sourceIdentifier": "check_env", "targetIdentifier": "deploy_other", "fallback": true },
     { "sourceIdentifier": "deploy_prod", "targetIdentifier": "update_entity" },
     { "sourceIdentifier": "deploy_other", "targetIdentifier": "update_entity" },
-    { "sourceIdentifier": "update_entity", "targetIdentifier": "notify_slack" }
+    { "sourceIdentifier": "update_entity", "targetIdentifier": "notify_chat" }
   ]
 }
+```
