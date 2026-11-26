@@ -45,6 +45,7 @@ Port's MCP server first.
 | [`port-context-lake`](skills/port-context-lake/SKILL.md) | Design a Port context lake with connected blueprints and semantic relations. |
 | [`port-create-custom-oauth-app`](skills/port-create-custom-oauth-app/SKILL.md) | Register an OAuth app for a custom UI and wire up PKCE login. |
 | [`port-dashboards`](skills/port-dashboards/SKILL.md) | Build Port dashboard pages with widgets, layout, filters, and a date range. |
+| [`port-factory`](skills/port-factory/SKILL.md) | Configure factory lines, stage executors, and stage-run reporting. |
 | [`port-getting-started`](skills/port-getting-started/SKILL.md) | Sign up for Port and connect its MCP server to your coding agent. |
 | [`port-integrations`](skills/port-integrations/SKILL.md) | Configure and troubleshoot Port integration mapping. |
 | [`port-permissions`](skills/port-permissions/SKILL.md) | Configure Port's RBAC across the context lake and pages. |
