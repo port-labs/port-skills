@@ -3,7 +3,7 @@
 The node fields every integration action shares are in [integration-actions.md](integration-actions.md).
 
 Needs the Cursor Cloud Agents integration installed.
-It replaces the deprecated `CURSOR_AGENT` node: build new Cursor steps with this action.
+Build every Cursor step with this action.
 
 | Invocation type | What it does |
 |---|---|
