@@ -1,0 +1,9 @@
+{
+  "identifier": "implement",
+  "title": "Implement",
+  "executor": "factory_ai_managed_agent",
+  "executor_settings": {
+    "installation_id": "my-factory-ai",
+    "computer_id": "computer-abc123"
+  }
+}
